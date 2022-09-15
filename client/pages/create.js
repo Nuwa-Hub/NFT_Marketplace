@@ -7,19 +7,17 @@ import Support from "../components/Support";
 import AllInOne from "../components/AllInOne";
 import Pricing from "../components/Pricing";
 import Footer from "../components/Footer";
+import Example from "../components/Example";
 
 export default function Home() {
-	return <>
-		<Head>
-			<title>Krptonaut</title>
-		</Head>
-		<Navbar />
-		<Hero />
-		<About />
-		<Support />
-		<AllInOne />
-		<Pricing />
-		<Footer />
+    return <>
+        <Head>
+            <title>Krptonaut</title>
+        </Head>
+        {/* <Navbar /> */}
+        {/* <Hero /> */}
+        <Example />
 
-	</>;
+
+    </>;
 }

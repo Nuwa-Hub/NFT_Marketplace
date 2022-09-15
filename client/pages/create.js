@@ -9,15 +9,15 @@ import Pricing from "../components/Pricing";
 import Footer from "../components/Footer";
 import Example from "../components/Example";
 
-export default function Home() {
-    return <>
-        <Head>
-            <title>Krptonaut</title>
-        </Head>
-        {/* <Navbar /> */}
-        {/* <Hero /> */}
-        <Example />
-
-
-    </>;
+export default function Create() {
+	return (
+		<>
+			{/* <Head>
+				<title>Krptonaut</title>
+			</Head> */}
+			{/* <Navbar /> */}
+			{/* <Hero /> */}
+			<Example />
+		</>
+	);
 }

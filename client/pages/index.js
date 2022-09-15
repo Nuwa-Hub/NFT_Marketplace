@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Support from "../components/Support";
@@ -9,17 +9,13 @@ import Pricing from "../components/Pricing";
 import Footer from "../components/Footer";
 
 export default function Home() {
-	return <>
-		<Head>
-			<title>Krptonaut</title>
-		</Head>
-		<Navbar />
-		<Hero />
-		<About />
-		<Support />
-		<AllInOne />
-		<Pricing />
-		<Footer />
-
-	</>;
+	return (
+		<>
+			<Hero />
+			<About />
+			<Support />
+			<AllInOne />
+			<Pricing />
+		</>
+	);
 }

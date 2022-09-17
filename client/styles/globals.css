@@ -28,3 +28,15 @@ a {
 		background: black;
 	}
 }
+
+@layer base {
+
+	button {
+	  @apply text-white border bg-teal-600 border-teal-600
+	  hover:bg-transparent hover:text-teal-600 rounded-md
+	}
+	button.create {
+	  @apply text-white border bg-zinc-600 border-zinc-600
+	  hover:bg-transparent hover:text-zinc-600 rounded-md
+	}
+  }

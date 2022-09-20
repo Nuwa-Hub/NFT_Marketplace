@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-<<<<<<< HEAD
 import styles from "../styles/Home.module.css";
 import React from "react";
 export default function Home() {
@@ -150,24 +149,5 @@ export default function Home() {
 				</form>
 			</div>
 		</div>
-=======
-// import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import About from "../components/About";
-import Support from "../components/Support";
-import AllInOne from "../components/AllInOne";
-import Pricing from "../components/Pricing";
-import Footer from "../components/Footer";
-
-export default function Home() {
-	return (
-		<>
-			<Hero />
-			<About />
-			<Support />
-			<AllInOne />
-			<Pricing />
-		</>
->>>>>>> main
 	);
 }

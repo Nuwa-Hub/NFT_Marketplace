@@ -46,12 +46,12 @@ function updateButton() {
 async function connectWebsite() {
 
     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    if(chainId !== '0x5')
+    if(chainId !== '0x4')
     {
       //alert('Incorrect network! Switch your metamask network to Rinkeby');
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x5' }],
+        params: [{ chainId: '0x4' }],
      })
     }  
     await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -63,23 +63,24 @@ async function connectWebsite() {
       });
 }
 
-  useEffect(() => {
-    let val = window.ethereum.isConnected();
-    if(val)
-    {
-      console.log("here");
-      getAddress();
-      toggleConnect(val);
-      updateButton();
-    }
+//  useEffect(() => {
+  //   let val = window.ethereum.isconnected();
+  //   console.log(val)
+  //   if(val)
+  //   {
+  //     console.log("here");
+  //     getAddress();
+  //     toggleConnect(val);
+  //     updateButton();
+  //   }
 
-    window.ethereum.on('accountsChanged', function(accounts){
-      window.location.replace(location.pathname)
-    })
-  });
+  //   window.ethereum.on('accountsChanged', function(accounts){
+  //     window.location.replace(location.pathname)
+  //   })
+  // });
 
   return (
-    <div className='w-screen h-[80px] z-10 bg-zinc-200 sticky drop-shadow-lg'>
+    <div className='w-screen h-[80px] z-10 bg-zinc-200 sticky top-0 drop-shadow-lg'>
       <div className='px-2 flex justify-between items-center w-full h-full'>
         <div className='flex items-center'>
           <img className='w-16' src={Logo.src} alt="logo" />

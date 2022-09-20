@@ -6,6 +6,7 @@ import React from "react";
 // import userdp from "../../images/user.png";
 
 export default function NavBar() {
+	
 	return (
 		<div className="topbar">
 			<div className="topbarWrapper">

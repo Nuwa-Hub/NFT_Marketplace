@@ -1,6 +1,5 @@
-import CollectionHeader from "../components/CollectionHeader";
-
-import NFTCard from "../components/NFTCard";
+import CollectionHeader from "../components/collection/CollectionHeader";
+import NFTCard from "../components/collection/NFTCard";
 
 const Collection = () => {
 	return (

@@ -12,11 +12,11 @@ import Example from "../components/Example";
 export default function Create() {
 	return (
 		<>
-			{/* <Head>
+			 {/* <Head>
 				<title>Krptonaut</title>
-			</Head> */}
-			{/* <Navbar /> */}
-			{/* <Hero /> */}
+			</Head> 
+			 <Navbar /> 
+			 <Hero />  */}
 			<Example />
 		</>
 	);

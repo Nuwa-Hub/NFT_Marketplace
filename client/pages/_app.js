@@ -2,18 +2,22 @@ import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import Head from "next/head";
 import Layout from "../components/Layout";
+import { MoralisProvider } from "react-moralis";
 
 function MyApp({ Component, pageProps }) {
-	return (
-		<>
-			{/* <Head>
+  return (
+    <>
+      {/* <Head>
 				<title>Krptonaut</title>
 			</Head> */}
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
-		</>
-	);
+
+      <MoralisProvider initializeOnMount={false}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MoralisProvider>
+    </>
+  );
 }
 
 export default MyApp;

@@ -10,6 +10,9 @@ import Footer from "../components/Footer";
 import Example from "../components/Example";
 
 export default function Create() {
+
+
+	
 	return (
 		<>
 			 {/* <Head>

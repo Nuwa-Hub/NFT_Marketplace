@@ -14,17 +14,17 @@ router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
-    isAdmin:req.body.isAdmin,
-    ismainAdmin:req.body.ismainAdmin,
+    isAdmin: req.body.isAdmin,
+    ismainAdmin: req.body.ismainAdmin,
     password: CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
     ).toString(),
     address: req.body.address,
     telNo: req.body.telNo,
-    birthday:req.body.birthday,
-    img:req.body.img,
-    fullname:req.body.fullname,
+    birthday: req.body.birthday,
+    img: req.body.img,
+    fullname: req.body.fullname,
   });
 
   try {
@@ -38,7 +38,7 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ account: req.body.account });
     !user && res.status(401).json("Wrong credentials!");
 
     const hashedPassword = CryptoJS.AES.decrypt(
@@ -63,13 +63,13 @@ router.post("/login", async (req, res) => {
 
     res.status(200).json({ ...others, accessToken });
 
-  } catch (err) {}
+  } catch (err) { }
 });
 
 //CHNAGE PASSWORD
 router.post("/changepassword", async (req, res) => {
   try {
-    
+
     const user = await User.findOne({ _id: req.body.userId });
     !user && res.status(401).json("Wrong credentials!");
 
@@ -78,7 +78,7 @@ router.post("/changepassword", async (req, res) => {
       process.env.PASS_SEC
     );
     const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-    
+
     OriginalPassword !== req.body.currentPassword &&
       res.status(401).json("Your Password is Wrong!");
     if (OriginalPassword === req.body.currentPassword) {
@@ -96,6 +96,6 @@ router.post("/changepassword", async (req, res) => {
       );
     }
     res.status(200).json("Password Update Success!");
-  } catch (err) {}
+  } catch (err) { }
 });
 module.exports = router;

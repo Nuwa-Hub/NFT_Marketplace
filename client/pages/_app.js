@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import Head from "next/head";
-import Layout from "../components/Layout";
+import UserLayout from "../layouts/UserLayout";
 import { MoralisProvider } from "react-moralis";
 
 function MyApp({ Component, pageProps }) {
+  const Layout = Component.layout || UserLayout;
   return (
     <>
       {/* <Head>

@@ -12,6 +12,7 @@
 		"@heroicons/react": "^1.0.6",
 		"@pinata/sdk": "^1.1.26",
 		"@web3auth/web3auth": "^2.1.2",
+		"bootstrap": "^5.2.1",
 		"dotenv": "^16.0.2",
 		"ethers": "^5.7.1",
 		"form-data": "^4.0.0",

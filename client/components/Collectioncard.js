@@ -15,7 +15,7 @@ const Collectioncard = () => {
         </div>
       </div>
       <div className="creator">
-        <p>Supply:</p> 666
+        <p>Supply:</p> 6
       </div>
     </div>
   </div>

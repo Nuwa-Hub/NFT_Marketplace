@@ -19,33 +19,7 @@
 	overflow: hidden;
 	transition: 0.5s all;
   }
- 
-   /* .nft .main {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding: 1rem;
-	
-  } 
-  .nft .main .tokenImage {
-	border-radius: 0.5rem;
-	max-width: 100%;
-	height: 250px;
-	object-fit: cover;
-  } */
-
-  /* .nft .main .tokenInfo {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-  } */
-  /* .nft .main .tokenInfo .price {
-	display: flex;
-	align-items: center;
-	color: #ee83e5;
-	font-weight: 700;
-  } */
- 
+  
   .nft .main .tokenInfo .duration {
 	display: flex;
 	align-items: center;
@@ -63,7 +37,7 @@
   .nft ::before {
 	position: fixed;
 	content: "";
-	box-shadow: 0 0 100px 40px #ffffff08;
+	box-shadow: 0 0 100px 80px #ffffff08;
 	top: -10%;
 	left: -100%;
 	transform: rotate(-45deg);
@@ -78,7 +52,7 @@
 	border: 1px solid #ffffff44;
 	box-shadow: 0 7px 50px 10px #000000aa;
 	transform: scale(1.015);
-	filter: brightness(1.3);
+	filter: brightness(1.1);
   }
   .nft:hover ::before {
 	filter: brightness(0.5);

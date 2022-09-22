@@ -40,3 +40,6 @@ a {
 	  hover:bg-transparent hover:text-zinc-600 rounded-md
 	}
   }
+  .md\:ml-64 {
+    margin-left: 16rem;
+  }

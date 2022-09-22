@@ -96,17 +96,17 @@ export default function Home() {
 						></textarea>
 					</div>
 
-					<div classNameName="w-[320px] grid gap-2">
-						<div classNameName="h-24 cursor-pointer relative flex justify-center items-center border-2 rounded-md bg-gray-200">
+					<div className="w-[320px] grid gap-2">
+						<div className="h-24 cursor-pointer relative flex justify-center items-center border-2 rounded-md bg-gray-200">
 							<input
 								type="file"
 								name="file"
 								onChange={imageHandler}
-								classNameName="z-20 opacity-0 cursor-pointer h-full w-full"
+								className="z-20 opacity-0 cursor-pointer h-full w-full"
 							/>
-							<div classNameName="absolute flex justify-center items-center gap-2">
+							<div className="absolute flex justify-center items-center gap-2">
 								<img
-									classNameName={`h-10 w-10 rounded-full ${
+									className={`h-10 w-10 rounded-full ${
 										checkFile ? "opacity-1" : "opacity-0"
 									}`}
 									src={
@@ -115,7 +115,7 @@ export default function Home() {
 											: null
 									}
 								/>
-								<span classNameName="text-[18px] w-56 truncate">
+								<span className="text-[18px] w-56 truncate">
 									{checkFile
 										? selectedFile.name
 										: "choose a file"}

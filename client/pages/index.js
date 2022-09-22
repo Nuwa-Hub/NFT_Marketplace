@@ -24,15 +24,15 @@ export default function Home() {
 	};
 	return (
 		<div>
-			<h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">
+			<h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">
 				Create New NFT
 			</h3>
-			<div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+			<div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
 				<form>
-					<div class="form-group mb-6">
+					<div className="form-group mb-6">
 						<input
 							type="text"
-							class="form-control block
+							className="form-control block
 									w-full
 									px-3
 									py-1.5
@@ -50,10 +50,10 @@ export default function Home() {
 							placeholder="NFT name"
 						/>
 					</div>
-					<div class="form-group mb-6">
+					<div className="form-group mb-6">
 						<input
 							type="email"
-							class="form-control block
+							className="form-control block
 									w-full
 									px-3
 									py-1.5
@@ -71,9 +71,9 @@ export default function Home() {
 							placeholder="Collection for NFT"
 						/>
 					</div>
-					<div class="form-group mb-6">
+					<div className="form-group mb-6">
 						<textarea
-							class="
+							className="
 									form-control
 									block
 									w-full
@@ -96,17 +96,17 @@ export default function Home() {
 						></textarea>
 					</div>
 
-					<div className="w-[320px] grid gap-2">
-						<div className="h-24 cursor-pointer relative flex justify-center items-center border-2 rounded-md bg-gray-200">
+					<div classNameName="w-[320px] grid gap-2">
+						<div classNameName="h-24 cursor-pointer relative flex justify-center items-center border-2 rounded-md bg-gray-200">
 							<input
 								type="file"
 								name="file"
 								onChange={imageHandler}
-								className="z-20 opacity-0 cursor-pointer h-full w-full"
+								classNameName="z-20 opacity-0 cursor-pointer h-full w-full"
 							/>
-							<div className="absolute flex justify-center items-center gap-2">
+							<div classNameName="absolute flex justify-center items-center gap-2">
 								<img
-									className={`h-10 w-10 rounded-full ${
+									classNameName={`h-10 w-10 rounded-full ${
 										checkFile ? "opacity-1" : "opacity-0"
 									}`}
 									src={
@@ -115,7 +115,7 @@ export default function Home() {
 											: null
 									}
 								/>
-								<span className="text-[18px] w-56 truncate">
+								<span classNameName="text-[18px] w-56 truncate">
 									{checkFile
 										? selectedFile.name
 										: "choose a file"}
@@ -127,7 +127,7 @@ export default function Home() {
 					<button
 						onClick={imagesubmission}
 						type="submit"
-						class="
+						className="
 							w-full
 							px-6
 							py-2.5
@@ -151,6 +151,5 @@ export default function Home() {
 				</form>
 			</div>
 		</div>
-
 	);
 }

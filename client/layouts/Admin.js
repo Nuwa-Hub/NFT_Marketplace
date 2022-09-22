@@ -12,12 +12,12 @@ export default function Admin({ children }) {
     <>
       <Sidebar />
       <div className="relative md:ml-64 bg-slate-100">
-        <AdminNavbar />
+        {/* <AdminNavbar /> */}
         {/* Header */}
-        <HeaderStats />
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        {/* <HeaderStats /> */}
+        <div className="px-4 h-screen md:px-10 mx-auto w-full -m-24">
           {children}
-          <FooterAdmin />
+          {/* <FooterAdmin /> */}
         </div>
       </div>
     </>

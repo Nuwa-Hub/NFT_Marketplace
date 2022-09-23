@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  webpack5: true,
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
 
-    return config;
-  },
-}
+const withPWA = require("next-pwa")({
+	dest: "public",
+});
 
-module.exports = nextConfig
+module.exports = withPWA({
+	// next.js config
+});

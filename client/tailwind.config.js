@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
 	content: [
 		"./pages/**/*.{js,ts,jsx,tsx}",
@@ -33,7 +35,19 @@ module.exports = {
 	},
 	variants: {
 		extend: {
-			display: ["group-hover"],
+			display: ["group-hover",
+				"responsive",
+				"group-hover",
+				"focus-within",
+				"first",
+				"last",
+				"odd",
+				"even",
+				"hover",
+				"focus",
+				"active",
+				"visited",
+				"disabled",],
 		},
 	},
 	colors: {
@@ -62,4 +76,4 @@ module.exports = {
 	},
 	plugins: [require("@tailwindcss/forms")],
 	darkMode: "class",
-};
+}; 

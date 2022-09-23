@@ -4,10 +4,8 @@ const mongoose =require("mongoose");
 const dotenv =require("dotenv");
 const userRoute=require("./routes/user")
 const authRoute=require("./routes/auth")
-const projectRoute=require("./routes/project")
-const taskRoute=require("./routes/task")
-const choreRoute=require("./routes/chore")
-const NotificationRoute=require("./routes/notification")
+const notificationRoute=require("./routes/notification")
+const collectionRoute=require("./routes/collection")
 
 const cors = require("cors");
 
@@ -24,10 +22,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users",userRoute);
-app.use("/api/projects",projectRoute);
-app.use("/api/tasks",taskRoute);
-app.use("/api/chores",choreRoute);
-app.use("/api/notifications",NotificationRoute);
+app.use("/api/notifications",notificationRoute);
+app.use("/api/collections",collectionRoute);
 
 app.listen(5000,()=>{
     console.log("backend server is running! ")

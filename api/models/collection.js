@@ -6,11 +6,9 @@ const CollectionSchema = new mongoose.Schema(
     bannerImg: { type: String, default:"" },
     profileImg: { type: String, default:"" },
     description:{ type: String , default:""},
-    :{ type: String , default:""},
-    projectId:{ type: String , default:""},
-    projectName:{ type: String, default:"" },
+    nfts:{ type: Array , default:""},
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Notification", NotificationSchema);
+module.exports = mongoose.model("Collection", CollectionSchema);

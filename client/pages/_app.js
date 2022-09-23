@@ -7,10 +7,10 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
 function MyApp({ Component, pageProps }) {
-  const Layout = Component.layout || UserLayout;
-  return (
-    <>
-      {/* <Head>
+	const Layout = Component.layout || UserLayout;
+	return (
+		<>
+			{/* <Head>
 				<title>Krptonaut</title>
 			</Head> */}
 

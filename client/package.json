@@ -15,7 +15,6 @@
 		"@popperjs/core": "^2.9.1",
 		"@web3auth/torus-evm-adapter": "^2.1.2",
 		"@web3auth/web3auth": "^2.1.2",
-		"bootstrap": "^5.2.1",
 		"chart.js": "2.9.4",
 		"dotenv": "^16.0.2",
 		"ethers": "^5.7.1",

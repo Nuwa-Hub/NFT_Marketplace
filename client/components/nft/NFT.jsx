@@ -1,5 +1,5 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
-import Accordion_ from "./Accordion";
+// import Accordion_ from "./Accordion";
 
 const Nft = () => {
 	return (
@@ -71,7 +71,7 @@ const Nft = () => {
 						</div>
 					</div>
 				</div>
-				<Accordion_ />
+				{/* <Accordion_ /> */}
 			</div>
 		</div>
 	);

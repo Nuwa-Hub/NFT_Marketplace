@@ -14,13 +14,13 @@ function MyApp({ Component, pageProps }) {
 				<title>Krptonaut</title>
 			</Head> */}
 
-      <MoralisProvider initializeOnMount={false}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </MoralisProvider>
-    </>
-  );
+			<MoralisProvider initializeOnMount={false}>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</MoralisProvider>
+		</>
+	);
 }
 
 export default MyApp;

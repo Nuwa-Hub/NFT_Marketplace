@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
 import React from "react";
+
 export default function Home() {
 	const { useState } = React;
 	const [selectedFile, setSelectedFile] = useState();
@@ -23,15 +24,15 @@ export default function Home() {
 	};
 	return (
 		<div>
-			<h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">
+			<h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">
 				Create New NFT
 			</h3>
-			<div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+			<div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
 				<form>
-					<div class="form-group mb-6">
+					<div className="form-group mb-6">
 						<input
 							type="text"
-							class="form-control block
+							className="form-control block
 									w-full
 									px-3
 									py-1.5
@@ -49,10 +50,10 @@ export default function Home() {
 							placeholder="NFT name"
 						/>
 					</div>
-					<div class="form-group mb-6">
+					<div className="form-group mb-6">
 						<input
 							type="email"
-							class="form-control block
+							className="form-control block
 									w-full
 									px-3
 									py-1.5
@@ -70,9 +71,9 @@ export default function Home() {
 							placeholder="Collection for NFT"
 						/>
 					</div>
-					<div class="form-group mb-6">
+					<div className="form-group mb-6">
 						<textarea
-							class="
+							className="
 									form-control
 									block
 									w-full
@@ -126,7 +127,7 @@ export default function Home() {
 					<button
 						onClick={imagesubmission}
 						type="submit"
-						class="
+						className="
 							w-full
 							px-6
 							py-2.5
@@ -150,6 +151,5 @@ export default function Home() {
 				</form>
 			</div>
 		</div>
-
 	);
 }

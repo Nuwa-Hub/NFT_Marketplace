@@ -1,11 +1,13 @@
 import Navbar from "../components/Navbar";
-import "../styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "styles/globals.css";
 import Head from "next/head";
-import Layout from "../components/Layout";
+import UserLayout from "../layouts/UserLayout";
 import { MoralisProvider } from "react-moralis";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 function MyApp({ Component, pageProps }) {
+	const Layout = Component.layout || UserLayout;
 	return (
 		<>
 			{/* <Head>

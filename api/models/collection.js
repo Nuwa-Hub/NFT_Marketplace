@@ -7,6 +7,7 @@ const CollectionSchema = new mongoose.Schema(
     profileImg: { type: String, default:"" },
     description:{ type: String , default:""},
     nfts:{ type: Array , default:""},
+    access:{type:Boolean,default:true},
   },
   { timestamps: true }
 );

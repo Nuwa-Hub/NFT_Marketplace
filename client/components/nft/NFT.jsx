@@ -1,12 +1,12 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
-import Accordion_ from "./Accordion";
+// import Accordion_ from "./Accordion";
 
 const Nft = () => {
 	return (
 		<div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
-				<div class="grid grid-cols-1  md:grid-cols-3">
-					<div class="items-center">
+				<div className="grid grid-cols-1  md:grid-cols-3">
+					<div className="items-center">
 						<div className="max-w-sm  m-4 bg-zinc-200 rounded-lg border border-gray-200 hover:shadow-lg transition ease-in-out  hover:-translate-y-1 hover:scale-110 ">
 							<a href="#">
 								<div className="w-full aspect-square ">
@@ -19,7 +19,7 @@ const Nft = () => {
 							</a>
 						</div>
 					</div>
-					<div class="col-span-2 m-4">
+					<div className="col-span-2 m-4">
 						<div className="mb-2 mx-2">
 							<text className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
 								{/* Collection Name */}
@@ -71,7 +71,7 @@ const Nft = () => {
 						</div>
 					</div>
 				</div>
-				<Accordion_ />
+				{/* <Accordion_ /> */}
 			</div>
 		</div>
 	);

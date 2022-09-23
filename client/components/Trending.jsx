@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CheckIcon } from '@heroicons/react/solid';
 
-const Pricing = () => {
+const Trending = () => {
   return (
     <div name='pricing' className='w-full text-white my-24'>
       <div className='w-full h-[800px] bg-slate-900 absolute mix-blend-overlay'></div>
@@ -28,12 +28,12 @@ const Pricing = () => {
             </div>
             <p className='text-2xl py-8 text-slate-500'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
             <div className='text-2xl'>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <button className='w-full py-4 my-4'>Get Started</button>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <button className='w-full py-4 my-4'>Get Started</button>
             </div>
           </div>
           <div className='bg-white text-slate-900 m-4 p-8 rounded-xl shadow-2xl relative'>
@@ -43,12 +43,12 @@ const Pricing = () => {
             </div>
             <p className='text-2xl py-8 text-slate-500'>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
             <div className='text-2xl'>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600'  />Lorem, ipsum dolor.</p>
-                <button className='w-full py-4 my-4'>Get Started</button>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <p className='flex py-4'><CheckIcon className='w-8 mr-5 text-green-600' />Lorem, ipsum dolor.</p>
+              <button className='w-full py-4 my-4'>Get Started</button>
             </div>
           </div>
         </div>
@@ -57,4 +57,4 @@ const Pricing = () => {
   );
 };
 
-export default Pricing;
+export default Trending;

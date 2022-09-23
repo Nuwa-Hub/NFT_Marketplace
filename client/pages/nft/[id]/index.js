@@ -1,4 +1,4 @@
-import Nft from "../components/nft/NFT";
+import Nft from "../../../components/nft/NFT";
 
 const NFT = () => {
 	return (

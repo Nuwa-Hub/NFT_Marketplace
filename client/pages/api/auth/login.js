@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     await connectDB();
 
     if (method === "POST") {
-        console.log(req.body)
+
         try {
             let user = await User.findOne({ walletAdress: req.body.walletAdress });
             if (!user) {
@@ -31,5 +31,5 @@ export default async function handler(req, res) {
             res.status(500).json(err);
         }
     }
-    res.status(400).json({ message: "Invalid request" });
+    // res.status(400).json({ message: "Invalid request" });
 }

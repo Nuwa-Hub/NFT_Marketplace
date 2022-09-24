@@ -1,68 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getUserDetails, userLogin } from "redux/actions/userActions";
 
+let userToken = null
+if (typeof window !== "undefined") {
+    userToken = sessionStorage.getItem("userToken");
+}
 const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
-        isFetching: false,
-        error: false,
+        userToken: userToken,
     },
     reducers: {
-        loginStart: (state) => {
-            state.isFetching = true;
-        },
-        loginSuccess: (state, action) => {
-            state.isFetching = false;
-            state.currentUser = action.payload;
-            state.error = false;
-        },
-        loginFailure: (state) => {
-            state.isFetching = false;
-            state.error = true;
-        },
-        changePasswordStart: (state) => {
-            state.isFetching = true;
-        },
-        changePasswordSuccess: (state, action) => {
-            state.isFetching = false;
-            state.currentUser = null;
-            state.error = false;
-        },
-        changePasswordFailure: (state) => {
-            state.isFetching = false;
-            state.error = true;
-        },
-        //UPDATE
-        updateUserStart: (state) => {
-            state.isFetching = true;
-            state.error = false;
-        },
-        updateUserSuccess: (state, action) => {
-            state.isFetching = false;
-            state.currentUser = action.payload;
-            // console.log(state.developers)
-        },
-        updateUserFailure: (state) => {
-            state.isFetching = false;
-            state.error = true;
-        },
         logout: (state) => {
+            sessionStorage.removeItem("userToken");
             state.currentUser = null;
-            state.error = false;
         },
     },
+    extraReducers: {
+        [userLogin.fulfilled]: (state, action) => {
+            state.currentUser = action.payload.user;
+            state.userToken = action.payload.userToken;
+        },
+        [getUserDetails.fulfilled]: (state, action) => {
+            state.currentUser = action.payload.user;
+        }
+    }
 });
 
 export const {
-    loginStart,
-    loginSuccess,
-    loginFailure,
-    logout,
-    changePasswordStart,
-    changePasswordSuccess,
-    changePasswordFailure,
-    updateUserStart,
-    updateUserSuccess,
-    updateUserFailure,
+    logout, login
 } = userSlice.actions;
 export default userSlice.reducer;

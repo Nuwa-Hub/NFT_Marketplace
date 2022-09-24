@@ -1,32 +1,68 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  value: 0,
-}
-
-export const collectionSlice = createSlice({
-  name: 'collection',
-  initialState,
-  reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
+const userSlice = createSlice({
+    name: "user",
+    initialState: {
+        currentUser: null,
+        isFetching: false,
+        error: false,
     },
-    decrement: (state) => {
-      state.value -= 1
+    reducers: {
+        loginStart: (state) => {
+            state.isFetching = true;
+        },
+        loginSuccess: (state, action) => {
+            state.isFetching = false;
+            state.currentUser = action.payload;
+            state.error = false;
+        },
+        loginFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+        changePasswordStart: (state) => {
+            state.isFetching = true;
+        },
+        changePasswordSuccess: (state, action) => {
+            state.isFetching = false;
+            state.currentUser = null;
+            state.error = false;
+        },
+        changePasswordFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+        //UPDATE
+        updateUserStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        updateUserSuccess: (state, action) => {
+            state.isFetching = false;
+            state.currentUser = action.payload;
+            // console.log(state.developers)
+        },
+        updateUserFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+        logout: (state) => {
+            state.currentUser = null;
+            state.error = false;
+        },
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
-    },
-  },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = collectionSlice.actions
-
-export const selectValue= (state)=>state.collection.value
-
-export default collectionSlice.reducer
+export const {
+    loginStart,
+    loginSuccess,
+    loginFailure,
+    logout,
+    changePasswordStart,
+    changePasswordSuccess,
+    changePasswordFailure,
+    updateUserStart,
+    updateUserSuccess,
+    updateUserFailure,
+} = userSlice.actions;
+export default userSlice.reducer;

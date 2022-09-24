@@ -4,7 +4,7 @@ import Head from "next/head";
 import UserLayout from "../layouts/UserLayout";
 import { MoralisProvider } from "react-moralis";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { store } from "../store";
+import { store } from "../redux/store";
 import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }) {

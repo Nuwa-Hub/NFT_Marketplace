@@ -5,7 +5,7 @@ const initialState = {
 }
 
 export const collectionSlice = createSlice({
-  name: 'counter',
+  name: 'collection',
   initialState,
   reducers: {
     increment: (state) => {
@@ -26,5 +26,7 @@ export const collectionSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount } = collectionSlice.actions
+
+export const selectValue= (state)=>state.collection.value
 
 export default collectionSlice.reducer

@@ -74,7 +74,7 @@ const Navbar = () => {
           {/* <button className='border-none bg-transparent text-black mr-4'>
             Sign In
           </button> */}
-          <ConnectButton  moralisAuth={true} />
+          {/* <ConnectButton  moralisAuth={true} /> */}
         </div>
         <div className="md:hidden mr-4" onClick={handleClick}>
           {!nav ? <MenuIcon className="w-5" /> : <XIcon className="w-5" />}

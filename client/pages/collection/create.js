@@ -7,7 +7,10 @@ import { IPFSInput, Input, Select, TextArea } from "web3uikit";
 
 const createcollection = () => {
 	
-	addCollections();
+	//addCollections();
+	const count =useSelector(selectValue)
+	
+	console.log(count)
 	return (
 		<div className="m-12">
 			<CreateCollection/>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Logo_dark from "../assets/logo-dark.svg";
 import Logo from "../assets/logo.svg";
-import { ConnectButton } from "web3uikit";
+import ConnectWalletButton from "./ConnectWalletButton";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -74,7 +74,8 @@ const Navbar = () => {
           {/* <button className='border-none bg-transparent text-black mr-4'>
             Sign In
           </button> */}
-          <ConnectButton  moralisAuth={true} />
+          {/* <ConnectButton  moralisAuth={true} /> */}
+          <ConnectWalletButton />
         </div>
         <div className="md:hidden mr-4" onClick={handleClick}>
           {!nav ? <MenuIcon className="w-5" /> : <XIcon className="w-5" />}

@@ -15,4 +15,29 @@ export default async function handler(req, res) {
 			res.status(500).json(err);
 		}
 	}
+
+	if (req.method === "PUT") {
+		try {
+			const updateCollection = await Collection.findByIdAndUpdate(
+				req.params.id,
+				{ $set: req.body },
+				{ new: true }
+			);
+			res.status(200).json(updateCollection);
+		} catch (err) {
+			console.log("err")
+			res.status(500).json(err);
+		}
+	}
+
+	if (req.method === "DELETE") {
+		try {
+			const deleteCollection = await Collection.findByIdAndDelete(req.params.id);
+			res.status(200).json(deleteCollection);
+		} catch (err) {
+			console.log("err")
+			res.status(500).json(err);
+		}
+	}
+
 }

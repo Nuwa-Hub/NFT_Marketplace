@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const userLogin = createAsyncThunk(
   'user/login',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ walletAdress }, { rejectWithValue }) => {
     try {
       // configure header's Content-Type as JSON
       const config = {
@@ -13,8 +13,8 @@ export const userLogin = createAsyncThunk(
       }
 
       const { data } = await axios.post(
-        '/api/user/login',
-        { email, password },
+        '/api/auth/login',
+        { walletAdress },
         config
       )
 
@@ -33,30 +33,30 @@ export const userLogin = createAsyncThunk(
   }
 )
 
-export const registerUser = createAsyncThunk(
-  'user/register',
-  async ({ firstName, email, password }, { rejectWithValue }) => {
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
+// export const registerUser = createAsyncThunk(
+//   'user/register',
+//   async ({ firstName, email, password }, { rejectWithValue }) => {
+//     try {
+//       const config = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       }
 
-      await axios.post(
-        '/api/user/register',
-        { firstName, email, password },
-        config
-      )
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
-      } else {
-        return rejectWithValue(error.message)
-      }
-    }
-  }
-)
+//       await axios.post(
+//         '/api/user/register',
+//         { firstName, email, password },
+//         config
+//       )
+//     } catch (error) {
+//       if (error.response && error.response.data.message) {
+//         return rejectWithValue(error.response.data.message)
+//       } else {
+//         return rejectWithValue(error.message)
+//       }
+//     }
+//   }
+// )
 
 export const getUserDetails = createAsyncThunk(
   'user/getUserDetails',
@@ -72,7 +72,7 @@ export const getUserDetails = createAsyncThunk(
         },
       }
 
-      const { data } = await axios.get(`/api/user/profile`, config)
+      const { data } = await axios.get(`/api/auth/profile`, config)
       return data
     } catch (error) {
       if (error.response && error.response.data.message) {

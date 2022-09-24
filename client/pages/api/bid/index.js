@@ -1,6 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-import Collection from "../../../models/Collection";
+import Bid from "../../../models/Bid";
 import connectDB from "../../../utils/connectDB";
 
 export default async function handler(req, res) {
@@ -12,8 +10,8 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (method === "GET") {
 		try {
-			const collections = await Collection.find();
-			res.status(200).json(collections);
+			const biddings = await Bid.find();
+			res.status(200).json(biddings);
 		} catch (err) {
 			res.status(500).json(err);
 		}
@@ -22,9 +20,9 @@ export default async function handler(req, res) {
 	if (method === "POST") {
 		// console.log(req.body)
 		try {
-			const newCollection = new Collection(req.body);
-			const collection = await newCollection.save();
-			res.status(201).json(collection);
+			const newBid = new Bid(req.body);
+			const bid = await newBid.save();
+			res.status(201).json(bid);
 		} catch (err) {
 			res.status(500).json(err);
 		}

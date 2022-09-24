@@ -13,6 +13,7 @@
 		"@heroicons/react": "^1.0.6",
 		"@pinata/sdk": "^1.1.26",
 		"@popperjs/core": "^2.9.1",
+		"@reduxjs/toolkit": "^1.8.5",
 		"@web3auth/torus-evm-adapter": "^2.1.2",
 		"@web3auth/web3auth": "^2.1.2",
 		"chart.js": "2.9.4",
@@ -21,6 +22,7 @@
 		"form-data": "^4.0.0",
 		"fs": "^0.0.1-security",
 		"magic-sdk": "^9.1.0",
+		"mongoose": "^6.6.1",
 		"moralis": "^1.8.0",
 		"next": "12.2.3",
 		"next-pwa": "^5.6.0",
@@ -30,6 +32,7 @@
 		"react-dom": "18.2.0",
 		"react-icons": "^4.4.0",
 		"react-moralis": "^1.4.2",
+		"react-redux": "^8.0.4",
 		"react-router-dom": "^6.4.1",
 		"react-scroll": "^1.8.7",
 		"web3uikit": "^0.1.159"

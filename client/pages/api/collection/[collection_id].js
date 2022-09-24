@@ -1,5 +1,5 @@
-import Collection from "../../../models/Collection";
-import connectDB from "../../../utils/connectDB";
+import Collection from "models/Collection";
+import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
 	const { collection_id } = req.query;

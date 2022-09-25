@@ -1,5 +1,5 @@
-import Auction from "../../../models/Auction";
-import connectDB from "../../../utils/connectDB";
+import Auction from "models/Auction";
+import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
 	const { method } = req;

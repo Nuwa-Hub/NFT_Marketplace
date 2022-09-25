@@ -13,10 +13,10 @@ const explorecollection = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <h1 className="text-6xl ml-6 mt-5 font-bold">Explore Collection</h1>
       <div className="overflow-hidden text-gray-700">
-        <div className=" px-1 py-1 mx-auto lg:pt-12 lg:px-2 ">
+        <div className="px-1 py-1 mx-auto lg:pt-12 lg:px-2">
           <div className="flex flex-wrap -m-1 md:-m-2 ">
             {collections.map((collection) => (
               <Collectioncard key={collection._id}  collection={collection}/>

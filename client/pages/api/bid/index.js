@@ -1,5 +1,5 @@
-import Bid from "../../../models/Bid";
-import connectDB from "../../../utils/connectDB";
+import Bid from "models/Bid";
+import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
 	const { method } = req;

@@ -4,12 +4,22 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Logo_dark from "../assets/logo-dark.svg";
 import Logo from "../assets/logo.svg";
 import ConnectWalletButton from "./ConnectWalletButton";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin, getUserDetails } from "redux/actions/userActions";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleClose = () => setNav(!nav);
 
+  const { currentUser, userToken } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userToken) {
+      dispatch(getUserDetails(userToken));
+    }
+  }, [userToken, dispatch])
   return (
     <div className="w-screen h-[80px] z-10 bg-zinc-200 sticky top-0 ">
       <div className="px-2 flex justify-between items-center w-full h-full">

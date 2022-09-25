@@ -20,6 +20,7 @@
 		"@web3auth/web3auth": "^2.1.2",
 		"axios": "^0.27.2",
 		"chart.js": "2.9.4",
+		"crypto-js": "^4.1.1",
 		"dotenv": "^16.0.2",
 		"ethers": "^5.7.1",
 		"form-data": "^4.0.0",

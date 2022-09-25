@@ -1,5 +1,5 @@
-import NFT from "../../../models/NFT";
-import connectDB from "../../../utils/connectDB";
+import NFT from "models/NFT";
+import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
 	const { nft_id } = req.query;

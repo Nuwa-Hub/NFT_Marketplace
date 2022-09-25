@@ -1,11 +1,28 @@
-import React from "react";
-import Link from "next/link";
-
+import React, { useState, useEffect } from "react";
+import { adminLogin } from "redux/actions/adminAction";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/router'
 // layout for page
 
 import Auth from "layouts/Auth.js";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const router = useRouter()
+  const { currentAdmin, adminToken } = useSelector((state) => state.admin);
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(adminLogin({ email, password }));
+  };
+
+  useEffect(() => {
+    if (currentAdmin) {
+      router.push("/admin/dashboard");
+    }
+  }, [currentAdmin]);
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -33,6 +50,7 @@ export default function Login() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -47,9 +65,10 @@ export default function Login() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
                         id="customCheckLogin"
@@ -60,12 +79,13 @@ export default function Login() {
                         Remember me
                       </span>
                     </label>
-                  </div>
+                  </div> */}
 
                   <div className="text-center mt-6">
                     <button
                       className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                      onClick={handleClick}
                     >
                       Sign In
                     </button>
@@ -73,7 +93,7 @@ export default function Login() {
                 </form>
               </div>
             </div>
-            <div className="flex flex-wrap mt-6 relative">
+            {/* <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
                 <a
                   href="#pablo"
@@ -83,7 +103,7 @@ export default function Login() {
                   <small>Forgot password?</small>
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import Logo from "../assets/logo.svg";
 import ConnectWalletButton from "./ConnectWalletButton";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin, getUserDetails } from "redux/actions/userActions";
+import { useRouter } from 'next/router'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -14,6 +15,7 @@ const Navbar = () => {
 
   const { currentUser, userToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const router = useRouter()
 
   useEffect(() => {
     if (userToken) {
@@ -78,6 +80,12 @@ const Navbar = () => {
                 Create
               </Link>
             </li>
+            {currentUser && currentUser.isAdmin ? (<li className="p-4">
+              <Link onClick={() => router.push("auth/login")} smooth={true} offset={-50} duration={500}>
+                Admin
+              </Link>
+            </li>) : null}
+
             {/* <li><Link to="platforms" smooth={true} offset={-100} duration={500}>Platforms</Link></li>
             <li><Link to="pricing" smooth={true} offset={-50} duration={500}>Pricing</Link></li> */}
           </ul>

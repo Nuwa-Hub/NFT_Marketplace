@@ -56,10 +56,12 @@ const ConnectWalletButton = () => {
         Button = <button onClick={disconnectWallet} className="bg-zinc-500 text-white px-4 py-2 rounded-md">Disconnect Wallet</button>
     }
     return (
-        <div>
-            <div className="text-black">{data.address}</div>
+        <div className="grid grid-cols-2 w-40">
+            <div className="text-black truncate w-20 ">{data.address}</div>
             <div className="text-red-500" >{data.Balance}</div>
-            {Button}
+            <div className="col-span-2">
+                {Button}
+            </div>
         </div>
     )
 }

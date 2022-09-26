@@ -26,12 +26,11 @@ export default function Home() {
   };
   return (
     <div>
-	Kryptonaut
       {/* <Head>
         <title>Kryptonaut</title>
       </Head> */}
-      {/* <Hero />
-			<Trending /> */}
+      <Hero />
+      {/* <Trending /> */}
     </div>
   );
 }

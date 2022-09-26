@@ -2,51 +2,52 @@ import React, { useState } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { uploadFileToIPFS } from "common/pinata";
-import { useDispatch } from "react-redux";
-import { addCollections } from "redux/actions/collectionAction";
+import { useDispatch, useSelector } from "react-redux";
+import { addNFTs } from "redux/actions/NFTAction";
 
 const CreateNFT = () => {
-  const [bannerImg, setBannerImg] = useState("");
-  const [profileImg, setProfileImg] = useState("");
+  const [NFTImg, setNFTImg] = useState("");
+  const [NFTImgUrl, setNFTImgUrl] = useState("");
   const dispatch = useDispatch();
 
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   //This function uploads the NFT image to IPFS
-//   async function uploadImgToIPFS(file) {
-//     //check for file extension
-//     try {
-//       //upload the file to IPFS
-//       const response = await uploadFileToIPFS(file);
-//       if (response.success === true) {
-//         console.log("Uploaded image to Pinata: ", response.pinataURL);
+  async function uploadImgToIPFS(file) {
+    //check for file extension
+    try {
+      //upload the file to IPFS
+      const response = await uploadFileToIPFS(file);
+      if (response.success === true) {
+        console.log("Uploaded image to Pinata: ", response.pinataURL);
+        return response.pinataURL;
+      }
+    } catch (e) {
+      console.log("Error during file upload", e);
+      return false;
+    }
+  }
 
-//         return response.pinataURL;
-//       }
-//     } catch (e) {
-//       console.log("Error during file upload", e);
-//       return false;
-//     }
-//   }
+  const handleClick = async (e, { resetForm }) => {
+    const NFTImgURL = "";
+    if (NFTImg) {
+      NFTImgURL = await uploadImgToIPFS(NFTImg);
+    }
+    const newNFT = {
+      ...e,
+      Img: NFTImgURL,
+      owner: currentUser._id,
+      collectionId: "123",
+    };
+    //console.log(newNFT);
+    addNFTs(dispatch, newNFT);
 
-//   const handleClick = async (e, { resetForm }) => {
-//     const bannerImgURL="";
-//     const profileImgURL="";
-//     if (bannerImg) {
-//        bannerImgURL = await uploadImgToIPFS(bannerImg);
-      
-//     }
-//     if (profileImg) {
-//        profileImgURL = await uploadImgToIPFS(profileImg);
-      
-//     }
-//     const newCollection = { ...e,bannerImg:bannerImgURL, profileImg:profileImgURL };
-//     console.log(newCollection)
-//     addCollections(dispatch,newCollection)
-//     resetForm();
-//   };
+    resetForm();
+  };
 
   //validate
   const validate = Yup.object({
-    collectionName: Yup.string().required("Required"),
+    NFTName: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
   });
 
@@ -54,11 +55,11 @@ const CreateNFT = () => {
     <section className="bg-cream-lighter p-6 shadow">
       <Formik
         initialValues={{
-          collectionName: "",
+          NFTName: "",
           description: "",
         }}
         validationSchema={validate}
-        onSubmit={()=>{}}
+        onSubmit={handleClick}
       >
         {({
           values,
@@ -86,7 +87,7 @@ const CreateNFT = () => {
                     <input
                       className="w-full shadow-inner p-4 border-0"
                       type="text"
-                      name="collectionName"
+                      name="NFTName"
                       placeholder="Ex: CryptoPuppies"
                       onChange={handleChange}
                     />
@@ -108,7 +109,7 @@ const CreateNFT = () => {
                   </div>
                   <div className="mb-4">
                     <legend className="block uppercase text-xl font-bold font-mono p-2">
-                     Image
+                      Image
                     </legend>
 
                     <div className="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative mt-4">
@@ -137,18 +138,17 @@ const CreateNFT = () => {
                         </span>
                         <input
                           type="file"
-                          name="bannerImage"
+                          name="NFTImg"
                           className="hidden"
                           onChange={(e) => {
-                            setBannerImg(e.target.files[0]);
-
+                            setNFTImg(e.target.files[0]);
                           }}
                         />
                       </label>
                     </div>
-                    <ErrorMessage name="bannerImage" component="div" />
+                    <ErrorMessage name="NFTImg" component="div" />
                   </div>
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}

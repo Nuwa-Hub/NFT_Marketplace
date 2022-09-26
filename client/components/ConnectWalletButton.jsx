@@ -4,7 +4,7 @@ import { userLogin, getUserDetails } from "redux/actions/userActions";
 import { logout } from "redux/slices/userSlice";
 const ConnectWalletButton = () => {
     const { currentUser, userToken } = useSelector((state) => state.user);
-    console.log(currentUser);
+   // console.log(currentUser);
     const [data, setdata] = useState({
         address: currentUser ? currentUser.address : "",
         Balance: currentUser ? currentUser.Balance : null,

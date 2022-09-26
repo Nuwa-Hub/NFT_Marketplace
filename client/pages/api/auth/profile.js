@@ -17,6 +17,9 @@ export default async function handler(req, res) {
 
                 const decoded = jwt.verify(token, process.env.JWT_SEC);
                 let user = await User.findById(decoded.id);
+                if (!user) {
+                    return res.status(401).json({ msg: "User not found" });
+                }
 
                 user = user._doc;
                 res.status(200).json({ user });

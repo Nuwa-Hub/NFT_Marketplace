@@ -1,24 +1,38 @@
-import { getCollectionFailure, getCollectionSuccess } from "redux/slices/collectionSlice";
+import {
+  getCollectionFailure,
+  getCollectionsFailure,
+  getCollectionsSuccess,
+  getCollectionSuccess,
+} from "redux/slices/collectionSlice";
 import { publicRequest, userRequest } from "/utils/requestMethods";
 
 //add collection
 export const addCollections = async (dispatch, newCollection) => {
-    try {
+  try {
+    const res = await publicRequest.post(`/collection`, newCollection);
 
-      const res = await publicRequest.post(`/collection`, newCollection);
-      
-      console.log(res.data)
-    } catch (err) {}
-  };
+    console.log(res.data);
+  } catch (err) {}
+};
 
-  //add collection
+//get all collections
 export const getAllCollections = async (dispatch) => {
-    try {
+  try {
+    const res = await publicRequest.get(`/collection`);
+    console.log(res.data);
+    dispatch(getCollectionsSuccess(res.data));
+  } catch (err) {
+    dispatch(getCollectionsFailure());
+  }
+};
 
-      const res = await publicRequest.get(`/collection`);
-      console.log(res.data)
-      dispatch(getCollectionSuccess(res.data));
-    } catch (err) {
-        dispatch(getCollectionFailure())
-    }
-  };
+//get all collection by id
+export const getAllCollection = async (dispatch) => {
+  try {
+    const res = await publicRequest.get(`/collection`);
+    console.log(res.data);
+    dispatch(getCollectionSuccess(res.data));
+  } catch (err) {
+    dispatch(getCollectionFailure());
+  }
+};

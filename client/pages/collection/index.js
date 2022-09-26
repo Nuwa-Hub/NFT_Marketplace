@@ -19,6 +19,7 @@ const explorecollection = () => {
         <div className="px-1 py-1 mx-auto lg:pt-12 lg:px-2">
           <div className="flex flex-wrap -m-1 md:-m-2 ">
             {collections.map((collection) => (
+          
               <Collectioncard key={collection._id}  collection={collection}/>
             ))}
           </div>

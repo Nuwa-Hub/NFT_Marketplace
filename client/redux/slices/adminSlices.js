@@ -23,7 +23,7 @@ const adminSlice = createSlice({
         //     state.userToken = action.payload.userToken;
         // },
         [getAdminDetails.fulfilled]: (state, action) => {
-            state.currentUser = action.payload.user;
+            state.currentAdmin = action.payload.admin;
         },
         [registerAdmin.fulfilled]: (state, action) => {
             // state.currentAdmin = action.payload.admin;

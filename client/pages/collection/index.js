@@ -4,7 +4,7 @@ import { getAllCollections } from "redux/actions/collectionAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const explorecollection = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const collections = useSelector((state) => state.collection.collections);
 
@@ -19,8 +19,7 @@ const explorecollection = () => {
         <div className="px-1 py-1 mx-auto lg:pt-12 lg:px-2">
           <div className="flex flex-wrap -m-1 md:-m-2 ">
             {collections.map((collection) => (
-          
-              <Collectioncard key={collection._id}  collection={collection}/>
+              <Collectioncard key={collection._id} collection={collection} />
             ))}
           </div>
         </div>

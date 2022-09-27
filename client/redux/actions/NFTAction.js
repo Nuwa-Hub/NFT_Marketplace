@@ -32,10 +32,10 @@ export const getNFTsByCollectionId = async (dispatch, collection_id) => {
 	}
 };
 
-//get  NFT by collection id
-export const getNFTsByNftId = async (dispatch, nft_id) => {
+//get  NFT by nft id
+export const getNFTByNftId = async (dispatch, nft_id) => {
 	try {
-		const res = await publicRequest.get(`/nft/collection/${collection_id}`);
+		const res = await publicRequest.get(`/nft/${nft_id}`);
 		//console.log(res.data)
 		dispatch(getNFTSuccess(res.data));
 	} catch (err) {

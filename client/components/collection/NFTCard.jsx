@@ -1,20 +1,21 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNFTsByCollectionId } from "redux/actions/NFTAction";
 
 export default function NFTCard() {
-    //handle the routes
-	const router = useRouter()
-	const collection_id=router.query.id
-	
-	const dispatch = useDispatch()
-//get all NFTs that include to the relevent collection
+	//handle the routes
+	const router = useRouter();
+	const collection_id = router.query.id;
+
+	const dispatch = useDispatch();
+	//get all NFTs that include to the relevent collection
 	const nfts = useSelector((state) => state.NFT.NFTs);
-  
+
 	useEffect(() => {
-	  getNFTsByCollectionId(dispatch,collection_id);
-	}, [dispatch,collection_id]);
+		getNFTsByCollectionId(dispatch, collection_id);
+	}, [dispatch, collection_id]);
 
 	//console.log(nfts)
 
@@ -28,7 +29,7 @@ export default function NFTCard() {
 							className="flex flex-wrap w-full  sm:w-1/2 md:w-1/3 lg:w-1/4 "
 						>
 							<div className="group max-w-sm  m-4 bg-zinc-200 rounded-lg border border-gray-200  ">
-								<a href="#">
+								<Link href={`/nft/${nft._id}`}>
 									<div className="w-full aspect-square  overflow-hidden">
 										<img
 											alt="gallery"
@@ -36,7 +37,8 @@ export default function NFTCard() {
 											src={nft.Img}
 										/>
 									</div>
-								</a>
+								</Link>
+
 								<div className="px-5 pt-2">
 									<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 										NFT Name

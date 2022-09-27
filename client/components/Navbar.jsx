@@ -1,4 +1,4 @@
-import { Link } from "react-scroll";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Logo_dark from "../assets/logo-dark.svg";
@@ -66,23 +66,23 @@ const Navbar = () => {
         <div className="hidden md:flex pr-4">
           <ul className="hidden md:flex">
             <li className="p-4">
-              <Link to="home" smooth={true} duration={500}>
-                Explore
+              <Link href={"/nft"} >
+                <a>Explore</a>
               </Link>
             </li>
             <li className="p-4">
-              <Link to="about" smooth={true} offset={-200} duration={500}>
-                Stats
+              <Link href="#">
+                <a>Stats</a>
               </Link>
             </li>
             <li className="p-4">
-              <Link to="support" smooth={true} offset={-50} duration={500}>
-                Create
+              <Link href={"/nft/create"}>
+                <a>Create</a>
               </Link>
             </li>
             {currentUser && currentUser.isAdmin ? (<li className="p-4">
-              <Link onClick={() => router.push("auth/login")} smooth={true} offset={-50} duration={500}>
-                Admin
+              <Link href={"/auth/login"}>
+                <a>Admin</a>
               </Link>
             </li>) : null}
 
@@ -102,51 +102,27 @@ const Navbar = () => {
 
       <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"}>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link onClick={handleClose} to="home" smooth={true} duration={500}>
+          <Link href="#">
             Home
           </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="about"
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
+          <Link href="#">
             About
           </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="support"
-            smooth={true}
-            offset={-50}
-            duration={500}
-          >
+          <Link href="#">
             Support
           </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="platforms"
-            smooth={true}
-            offset={-100}
-            duration={500}
-          >
+          <Link href="#">
             Platforms
           </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="pricing"
-            smooth={true}
-            offset={-50}
-            duration={500}
-          >
+          <Link href="#">
             Pricing
           </Link>
         </li>

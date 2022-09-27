@@ -10,6 +10,9 @@ const CreateCollection = () => {
   const [profileImg, setProfileImg] = useState("");
   const dispatch = useDispatch();
 
+  //get current user
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   //This function uploads the NFT image to IPFS
   async function uploadImgToIPFS(file) {
     //check for file extension
@@ -28,19 +31,22 @@ const CreateCollection = () => {
   }
 
   const handleClick = async (e, { resetForm }) => {
-    const bannerImgURL="";
-    const profileImgURL="";
+    const bannerImgURL = "";
+    const profileImgURL = "";
     if (bannerImg) {
-       bannerImgURL = await uploadImgToIPFS(bannerImg);
-      
+      bannerImgURL = await uploadImgToIPFS(bannerImg);
     }
     if (profileImg) {
-       profileImgURL = await uploadImgToIPFS(profileImg);
-      
+      profileImgURL = await uploadImgToIPFS(profileImg);
     }
-    const newCollection = { ...e,bannerImg:bannerImgURL, profileImg:profileImgURL,owner:"123" };
-    console.log(newCollection)
-    addCollections(dispatch,newCollection)
+    const newCollection = {
+      ...e,
+      bannerImg: bannerImgURL,
+      profileImg: profileImgURL,
+      owner: currentUser._id,
+    };
+    console.log(newCollection);
+    addCollections(dispatch, newCollection);
     resetForm();
   };
 
@@ -141,7 +147,6 @@ const CreateCollection = () => {
                           className="hidden"
                           onChange={(e) => {
                             setBannerImg(e.target.files[0]);
-
                           }}
                         />
                       </label>

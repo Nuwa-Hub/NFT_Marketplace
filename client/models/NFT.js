@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const NFTSchema = new mongoose.Schema(
 	{
 		owner: { type: String, default: "" },
+		NFTName: { type: String, default: "" },
 		collectionId: { type: String, required: true },
 		Img: { type: String, default: "" },
 		description: { type: String, default: "" },

@@ -1,4 +1,5 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
+import FixedPriceForm from "./FixedPriceForm";
 import ListingType from "./ListingType";
 const Listing = () => {
 	return (
@@ -30,27 +31,10 @@ const Listing = () => {
 							<ListingType />
 						</div>
 
-						<div className="flex flex-auto mx-2 mt-5 content-center ">
-							<div className="basis-1/2 items-center m-1">
-								<text className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
-									{/* Owners Name */}
-									Owned by @0x123456789
-								</text>
-							</div>
-
-							<div className="basis-1/2 mx-2 ">
-								{/* Like Button */}
-								{!true && <BsSuitHeartFill size={28} />}
-								{true && <BsSuitHeart size={28} />}
-							</div>
-						</div>
-						{/* If it is a bidding buy now should be bid now */}
 						<div className="mx-2 mt-5 ">
-							<text className="text-xl font-mono tracking-tight text-zinc-400 dark:text-white">
-								{/* NFT Name */}
-								Current Price : 0.5 ETH
-							</text>
+							<FixedPriceForm />
 						</div>
+
 						<div className="flex flex-auto mx-2 mt-5 content-center ">
 							<div className="basis-1/2 items-center m-1">
 								<button

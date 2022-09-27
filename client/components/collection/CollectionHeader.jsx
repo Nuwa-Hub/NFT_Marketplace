@@ -11,7 +11,7 @@ const CollectionHeader = () => {
   const collections = useSelector((state) => state.collection.collections);
 
   const collection = collections.find((item) => item._id == collection_id);
-  console.log(collection);
+ // console.log(collection);
 
   return (
     <div>

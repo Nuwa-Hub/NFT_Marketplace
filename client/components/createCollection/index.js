@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { uploadFileToIPFS } from "common/pinata";
 import { useDispatch, useSelector } from "react-redux";
 import { addCollections } from "redux/actions/collectionAction";
+import { useSelector } from "react-redux"
 
 const CreateCollection = () => {
   const [bannerImg, setBannerImg] = useState("");

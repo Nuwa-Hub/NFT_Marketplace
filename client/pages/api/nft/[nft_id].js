@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (req.method === "GET") {
 		try {
-			const nft = await NFT.findById(nft_id);
+			const nft = await NFT.findById(req.query.nft_id);
 			res.status(200).json(nft);
 		} catch (err) {
 			res.status(500).json(err);
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 			);
 			res.status(200).json(updateNFT);
 		} catch (err) {
-			console.log("err")
+			console.log("err");
 			res.status(500).json(err);
 		}
 	}
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 			const deleteNFT = await NFT.findByIdAndDelete(req.params.id);
 			res.status(200).json(deleteNFT);
 		} catch (err) {
-			console.log("err")
+			console.log("err");
 			res.status(500).json(err);
 		}
 	}

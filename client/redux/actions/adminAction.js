@@ -11,7 +11,6 @@ export const registerAdmin = createAsyncThunk(
                 },
             }
             console.log(username, password, email, account, address, telNumber);
-            console.log('asdasdqweqweqwe');
 
 
             await axios.post(
@@ -77,6 +76,31 @@ export const adminLogin = createAsyncThunk(
             return data
         } catch (error) {
             // return custom error message from API if any
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message)
+            } else {
+                return rejectWithValue(error.message)
+            }
+        }
+    }
+)
+export const getAdmins = createAsyncThunk(
+    'admin/admins',
+    async (arg, { getState, rejectWithValue }) => {
+        try {
+            // get user data from store
+            const { user } = getState()
+
+            // configure authorization header with user's token
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${user.userToken}`,
+                },
+            }
+
+            const { data } = await axios.get(`/api/admin`, config)
+            return data
+        } catch (error) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message)
             } else {

@@ -25,7 +25,7 @@ const Hero = () => {
                     <p className='text-2xl'>Kryptonaut is the world's first and largest NFT marketplace</p>
                     <div className='flex md:items-start'>
                         <button className='py-3 px-6 mx-5 sm:w-[50%] my-4'>Explore</button>
-                        <button onClick={() => router.push('/create')} className='create py-3 px-6 mx-5 sm:w-[50%] my-4'>Create</button>
+                        <button onClick={() => router.push('/nft/create')} className='create py-3 px-6 mx-5 sm:w-[50%] my-4'>Create</button>
                     </div>
                 </div>
                 {/* <div className='py-8 sm:w-full bottom-[5%] mx-1 md:left-1/2  bg-zinc-200 border border-slate-300 rounded-xl text-center shadow-xl'>

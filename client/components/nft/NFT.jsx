@@ -1,7 +1,20 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
-// import Accordion_ from "./Accordion";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNFTByNftId } from "redux/actions/NFTAction";
 
 const Nft = () => {
+	const router = useRouter();
+	const nft_id = router.query.id;
+	const dispatch = useDispatch();
+	const nft = useSelector((state) => state.NFT.NFTs);
+	console.log(nft);
+
+	useEffect(() => {
+		getNFTByNftId(dispatch, nft_id);
+	}, [dispatch, nft_id]);
 	return (
 		<div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
@@ -13,7 +26,7 @@ const Nft = () => {
 									<img
 										alt="gallery"
 										className="block object-cover object-center w-full h-full rounded-lg"
-										src="/dog.jpg"
+										src={nft.Img}
 									/>
 								</div>
 							</a>
@@ -30,7 +43,7 @@ const Nft = () => {
 						<div className="mx-2 mt-5 ">
 							<text className="text-5xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
 								{/* NFT Name */}
-								Puppy Bruno
+								{nft.NFTName}
 							</text>
 						</div>
 
@@ -52,7 +65,7 @@ const Nft = () => {
 						<div className="mx-2 mt-5 ">
 							<text className="text-xl font-mono tracking-tight text-zinc-400 dark:text-white">
 								{/* NFT Name */}
-								Current Price : 0.5 ETH
+								{nft.price}
 							</text>
 						</div>
 						<div className="flex flex-auto mx-2 mt-5 content-center ">

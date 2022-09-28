@@ -1,23 +1,44 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNFTsByCollectionId } from "redux/actions/NFTAction";
+
 export default function NFTCard() {
+	//handle the routes
+	const router = useRouter();
+	const collection_id = router.query.id;
+
+	const dispatch = useDispatch();
+	//get all NFTs that include to the relevent collection
+	const nfts = useSelector((state) => state.NFT.NFTs);
+
+	useEffect(() => {
+		getNFTsByCollectionId(dispatch, collection_id);
+	}, [dispatch, collection_id]);
+
+	//console.log(nfts)
+
 	return (
 		<section className="overflow-hidden text-gray-700 ">
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
 				<div className="flex flex-wrap -m-1 md:-m-2">
-					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
+					{nfts.map((nft) => (
 						<div
-							key={item}
+							key={nft._id}
 							className="flex flex-wrap w-full  sm:w-1/2 md:w-1/3 lg:w-1/4 "
 						>
 							<div className="group max-w-sm  m-4 bg-zinc-200 rounded-lg border border-gray-200  ">
-								<a href="#">
+								<Link href={`/nft/${nft._id}`}>
 									<div className="w-full aspect-square  overflow-hidden">
 										<img
 											alt="gallery"
 											className="block object-cover object-center w-full h-full rounded-lg hover:shadow-lg transition ease-in-out  hover:-translate-y-1 hover:scale-110"
-											src="/umbrella.jpg"
+											src={nft.Img}
 										/>
 									</div>
-								</a>
+								</Link>
+
 								<div className="px-5 pt-2">
 									<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 										NFT Name

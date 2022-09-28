@@ -1,10 +1,9 @@
 import Image from "next/image";
-
-const FixedPriceForm = () => {
+const HighestBidderSell = () => {
 	return (
 		<div>
-			<div className="text-xl mx-2 font-mono tracking-tight text-bold dark:text-white">
-				Price
+			<div className="text-xl mx-2 mt-5 font-mono tracking-tight text-bold dark:text-white">
+				Starting Price
 			</div>
 			<div className="flex flex-auto mx-2 mt-5 content-center ">
 				<div className="basis-1/2 items-center mx-4 ">
@@ -63,10 +62,8 @@ const FixedPriceForm = () => {
 					</div>
 				</div>
 			</div>
-
-			{/* <div className="flex flex-auto mx-2 mt-5 content-center "></div> */}
 		</div>
 	);
 };
 
-export default FixedPriceForm;
+export default HighestBidderSell;

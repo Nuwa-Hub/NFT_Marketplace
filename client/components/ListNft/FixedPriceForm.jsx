@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 const FixedPriceForm = () => {
 	return (
 		<div>
@@ -34,9 +35,35 @@ const FixedPriceForm = () => {
 					</div>
 				</div>
 			</div>
-			<div className="text-xl mx-2 font-mono tracking-tight text-bold dark:text-white">
+
+			<div className="text-xl mx-2 mt-5 font-mono tracking-tight text-bold dark:text-white">
 				Duration
 			</div>
+
+			<div className="flex flex-auto mx-2 mt-5 content-center ">
+				<div className="basis-1/2 items-center mx-4">
+					<div className="w-full h-20 flex justify-center items-center rounded-lg shadow-sm shadow-cyan-500/50">
+						<input
+							className="w-full h-20  p-4 border-0"
+							type="date"
+							name="start-date"
+							placeholder="Start Date"
+						/>
+					</div>
+				</div>
+
+				<div className="basis-1/2 items-center mx-4">
+					<div className="w-full h-20 flex justify-center items-center rounded-lg shadow-sm shadow-cyan-500/50">
+						<input
+							className="w-full h-20  p-4 border-0"
+							type="date"
+							name="end-date"
+							placeholder="End Date"
+						/>
+					</div>
+				</div>
+			</div>
+
 			<div className="flex flex-auto mx-2 mt-5 content-center "></div>
 		</div>
 	);

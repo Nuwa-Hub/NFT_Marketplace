@@ -4,7 +4,7 @@ import ListingTable from "./ListingTable";
 import PriceHistoryTable from "./PriceHistoryTable";
 const Accordion_ = () => {
 	return (
-		<div>
+		<div className="mt-10">
 			<div class="bg-white w-full border border-blue-300 divide-y divide-gray-200">
 				<details>
 					<summary class="question py-3 px-4 cursor-pointer select-none w-full outline-none">

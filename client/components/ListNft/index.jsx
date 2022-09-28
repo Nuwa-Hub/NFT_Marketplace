@@ -1,7 +1,11 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
+import AuctionForm from "./AuctionForm";
 import FixedPriceForm from "./FixedPriceForm";
 import ListingType from "./ListingType";
+import React, { useState } from "react";
 const Listing = () => {
+	const [fixed, setFixed] = useState(1);
+	const [timed, setTimed] = useState(0);
 	return (
 		<div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
@@ -28,12 +32,22 @@ const Listing = () => {
 						</div>
 
 						<div className="mx-2 mt-5 ">
-							<ListingType />
+							<ListingType
+								setFixed={setFixed}
+								setTimed={setTimed}
+							/>
 						</div>
+						{fixed && (
+							<div className="mx-2 mt-5 ">
+								<AuctionForm />
+							</div>
+						)}
 
-						<div className="mx-2 mt-5 ">
-							<FixedPriceForm />
-						</div>
+						{timed && (
+							<div className="mx-2 mt-5 ">
+								<FixedPriceForm />
+							</div>
+						)}
 
 						<div className="flex flex-auto mx-2 mt-5 content-center ">
 							<div className="basis-1/2 items-center m-1">
@@ -43,7 +57,7 @@ const Listing = () => {
 								>
 									<div className="flex items-center justify-between flex-1">
 										<span className="text-lg font-medium text-white">
-											Buy Now
+											Complete Listing
 										</span>
 									</div>
 								</button>

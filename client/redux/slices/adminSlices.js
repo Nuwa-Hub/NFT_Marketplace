@@ -10,6 +10,8 @@ const adminSlice = createSlice({
     initialState: {
         currentAdmin: null,
         adminToken: adminToken,
+        pending: false,
+        error: null,
     },
     reducers: {
         logout: (state) => {
@@ -29,10 +31,14 @@ const adminSlice = createSlice({
             // state.currentAdmin = action.payload.admin;
             // state.adminToken = action.payload.adminToken;
         },
-        [registerAdmin.rejected]: (state, action) => {
-            // state.currentUser = action.payload.user;
+        [adminLogin.rejected]: (state, action) => {
+            state.error = action.payload;
+        },
+        [adminLogin.pending]: (state, action) => {
+            state.pending = true;
         },
         [adminLogin.fulfilled]: (state, action) => {
+            state.pending = false;
             state.currentAdmin = action.payload.admin;
             state.adminToken = action.payload.adminToken;
         },

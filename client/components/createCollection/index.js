@@ -13,6 +13,8 @@ const CreateCollection = () => {
   const [bannImg, setBannImg] = useState("");
   const [proImg, setProImg] = useState("");
 
+  const [msg, setMsg] = useState("");
+
   const dispatch = useDispatch();
   console.log(bannImg)
   //get current user
@@ -38,6 +40,7 @@ const CreateCollection = () => {
   const handleClick = async (e, { resetForm }) => {
     const bannerImgURL = "";
     const profileImgURL = "";
+    
     if (bannerImg) {
       bannerImgURL = await uploadImgToIPFS(bannerImg);
     }

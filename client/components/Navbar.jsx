@@ -1,21 +1,35 @@
-import { Link } from "react-scroll";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Logo_dark from "../assets/logo-dark.svg";
 import Logo from "../assets/logo.svg";
-import { ConnectButton } from "web3uikit";
+import ConnectWalletButton from "./ConnectWalletButton";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin, getUserDetails } from "redux/actions/userActions";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleClose = () => setNav(!nav);
 
+  const { currentUser, userToken } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (userToken) {
+      dispatch(getUserDetails(userToken));
+    }
+  }, [userToken, dispatch]);
   return (
     <div className="w-screen h-[80px] z-10 bg-zinc-200 sticky top-0 ">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center">
           <img className="w-16" src={Logo.src} alt="logo" />
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl">Kryptonaut</h1>
+          <h1 className="text-3xl font-bold mr-4 sm:text-4xl">
+            Kryptonaut
+          </h1>
         </div>
         <form className="w-[50%]">
           <label
@@ -54,89 +68,75 @@ const Navbar = () => {
         <div className="hidden md:flex pr-4">
           <ul className="hidden md:flex">
             <li className="p-4">
-              <Link to="home" smooth={true} duration={500}>
-                Explore
+              <Link
+                href={`/collection`}
+                smooth={true}
+                duration={500}
+              >
+                <a>Explore</a>
               </Link>
             </li>
             <li className="p-4">
-              <Link to="about" smooth={true} offset={-200} duration={500}>
-                Stats
+              <Link
+                href={`/nft/create`}
+                smooth={true}
+                duration={500}
+              >
+                <a>Create</a>
               </Link>
             </li>
             <li className="p-4">
-              <Link to="support" smooth={true} offset={-50} duration={500}>
-                Create
+              <Link href={`/`} smooth={true} duration={500}>
+                <a>Stats</a>
               </Link>
             </li>
+            {currentUser && currentUser.isAdmin ? (
+              <li className="p-4">
+                <Link href="auth/login" >
+                  Admin
+                </Link>
+              </li>
+            ) : null}
+
             {/* <li><Link to="platforms" smooth={true} offset={-100} duration={500}>Platforms</Link></li>
             <li><Link to="pricing" smooth={true} offset={-50} duration={500}>Pricing</Link></li> */}
           </ul>
           {/* <button className='border-none bg-transparent text-black mr-4'>
             Sign In
           </button> */}
-          <ConnectButton  moralisAuth={true} />
+          {/* <ConnectButton  moralisAuth={true} /> */}
+          <ConnectWalletButton />
         </div>
         <div className="md:hidden mr-4" onClick={handleClick}>
-          {!nav ? <MenuIcon className="w-5" /> : <XIcon className="w-5" />}
+          {!nav ? (
+            <MenuIcon className="w-5" />
+          ) : (
+            <XIcon className="w-5" />
+          )}
         </div>
       </div>
 
-      <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"}>
+      <ul
+        className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"}
+      >
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link onClick={handleClose} to="home" smooth={true} duration={500}>
-            Home
+          <Link href={`/collection`} smooth={true} duration={500}>
+            <a>Explore</a>
           </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="about"
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            About
+          <Link href={`/nft/create`} smooth={true} duration={500}>
+            <a>Create</a>
           </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="support"
-            smooth={true}
-            offset={-50}
-            duration={500}
-          >
-            Support
-          </Link>
-        </li>
-        <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="platforms"
-            smooth={true}
-            offset={-100}
-            duration={500}
-          >
-            Platforms
-          </Link>
-        </li>
-        <li className="border-b-2 border-zinc-300 w-full">
-          <Link
-            onClick={handleClose}
-            to="pricing"
-            smooth={true}
-            offset={-50}
-            duration={500}
-          >
-            Pricing
+          <Link href={`/`} smooth={true} duration={500}>
+            <a>Stats</a>
           </Link>
         </li>
 
         <div className="flex flex-col my-4">
-          <button className="bg-transparent text-indigo-600 px-8 py-3 mb-4">
-            Sign In
-          </button>
-          <button className="px-8 py-3">Sign Up</button>
+          <ConnectWalletButton />
         </div>
       </ul>
     </div>

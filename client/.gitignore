@@ -31,5 +31,5 @@ yarn-error.log*
 # vercel
 .vercel
 
-package-lock.json
-package.json
+/public/sw.js
+/public/sw.js.map

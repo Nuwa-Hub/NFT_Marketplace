@@ -1,3 +1,4 @@
+import CreateNFT from "components/createNFT";
 import Example from "components/Example";
 
 export default function Create() {
@@ -11,7 +12,8 @@ export default function Create() {
 			</Head> 
 			 <Navbar /> 
 			 <Hero />  */}
-			<Example />
+			{/* <Example /> */}
+			<CreateNFT/>
 		</>
 	);
 }

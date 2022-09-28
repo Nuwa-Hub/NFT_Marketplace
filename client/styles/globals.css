@@ -18,23 +18,23 @@
 	-webkit-backdrop-filter: blur(7px);
 	overflow: hidden;
 	transition: 0.5s all;
-  }
-  
-  .nft .main .tokenInfo .duration {
+}
+
+.nft .main .tokenInfo .duration {
 	display: flex;
 	align-items: center;
 	color: #a89ec9;
 	margin-right: 0.2rem;
-  }
- 
-  .nft .main .creator {
+}
+
+.nft .main .creator {
 	display: flex;
 	align-items: center;
 	margin-top: 0.2rem;
 	margin-bottom: -0.3rem;
-  }
+}
 
-  .nft ::before {
+.nft ::before {
 	position: fixed;
 	content: "";
 	box-shadow: 0 0 100px 80px #ffffff08;
@@ -43,24 +43,26 @@
 	transform: rotate(-45deg);
 	height: 60rem;
 	transition: 0.7s all;
-  }
-  
-  .nft button:hover {
+}
+
+.nft button:hover {
 	background: #2c2c2c61 !important;
-  }
-  .nft:hover {
+}
+
+.nft:hover {
 	border: 1px solid #ffffff44;
 	box-shadow: 0 7px 50px 10px #000000aa;
 	transform: scale(1.015);
 	filter: brightness(1.1);
-  }
-  .nft:hover ::before {
+}
+
+.nft:hover ::before {
 	filter: brightness(0.5);
 	top: -100%;
 	left: 200%;
-  }
+}
 
-  /* collection card end */
+/* collection card end */
 
 a {
 	color: inherit;
@@ -71,26 +73,26 @@ a {
 	box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
 	html {
 		color-scheme: dark;
 	}
+
 	body {
 		color: white;
 		background: black;
 	}
-}
-
-@layer base {
+} */
+/* @layer base {
 	button {
-		@apply text-white border bg-teal-600 border-teal-600
-	  hover:bg-transparent hover:text-teal-600 rounded-md;
+		@apply text-white border bg-teal-600 border-teal-600 hover: bg-transparent hover:text-teal-600 rounded-md;
 	}
+
 	button.create {
-		@apply text-white border bg-zinc-600 border-zinc-600
-	  hover:bg-transparent hover:text-zinc-600 rounded-md;
+		@apply text-white border bg-zinc-600 border-zinc-600 hover: bg-transparent hover:text-zinc-600 rounded-md;
 	}
-  }
-  .md\:ml-64 {
-    margin-left: 16rem;
-  }
+} */
+
+.md\:ml-64 {
+	margin-left: 16rem;
+}

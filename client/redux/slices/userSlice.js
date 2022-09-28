@@ -15,6 +15,7 @@ const userSlice = createSlice({
         logout: (state) => {
             sessionStorage.removeItem("userToken");
             state.currentUser = null;
+            state.userToken = null;
         },
     },
     extraReducers: {

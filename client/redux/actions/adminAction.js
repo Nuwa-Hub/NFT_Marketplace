@@ -71,7 +71,7 @@ export const adminLogin = createAsyncThunk(
             )
 
             // store user's token in local storage
-            localStorage.setItem('adminToken', data.adminToken)
+            sessionStorage.setItem('adminToken', data.adminToken)
 
             return data
         } catch (error) {

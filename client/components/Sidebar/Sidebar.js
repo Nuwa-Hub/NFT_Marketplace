@@ -5,14 +5,14 @@ import { useRouter } from "next/router";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import { useDispatch } from "react-redux";
-import { logout } from "redux/slices/adminSlices";
+import { adminLogout } from "redux/slices/adminSlices";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
   const dispatch = useDispatch();
   const clickLogOut = () => {
-    dispatch(logout());
+    dispatch(adminLogout());
     router.push("/auth/login");
   };
   return (

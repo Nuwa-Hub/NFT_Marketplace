@@ -14,9 +14,10 @@ const adminSlice = createSlice({
         error: null,
     },
     reducers: {
-        logout: (state) => {
+        adminLogout: (state) => {
             sessionStorage.removeItem("adminToken");
             state.currentAdmin = null;
+            state.adminToken = null;
         },
     },
     extraReducers: {
@@ -46,6 +47,6 @@ const adminSlice = createSlice({
 });
 
 export const {
-    logout
+    adminLogout
 } = adminSlice.actions;
 export default adminSlice.reducer;

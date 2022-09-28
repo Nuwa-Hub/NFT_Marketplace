@@ -11,7 +11,7 @@ export default function CardAdminProfile() {
   const { currentAdmin } = useSelector((state) => state.admin);
 
   useEffect(() => {
-    if (!localStorage.getItem('adminToken')) {
+    if (!sessionStorage.getItem('adminToken')) {
       router.push('/auth/login')
     }
     console.log(currentAdmin);

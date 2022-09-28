@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 	if (req.method === "PUT") {
 		try {
 			const updateAuction = await Auction.findByIdAndUpdate(
-				req.params.id,
+				auction_id,
 				{ $set: req.body },
 				{ new: true }
 			);
@@ -32,8 +32,8 @@ export default async function handler(req, res) {
 
 	if (req.method === "DELETE") {
 		try {
-			const deleteAuction = await Auction.findByIdAndDelete(req.params.id);
-			res.status(200).json(deleteAuction);
+			const deleteAuction = await Auction.findByIdAndDelete(auction_id);
+			res.status(200).json(deleteAuction._id);
 		} catch (err) {
 			console.log("err")
 			res.status(500).json(err);

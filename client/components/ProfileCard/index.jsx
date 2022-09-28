@@ -284,7 +284,7 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span>Similar Profiles</span>
+                    <span>Newly added profiles</span>
                   </div>
                   <div class="grid grid-cols-3">
                     <div class="text-center my-2">
@@ -347,7 +347,7 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span>Similar Profiles</span>
+                    <span>Newly Added NFTs</span>
                   </div>
                   <div class="grid grid-cols-3">
                     <div class="text-center my-2">

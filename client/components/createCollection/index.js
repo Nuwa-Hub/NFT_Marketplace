@@ -9,8 +9,12 @@ import { useSelector } from "react-redux"
 const CreateCollection = () => {
   const [bannerImg, setBannerImg] = useState("");
   const [profileImg, setProfileImg] = useState("");
-  const dispatch = useDispatch();
 
+  const [bannImg, setBannImg] = useState("");
+  const [proImg, setProImg] = useState("");
+
+  const dispatch = useDispatch();
+  console.log(bannImg)
   //get current user
   const currentUser = useSelector((state) => state.user.currentUser);
 
@@ -50,6 +54,37 @@ const CreateCollection = () => {
     addCollections(dispatch, newCollection);
     resetForm();
   };
+
+  function previewBanFile(file) {
+   // const preview = document.querySelector('img');
+   // const file = document.querySelector('input[type=file]').files[0];
+    const reader = new FileReader();
+   
+    reader.addEventListener("load", () => {
+      // convert image file to base64 string
+      setBannImg(reader.result);
+    }, false);
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  
+  }
+
+  
+  function previewProFile(file) {
+    
+    const reader = new FileReader();
+   
+    reader.addEventListener("load", () => {
+      // convert image file to base64 string
+      setProImg(reader.result);
+    }, false);
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+   
+   }
+
 
   //validate
   const validate = Yup.object({
@@ -114,13 +149,16 @@ const CreateCollection = () => {
                     <ErrorMessage name="description" component="div" />
                   </div>
                   <div className="mb-4">
+                 
                     <legend className="block uppercase text-xl font-bold font-mono p-2">
                       Cover Image
                     </legend>
-
+                  
                     <div className="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative mt-4">
+                     
                       <label className="flex justify-center w-full max-w-xs h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-lg appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                        <span className="flex items-center space-x-2">
+                     {bannImg && <img id="banner" alt="Image previewban" src={bannImg} className="w-full h-32 rounded-lg"/>}
+                       {!bannImg && <span className="flex items-center space-x-2">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-6 h-6 text-gray-600"
@@ -141,15 +179,19 @@ const CreateCollection = () => {
                               browse
                             </span>
                           </span>
-                        </span>
+                        </span>}
+                      
                         <input
                           type="file"
                           name="bannerImage"
+                          accept="image/*"
                           className="hidden"
                           onChange={(e) => {
                             setBannerImg(e.target.files[0]);
+                            previewBanFile(e.target.files[0])
                           }}
                         />
+                          
                       </label>
                     </div>
                     <ErrorMessage name="bannerImage" component="div" />
@@ -161,7 +203,8 @@ const CreateCollection = () => {
 
                     <div className="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative mt-4">
                       <label className="flex justify-center w-full max-w-xs h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-lg appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                        <span className="flex items-center space-x-2">
+                      {proImg && <img id="banner" alt="Image previewban" src={proImg} className="w-full h-32 rounded-lg"/>}
+                       {!proImg && <span className="flex items-center space-x-2">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-6 h-6 text-gray-600"
@@ -182,13 +225,14 @@ const CreateCollection = () => {
                               browse
                             </span>
                           </span>
-                        </span>
+                        </span>}
                         <input
                           type="file"
                           name="profileIamge"
                           className="hidden"
                           onChange={(e) => {
                             setProfileImg(e.target.files[0]);
+                            previewProFile(e.target.files[0])
                           }}
                         />
                       </label>

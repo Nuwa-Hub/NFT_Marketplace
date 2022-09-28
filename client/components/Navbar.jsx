@@ -92,12 +92,7 @@ const Navbar = () => {
             </li>
             {currentUser && currentUser.isAdmin ? (
               <li className="p-4">
-                <Link
-                  onClick={() => router.push("auth/login")}
-                  smooth={true}
-                  offset={-50}
-                  duration={500}
-                >
+                <Link href="auth/login" >
                   Admin
                 </Link>
               </li>

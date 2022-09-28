@@ -5,13 +5,14 @@ import { useRouter } from 'next/router'
 // layout for page
 
 import Auth from "layouts/Auth.js";
+import { array } from "yup";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const router = useRouter()
-  const { currentAdmin, adminToken } = useSelector((state) => state.admin);
+  const { currentAdmin, adminToken, pending } = useSelector((state) => state.admin);
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(adminLogin({ email, password }));
@@ -83,10 +84,16 @@ export default function Login() {
 
                   <div className="text-center mt-6">
                     <button
-                      className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      className="inline-flex items-center bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                       onClick={handleClick}
                     >
+                      {
+                        pending ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                          : null}
                       Sign In
                     </button>
                   </div>

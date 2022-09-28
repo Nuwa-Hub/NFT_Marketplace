@@ -1,7 +1,9 @@
 import React from "react";
-import { registerAdmin } from "redux/actions/adminAction";
+// import { registerAdmin } from "redux/actions/adminAction";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from 'next/router'
+
 // components
 
 export default function CardAddAdmin() {
@@ -11,15 +13,39 @@ export default function CardAddAdmin() {
     const [account, setAccount] = useState("");
     const [address, setAddress] = useState("");
     const [telNumber, setTelNumber] = useState("");
+    const [formError, setFormError] = useState(null);
 
     const dispatch = useDispatch();
+    const router = useRouter()
 
-    const handleClick = (e) => {
-        e.preventDefault();
+    const handleClick = async (event) => {
+        event.preventDefault();
         // console.log(username, password, email, account, address, telNumber);
-        dispatch(registerAdmin({ username, password, email, account, address, telNumber }));
+        const data = { username, password, email, account, address, telNumber };
+        const JSONdata = JSON.stringify(data)
+        const endpoint = '/api/admin/add';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSONdata,
+        }
+        const response = await fetch(endpoint, options)
+        const result = await response.json()
+        if (result.errors) {
+            setFormError(result)
+        } else {
+            console.log(result);
+            router.push('/admin/admins')
+        }
+        // dispatch(registerAdmin());
     };
-
+    useEffect(() => {
+        if (formError) {
+            console.log(formError);
+        }
+    }, [formError])
 
     return (
         <>
@@ -142,7 +168,7 @@ export default function CardAddAdmin() {
                         >
                             Submit
                         </button>
-
+                        {formError && <p className="text-red-500 text-xs italic">{formError._message}</p>}
                     </form>
                 </div>
             </div>

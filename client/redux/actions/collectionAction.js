@@ -35,6 +35,7 @@ export const getCollectionById = async (dispatch,collection_id) => {
   } catch (err) {
     dispatch(getCollectionFailure());
   }
+}
 //get all collection by id   // same function as above
 export const getAllCollection = async (dispatch) => {
 	try {

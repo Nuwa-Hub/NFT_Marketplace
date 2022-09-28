@@ -27,9 +27,9 @@ export const getAllCollections = async (dispatch) => {
 };
 
 //get all collection by id
-export const getAllCollection = async (dispatch) => {
+export const getCollectionById = async (dispatch,collection_id) => {
   try {
-    const res = await publicRequest.get(`/collection`);
+    const res = await publicRequest.get(`/collection/${collection_id}`);
     console.log(res.data);
     dispatch(getCollectionSuccess(res.data));
   } catch (err) {

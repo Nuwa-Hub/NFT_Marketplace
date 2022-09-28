@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { uploadFileToIPFS } from "common/pinata";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCollections } from "redux/actions/collectionAction";
 
 const CreateCollection = () => {

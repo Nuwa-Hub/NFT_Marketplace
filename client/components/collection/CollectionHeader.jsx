@@ -1,18 +1,23 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCollectionById } from "redux/actions/collectionAction";
+
 
 const CollectionHeader = () => {
   //handle the routes
   const router = useRouter();
   const collection_id = router.query.id;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getCollectionById(dispatch, collection_id);
+  }, [dispatch, collection_id]);
 
   //get relevent collection
-  const collections = useSelector((state) => state.collection.collections);
+  const collection = useSelector((state) => state.collection.collection);
 
-  const collection = collections.find((item) => item._id == collection_id);
- // console.log(collection);
-
+  console.log(collection);
   return (
     <div>
       <div className="relative">
@@ -30,7 +35,9 @@ const CollectionHeader = () => {
       </div>
 
       <div className="flex flex-col items-start justify-center mt-20 ml-6 md:mt-36">
-        <h1 className="text-2xl font-bold text-gray-900">{collection.collectionName}</h1>
+        <h1 className="text-2xl font-bold text-gray-900">
+          {collection.collectionName}
+        </h1>
         <p className="text-gray-500">{collection.description}</p>
         <p className="text-gray-500">
           The photographs describes the fight of young souls seeking escape from

@@ -4,7 +4,7 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract BasicNftTwo is ERC721 {
-    string public constant TOKEN_URI = "ipfs://QmdryoExpgEQQQgJPoruwGJyZmz6SqV4FRTX1i73CT3iXn";
+    string public constant TOKEN_URI = "https://gateway.pinata.cloud/ipfs/QmNUki7mQSCedPQ8R5LK6bR8K4Lk4pXFCp9TbP7vZHoVHQ";
     uint256 private s_tokenCounter;
 
     event DogMinted(uint256 indexed tokenId);

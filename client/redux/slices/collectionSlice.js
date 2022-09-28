@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   collections: [],
-  collection: "",
+  collection: [],
   isFetching: false,
   error: false,
 };

@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getCollectionById } from "redux/actions/collectionAction";
 
 const CollectionHeader = () => {
   //handle the routes

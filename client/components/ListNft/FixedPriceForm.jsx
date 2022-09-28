@@ -64,7 +64,7 @@ const FixedPriceForm = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-auto mx-2 mt-5 content-center "></div>
+			{/* <div className="flex flex-auto mx-2 mt-5 content-center "></div> */}
 		</div>
 	);
 };

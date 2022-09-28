@@ -6,7 +6,9 @@ const ListingType = (props) => {
 			<div className="flex flex-auto mx-2 mt-5 content-center ">
 				<div
 					className="basis-1/2 items-center m-4"
-					onClick={() => props.setFixed(1)}
+					onClick={() => {
+						props.setTimed(0);
+					}}
 				>
 					<div className=" w-full h-20 flex justify-center items-center transform hover:scale-110 hover:bg-green-50 duration-500 ease-in-out rounded-lg shadow-md shadow-cyan-500/50">
 						<text className="text-xl font-mono tracking-tight text-slate-500 dark:text-white">
@@ -17,7 +19,9 @@ const ListingType = (props) => {
 
 				<div
 					className="basis-1/2 items-center m-4"
-					onClick={() => props.setTimed(1)}
+					onClick={() => {
+						props.setTimed(1);
+					}}
 				>
 					<div className="w-full h-20 flex justify-center items-center transform hover:scale-110 hover:bg-green-50 duration-500 ease-in-out rounded-lg shadow-md shadow-cyan-500/50">
 						<text className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">

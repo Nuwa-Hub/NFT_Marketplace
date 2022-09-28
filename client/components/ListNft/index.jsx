@@ -4,7 +4,6 @@ import FixedPriceForm from "./FixedPriceForm";
 import ListingType from "./ListingType";
 import React, { useState } from "react";
 const Listing = () => {
-	const [fixed, setFixed] = useState(1);
 	const [timed, setTimed] = useState(0);
 	return (
 		<div>
@@ -32,18 +31,14 @@ const Listing = () => {
 						</div>
 
 						<div className="mx-2 mt-5 ">
-							<ListingType
-								setFixed={setFixed}
-								setTimed={setTimed}
-							/>
+							<ListingType setTimed={setTimed} />
 						</div>
-						{fixed && (
+
+						{timed ? (
 							<div className="mx-2 mt-5 ">
 								<AuctionForm />
 							</div>
-						)}
-
-						{timed && (
+						) : (
 							<div className="mx-2 mt-5 ">
 								<FixedPriceForm />
 							</div>

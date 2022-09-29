@@ -5,22 +5,26 @@ import Logo_dark from "../assets/logo-dark.svg";
 import Logo from "../assets/logo.svg";
 import ConnectWalletButton from "./ConnectWalletButton";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin, getUserDetails } from "redux/actions/userActions";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleClose = () => setNav(!nav);
+  const [adminButton, setAdminButton] = useState(null);
 
   const { currentUser, userToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    if (userToken) {
-      dispatch(getUserDetails(userToken));
-    }
+    // if (currentUser && currentUser.isAdmin) {
+    //   setAdminButton(<li className="p-4">
+    //     <Link href="auth/login" >
+    //       Admin
+    //     </Link>
+    //   </li>);
+    // }
   }, [userToken, dispatch]);
   return (
     <div className="w-screen h-[80px] z-10 bg-zinc-200 sticky top-0 ">
@@ -97,6 +101,7 @@ const Navbar = () => {
                 </Link>
               </li>
             ) : null}
+            {/* {adminButton} */}
 
             {/* <li><Link to="platforms" smooth={true} offset={-100} duration={500}>Platforms</Link></li>
             <li><Link to="pricing" smooth={true} offset={-50} duration={500}>Pricing</Link></li> */}
@@ -136,7 +141,7 @@ const Navbar = () => {
         </li>
 
         <div className="flex flex-col my-4">
-          <ConnectWalletButton />
+          {/* <ConnectWalletButton /> */}
         </div>
       </ul>
     </div>

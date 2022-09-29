@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTable({ color }) {
+export default function AdminsTable({ color }) {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
 
@@ -189,10 +189,10 @@ export default function CardTable({ color }) {
   );
 }
 
-CardTable.defaultProps = {
+AdminsTable.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+AdminsTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

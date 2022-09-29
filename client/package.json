@@ -55,6 +55,7 @@
 		"eslint": "8.20.0",
 		"eslint-config-next": "12.2.3",
 		"jest": "^29.0.3",
+		"msw": "^0.47.3",
 		"postcss": "^8.4.14",
 		"tailwindcss": "^3.1.6"
 	}

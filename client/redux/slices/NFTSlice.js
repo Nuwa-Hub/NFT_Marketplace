@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  NFTs: [],
+  NFTs: "",
   isFetching: false,
   error: false,
 }
@@ -17,6 +17,7 @@ export const NFTSlice = createSlice({
     },
     getNFTSuccess: (state, action) => {
       state.isFetching = false;
+      console.log(action.payload)
       state.NFTs = action.payload;
     },
     getNFTFailure: (state) => {

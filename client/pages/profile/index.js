@@ -3,7 +3,7 @@ import ProfileCard from "components/ProfileCard";
 
 const index = () => {
   return (
-    <div className='bg-gray-100'>
+    <div className=''>
         <ProfileCard/>
     </div>
   )

@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 const UserLayout = ({ children }) => {
 	return (
 		<div>
-			{/* <Navbar /> */}
+			<Navbar />
 			{children}
 			{/* <Footer /> */}
 		</div>

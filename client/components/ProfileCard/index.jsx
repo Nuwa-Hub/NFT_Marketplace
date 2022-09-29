@@ -14,7 +14,7 @@ const index = () => {
                 <img class="h-auto w-full mx-auto" src="/dp.jpeg" alt="" />
               </div>
               <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">
-                Shilpa Maniyan
+                unknown
               </h1>
               <h3 class="text-gray-600 font-lg text-semibold leading-6">
                 Owner at Her Company Inc.
@@ -200,23 +200,27 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span class="tracking-wide">Experience</span>
+                    <span class="tracking-wide">Listing Details</span>
                   </div>
                   <ul class="list-inside space-y-2">
                     <li>
-                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-teal-600">NFT Name-@0001</div>
+                      <div class="text-gray-500 text-xs">Price 0.1 ETH</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
                     </li>
                     <li>
-                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-teal-600">NFT Name-@0001</div>
+                      <div class="text-gray-500 text-xs">Price 0.1 ETH</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
                     </li>
                     <li>
-                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-teal-600">NFT Name-@0001</div>
+                      <div class="text-gray-500 text-xs">Price 0.1 ETH</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
                     </li>
                     <li>
-                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-teal-600">NFT Name-@0001</div>
+                      <div class="text-gray-500 text-xs">Price 0.1 ETH</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
                     </li>
                   </ul>
@@ -244,15 +248,17 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span class="tracking-wide">Education</span>
+                    <span class="tracking-wide">NFT Buyying Details</span>
                   </div>
                   <ul class="list-inside space-y-2">
                     <li>
-                      <div class="text-teal-600">Masters Degree in Oxford</div>
+                      <div class="text-teal-600">NFT Name-@0001</div>
+                      <div class="text-gray-500 text-xs">Price 0.1 ETH</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
                     </li>
                     <li>
-                      <div class="text-teal-600">Bachelors Degreen in LPU</div>
+                      <div class="text-teal-600">NFT Name-@0001</div>
+                      <div class="text-gray-500 text-xs">Price 0.1 ETH</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
                     </li>
                   </ul>
@@ -284,47 +290,67 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span>Newly added profiles</span>
+                    <span>Newly added collectionss</span>
                   </div>
-                  <div class="grid grid-cols-3">
-                    <div class="text-center my-2">
+                  <div class="grid grid-cols-4">
+                  <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        Kojstantin
+                      test1
                       </a>
                     </div>
                     <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog1.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        James
+                      test1
                       </a>
                     </div>
                     <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        Natie
+                      test1
                       </a>
                     </div>
                     <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog1.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        Casey
+                      test1
+                      </a>
+                    </div>
+                    <div class="text-center my-2">
+                      <img
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog.jpg"
+                        alt=""
+                      />
+                      <a href="#" class="text-main-color">
+                      test1
+                      </a>
+                    </div>
+                    <div class="text-center my-2">
+                      <img
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog1.jpg"
+                        alt=""
+                      />
+                      <a href="#" class="text-main-color">
+                      test1
                       </a>
                     </div>
                   </div>
@@ -349,45 +375,45 @@ const index = () => {
                     </span>
                     <span>Newly Added NFTs</span>
                   </div>
-                  <div class="grid grid-cols-3">
-                    <div class="text-center my-2">
+                  <div class="grid grid-cols-4">
+                  <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        Kojstantin
+                      test1
                       </a>
                     </div>
                     <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog1.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        James
+                      test1
                       </a>
                     </div>
                     <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        Natie
+                      test1
                       </a>
                     </div>
                     <div class="text-center my-2">
                       <img
-                        class="h-16 w-16 rounded-full mx-auto"
-                        src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
+                        class="h-16 w-16 rounded-sm mx-auto"
+                        src="/dog1.jpg"
                         alt=""
                       />
                       <a href="#" class="text-main-color">
-                        Casey
+                      test1
                       </a>
                     </div>
                   </div>

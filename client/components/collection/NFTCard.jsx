@@ -8,7 +8,7 @@ export default function NFTCard() {
 	//handle the routes
 	const router = useRouter();
 	const collection_id = router.query.id;
-    const [newnfts,setnfts]=useState([])
+    
 	const dispatch = useDispatch();
 	
 	//get all NFTs that include to the relevent collection
@@ -16,17 +16,16 @@ export default function NFTCard() {
 
 	useEffect(() => {
 		getNFTsByCollectionId(dispatch, collection_id);
-		setnfts(nfts);
 	}, [dispatch, collection_id]);
 
 
-	//console.log(nfts)
+	console.log(nfts)
 
 	return (
 		<section className="overflow-hidden text-gray-700 ">
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
 				<div className="flex flex-wrap -m-1 md:-m-2">
-					{newnfts.length>0 && newnfts.map((nft) => (
+					{nfts.length>0 && nfts.map((nft) => (
 						<div
 							key={nft._id}
 							className="flex flex-wrap w-full  sm:w-1/2 md:w-1/3 lg:w-1/4 "
@@ -44,11 +43,11 @@ export default function NFTCard() {
 
 								<div className="px-5 pt-2">
 									<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-										NFT Name
+										{nft._id}
 									</h5>
 
 									<p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-										price
+										{nft.description}
 									</p>
 									<p className="mb-3 font-normal text-gray-700 dark:text-gray-400 group-hover:hidden">
 										Last Sale

@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUserDetails, userLogin } from "redux/actions/userActions";
 
-let userToken = null
-if (typeof window !== "undefined") {
-    userToken = sessionStorage.getItem("userToken");
-}
+// let userToken = null
+// if (typeof window !== "undefined") {
+//     userToken = sessionStorage.getItem("userToken");
+// }
 const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
-        userToken: userToken,
+        userToken: null,
     },
     reducers: {
         logout: (state) => {

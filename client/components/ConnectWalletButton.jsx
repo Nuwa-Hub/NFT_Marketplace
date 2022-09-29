@@ -35,9 +35,9 @@ const ConnectWalletButton = () => {
     const { currentUser, userToken } = useSelector((state) => state.user);
     // console.log(currentUser);
     const [data, setdata] = useState({
-        address: currentUser ? currentUser.address : "",
-        Balance: currentUser ? currentUser.Balance : null,
-        walletButton: currentUser ? <button onClick={disconnectWallet} className="bg-zinc-500 text-white px-4 py-2 rounded-md">Disconnect Wallet</button> : <button onClick={connectWallet} className="bg-zinc-500 text-white px-4 py-2 rounded-md">Connect Wallet</button>
+        address: "",
+        Balance: null,
+        walletButton: <button onClick={connectWallet} className="bg-zinc-500 text-white px-4 py-2 rounded-md">Connect Wallet</button>
     });
     const dispatch = useDispatch();
 

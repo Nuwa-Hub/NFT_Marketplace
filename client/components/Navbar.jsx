@@ -18,13 +18,16 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // if (currentUser && currentUser.isAdmin) {
-    //   setAdminButton(<li className="p-4">
-    //     <Link href="auth/login" >
-    //       Admin
-    //     </Link>
-    //   </li>);
-    // }
+    if (currentUser && currentUser.isAdmin) {
+      setAdminButton(<li className="p-4">
+        <Link href="/auth/login" >
+          Admin
+        </Link>
+      </li>);
+    }
+    else {
+      setAdminButton(null);
+    }
   }, [userToken, dispatch]);
   return (
     <div className="w-screen h-[80px] z-10 bg-zinc-200 sticky top-0 ">
@@ -94,14 +97,14 @@ const Navbar = () => {
                 <a>Stats</a>
               </Link>
             </li>
-            {currentUser && currentUser.isAdmin ? (
+            {/* {currentUser && currentUser.isAdmin ? (
               <li className="p-4">
-                <Link href="auth/login" >
+                <Link href="/auth/login" >
                   Admin
                 </Link>
               </li>
-            ) : null}
-            {/* {adminButton} */}
+            ) : null} */}
+            {adminButton}
 
             {/* <li><Link to="platforms" smooth={true} offset={-100} duration={500}>Platforms</Link></li>
             <li><Link to="pricing" smooth={true} offset={-50} duration={500}>Pricing</Link></li> */}
@@ -141,7 +144,7 @@ const Navbar = () => {
         </li>
 
         <div className="flex flex-col my-4">
-          {/* <ConnectWalletButton /> */}
+          <ConnectWalletButton />
         </div>
       </ul>
     </div>

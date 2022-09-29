@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -9,21 +9,31 @@ export default function CardAdminProfile() {
   const router = useRouter()
   const dispatch = useDispatch();
   const { currentAdmin } = useSelector((state) => state.admin);
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     if (!sessionStorage.getItem('adminToken')) {
       router.push('/auth/login')
     }
-    console.log(currentAdmin);
-  })
+    setLoading(true)
+
+    fetch(`/api/admin/${currentAdmin._id}`, {})
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data)
+        setLoading(false)
+        console.log(data)
+      });
+  }, []);
 
   const handleClick = async (e, { resetForm }) => {
 
     resetForm()
     const JSONdata = JSON.stringify(e)
-    const endpoint = '/api/admin/add';
+    const endpoint = `/api/admin/${currentAdmin._id}`;
     const options = {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -35,19 +45,21 @@ export default function CardAdminProfile() {
       setFormError(result)
     } else {
       console.log(result);
-      router.push('/admin/admins')
+      // router.push('/admin/admins')
     }
   };
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No profile data</p>
   return (
     <>
       <Formik
         initialValues={{
-          username: "",
+          username: data.username,
           password: "",
-          email: "",
-          account: "",
-          address: "",
-          telNumber: "",
+          email: data.email,
+          account: data.account,
+          address: data.address,
+          telNumber: data.telNumber,
         }}
         validationSchema={Yup.object({
           username: Yup.string().required("Required"),
@@ -92,7 +104,7 @@ export default function CardAdminProfile() {
                       <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue=""
+                        defaultValue={values.username}
                         onChange={handleChange}
                         name="username"
                       />
@@ -110,7 +122,7 @@ export default function CardAdminProfile() {
                       <input
                         type="email"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue=""
+                        defaultValue={values.email}
                         onChange={handleChange}
                         name="email"
                       />
@@ -128,7 +140,7 @@ export default function CardAdminProfile() {
                       <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue=""
+                        defaultValue={values.account}
                         onChange={handleChange}
                         name="account"
                       />
@@ -172,7 +184,7 @@ export default function CardAdminProfile() {
                       <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue=""
+                        defaultValue={values.address}
                         onChange={handleChange}
                         name="address"
                       />
@@ -190,7 +202,7 @@ export default function CardAdminProfile() {
                       <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue=""
+                        defaultValue={values.telNumber}
                         onChange={handleChange}
                         name="telNumber"
                       />

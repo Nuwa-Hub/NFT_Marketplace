@@ -34,6 +34,7 @@ const adminSlice = createSlice({
         },
         [adminLogin.rejected]: (state, action) => {
             state.error = action.payload;
+            state.pending = false;
         },
         [adminLogin.pending]: (state, action) => {
             state.pending = true;

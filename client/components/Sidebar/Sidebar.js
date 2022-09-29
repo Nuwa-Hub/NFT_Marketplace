@@ -13,7 +13,7 @@ export default function Sidebar() {
   const dispatch = useDispatch();
   const clickLogOut = () => {
     dispatch(adminLogout());
-    router.push("/auth/login");
+    router.push("/");
   };
   return (
     <>

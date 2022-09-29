@@ -18,7 +18,7 @@ export default function AdminsTable({ color }) {
       .then((data) => {
         setData(data)
         setLoading(false)
-        console.log(data)
+        // console.log(data)
       })
   }, [])
 

@@ -1,13 +1,16 @@
 const { ethers, network } = require("hardhat")
 const { moveBlocks } = require("../utils/move-blocks")
 
-const TOKEN_ID = 1
+const TOKEN_ID = 0
 
 async function buyItem() {
     const nftMarketplace = await ethers.getContract("NftMarketplace")
+    console.log("start NFT buying1!")
     const basicNft = await ethers.getContract("BasicNft")
     const listing = await nftMarketplace.getListing(basicNft.address, TOKEN_ID)
+   
     const price = listing.price.toString()
+    console.log(listing)
     const tx = await nftMarketplace.buyItem(basicNft.address, TOKEN_ID, { value: price })
     await tx.wait(1)
     console.log("NFT Bought!")

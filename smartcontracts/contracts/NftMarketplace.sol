@@ -122,7 +122,7 @@ contract NftMarketplace is ReentrancyGuard {
         }
         s_proceeds[listedItem.seller] += msg.value;
         // Could just send the money...
-        // https://fravoll.github.io/solidity-patterns/pull_over_push.html
+      
         delete (s_listings[nftAddress][tokenId]);
         IERC721(nftAddress).safeTransferFrom(listedItem.seller, msg.sender, tokenId);
         emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);

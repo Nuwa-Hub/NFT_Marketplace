@@ -8,12 +8,26 @@ const test = () => {
     const [fileURL, setFileURL] = useState(null);
     const ethers = require("ethers");
     const [message, updateMessage] = useState('list');
+    const [preImg, setPreImg] = useState("");
    // const location = useLocation();
 
+   function previewImgFile(file) {
+    
+    const reader = new FileReader();
+   
+    reader.addEventListener("load", () => {
+      // convert image file to base64 string
+      setPreImg(reader.result);
+    }, false);
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+   
+   }
 
     //This function uploads the NFT image to IPFS
-    async function OnChangeFile(e) {
-        var file = e.target.files[0];
+    async function OnChangeFile(file) {
+        //var file = e.target.files[0];
         //check for file extension
         try {
             //upload the file to IPFS
@@ -183,8 +197,10 @@ const test = () => {
 
                     <div className="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative mt-4">
                       <label className="flex justify-center w-full max-w-xs h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-lg appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                        <span className="flex items-center space-x-2">
-                          <svg
+                      {preImg && <img id="banner" alt="Image previewban" src={preImg} className="w-full h-32 rounded-lg"/>}
+                      {!preImg &&    <span className="flex items-center space-x-2">
+                       
+                       <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-6 h-6 text-gray-600"
                             fill="none"
@@ -204,12 +220,15 @@ const test = () => {
                               browse
                             </span>
                           </span>
-                        </span>
+                        </span>}
                         <input
                           type="file"
                           name="NFTImg"
                           className="hidden"
-                          onChange={OnChangeFile}
+                          onChange={(e) => {
+                            OnChangeFile(e.target.files[0]);
+							previewImgFile(e.target.files[0])
+                          }}
                         />
                       </label>
                     </div>

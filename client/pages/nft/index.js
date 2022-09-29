@@ -11,7 +11,7 @@ const exploreNFT = () => {
   const dispatch=useDispatch()
 
   async function getAllNFTs() {
-    
+    console.log(window.ethereum)
     //After adding your Hardhat network to your metamask, this code will get providers and signers
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();

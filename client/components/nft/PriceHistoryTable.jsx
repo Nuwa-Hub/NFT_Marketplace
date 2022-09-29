@@ -1,25 +1,28 @@
-import Table from "react-bootstrap/Table";
 const PriceHistoryTable = () => {
 	return (
 		<div>
-			<Table striped responsive="sm">
+			<table className="min-w-full leading-normal">
 				<thead>
 					<tr>
-						<th>Date</th>
-						<th>Price</th>
+						<th className="px-5 py-3 border-b-2 border-gray-200 bg-blue-50 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">
+							Date
+						</th>
+						<th className="px-5 py-3 border-b-2 border-gray-200 bg-blue-50 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">
+							Price
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					{[1, 2, 3, 4].map((item, index) => {
 						return (
 							<tr key={item}>
-								<td>2020/2/5</td>
-								<td>0.5eth</td>
+								<td className="text-center">2020/2/5</td>
+								<td className="text-center">0.5eth</td>
 							</tr>
 						);
 					})}
 				</tbody>
-			</Table>
+			</table>
 		</div>
 	);
 };

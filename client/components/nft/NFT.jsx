@@ -1,4 +1,5 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
+import Accordion_ from "./Accordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -84,7 +85,7 @@ const Nft = () => {
 						</div>
 					</div>
 				</div>
-				{/* <Accordion_ /> */}
+				<Accordion_ />
 			</div>
 		</div>
 	);

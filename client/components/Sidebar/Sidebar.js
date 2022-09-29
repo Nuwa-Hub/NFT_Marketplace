@@ -5,14 +5,14 @@ import { useRouter } from "next/router";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import { useDispatch } from "react-redux";
-import { logout } from "redux/slices/adminSlices";
+import { adminLogout } from "redux/slices/adminSlices";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
   const dispatch = useDispatch();
   const clickLogOut = () => {
-    dispatch(logout());
+    dispatch(adminLogout());
     router.push("/auth/login");
   };
   return (
@@ -186,6 +186,29 @@ export default function Sidebar() {
                       }
                     ></i>{" "}
                     View Admins
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/admin/profile">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/profile") !== -1
+                        ? "text-sky-500 hover:text-sky-600"
+                        : "text-slate-700 hover:text-slate-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-table mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/profile") !== -1
+                          ? "opacity-75"
+                          : "text-slate-300")
+                      }
+                    ></i>{" "}
+                    Profile
                   </a>
                 </Link>
               </li>

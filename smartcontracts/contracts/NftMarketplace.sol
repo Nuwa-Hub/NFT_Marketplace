@@ -78,7 +78,15 @@ contract NftMarketplace is ReentrancyGuard {
         _;
     }
 
-   
+    /////////////////////
+    // Main Functions //
+    /////////////////////
+    /*
+     * @notice Method for listing NFT
+     * @param nftAddress Address of NFT contract
+     * @param tokenId Token ID of NFT
+     * @param price sale price for each item
+     */
     function listItem(
         address nftAddress,
         uint256 tokenId,
@@ -99,7 +107,11 @@ contract NftMarketplace is ReentrancyGuard {
         emit ItemListed(msg.sender, nftAddress, tokenId, price);
     }
 
-   
+    /*
+     * @notice Method for cancelling listing
+     * @param nftAddress Address of NFT contract
+     * @param tokenId Token ID of NFT
+     */
     function cancelListing(address nftAddress, uint256 tokenId)
         external
         isOwner(nftAddress, tokenId, msg.sender)
@@ -109,26 +121,42 @@ contract NftMarketplace is ReentrancyGuard {
         emit ItemCanceled(msg.sender, nftAddress, tokenId);
     }
 
+    /*
+     * @notice Method for buying listing
+     * @notice The owner of an NFT could unapprove the marketplace,
+     * which would cause this function to fail
+     * Ideally you'd also have a `createOffer` functionality.
+     * @param nftAddress Address of NFT contract
+     * @param tokenId Token ID of NFT
+     */
     function buyItem(address nftAddress, uint256 tokenId)
         external
         payable
         isListed(nftAddress, tokenId)
         nonReentrant
     {
-
+        // Challenge - How would you refactor this contract to take:
+        // 1. Abitrary tokens as payment? (HINT - Chainlink Price Feeds!)
+        // 2. Be able to set prices in other currencies?
+        // 3. Tweet me @PatrickAlphaC if you come up with a solution!
         Listing memory listedItem = s_listings[nftAddress][tokenId];
         if (msg.value < listedItem.price) {
             revert PriceNotMet(nftAddress, tokenId, listedItem.price);
         }
         s_proceeds[listedItem.seller] += msg.value;
         // Could just send the money...
-      
+        // https://fravoll.github.io/solidity-patterns/pull_over_push.html
         delete (s_listings[nftAddress][tokenId]);
         IERC721(nftAddress).safeTransferFrom(listedItem.seller, msg.sender, tokenId);
         emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 
-
+    /*
+     * @notice Method for updating listing
+     * @param nftAddress Address of NFT contract
+     * @param tokenId Token ID of NFT
+     * @param newPrice Price in Wei of the item
+     */
     function updateListing(
         address nftAddress,
         uint256 tokenId,
@@ -159,6 +187,10 @@ contract NftMarketplace is ReentrancyGuard {
         (bool success, ) = payable(msg.sender).call{value: proceeds}("");
         require(success, "Transfer failed");
     }
+
+    /////////////////////
+    // Getter Functions //
+    /////////////////////
 
     function getListing(address nftAddress, uint256 tokenId)
         external

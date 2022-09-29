@@ -23,7 +23,6 @@ module.exports = {
         localhost: {
             chainId: 31337,
         },
-        
      
     },
   

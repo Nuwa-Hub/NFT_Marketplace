@@ -17,7 +17,7 @@ export default function NFTCard() {
 		getNFTsByCollectionId(dispatch, collection_id);
 	}, [dispatch, collection_id]);
 
-	//console.log(nfts)
+	console.log(nfts);
 
 	return (
 		<section className="overflow-hidden text-gray-700 ">

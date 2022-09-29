@@ -6,9 +6,10 @@
 
 .nft {
 	user-select: none;
-	max-width: 500px;
-	width: 500px;
-	margin: 1.9rem 1.9rem;
+	max-width: 550px;
+	width: 550px;
+	
+	margin: 1.9rem 2.1rem;
 	border: 1px solid #ffffff22;
 	background-color: #282c34;
 	background: linear-gradient(0deg, #ffffff 0%, rgba(215, 215, 215, 0.5) 100%);

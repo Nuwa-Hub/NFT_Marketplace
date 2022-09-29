@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNFTsByCollectionId } from "redux/actions/NFTAction";
 
@@ -8,14 +8,17 @@ export default function NFTCard() {
 	//handle the routes
 	const router = useRouter();
 	const collection_id = router.query.id;
-
+    const [newnfts,setnfts]=useState([])
 	const dispatch = useDispatch();
+	
 	//get all NFTs that include to the relevent collection
 	const nfts = useSelector((state) => state.NFT.NFTs);
 
 	useEffect(() => {
 		getNFTsByCollectionId(dispatch, collection_id);
+		setnfts(nfts);
 	}, [dispatch, collection_id]);
+
 
 	//console.log(nfts)
 
@@ -23,7 +26,7 @@ export default function NFTCard() {
 		<section className="overflow-hidden text-gray-700 ">
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
 				<div className="flex flex-wrap -m-1 md:-m-2">
-					{nfts.map((nft) => (
+					{newnfts.length>0 && newnfts.map((nft) => (
 						<div
 							key={nft._id}
 							className="flex flex-wrap w-full  sm:w-1/2 md:w-1/3 lg:w-1/4 "

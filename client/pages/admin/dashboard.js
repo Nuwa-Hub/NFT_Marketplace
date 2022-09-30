@@ -4,8 +4,8 @@ import React from "react";
 
 import CardLineChart from "components/Cards/CardLineChart.js";
 import CardBarChart from "components/Cards/CardBarChart.js";
-import CardPageVisits from "components/Cards/CardPageVisits.js";
-import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
+import AdminCollectionCard from "components/Cards/AdminCollectionCard.js";
+import AdminNFTCard from "components/Cards/AdminNFTCard.js";
 
 // layout for page
 
@@ -24,10 +24,10 @@ export default function Dashboard() {
       </div>
       <div className="flex flex-wrap mt-4">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-          <CardPageVisits />
+          <AdminNFTCard />
         </div>
         <div className="w-full xl:w-4/12 px-4">
-          <CardSocialTraffic />
+          <AdminCollectionCard />
         </div>
       </div>
     </>

@@ -42,6 +42,7 @@ export const store = configureStore({
     }),
 });
 
+<<<<<<< HEAD
 export let persistor = persistStore(store);
 
 
@@ -53,3 +54,6 @@ export let persistor = persistStore(store);
 //     NFT:NFTSlice
 //   },
 // })
+=======
+export let persistor = persistStore(store);
+>>>>>>> 3859ecfff2a8665199345bf4544916248324990a

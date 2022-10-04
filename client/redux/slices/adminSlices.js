@@ -1,22 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerAdmin, getAdminDetails, adminLogin } from "redux/actions/adminAction";
 
-let adminToken = null
-if (typeof window !== "undefined") {
-    adminToken = sessionStorage.getItem("adminToken");
-}
+// let adminToken = null
+// if (typeof window !== "undefined") {
+//     adminToken = sessionStorage.getItem("adminToken");
+// }
 const adminSlice = createSlice({
     name: "admin",
     initialState: {
         currentAdmin: null,
-        adminToken: adminToken,
+        adminToken: null,
         pending: false,
         error: null,
     },
     reducers: {
-        logout: (state) => {
+        adminLogout: (state) => {
             sessionStorage.removeItem("adminToken");
             state.currentAdmin = null;
+            state.adminToken = null;
         },
     },
     extraReducers: {
@@ -46,6 +47,6 @@ const adminSlice = createSlice({
 });
 
 export const {
-    logout
+    adminLogout
 } = adminSlice.actions;
 export default adminSlice.reducer;

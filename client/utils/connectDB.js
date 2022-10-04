@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connectDB = async () => {
     const MONGO_URL ="mongodb+srv://user:1234@cluster0.vtojfrf.mongodb.net/?retryWrites=true&w=majority"
     if (mongoose.connections[0].readyState) {
-        console.log("Already connected.");
+        //console.log("Already connected.");
         return;
     }
 

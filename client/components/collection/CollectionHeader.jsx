@@ -1,30 +1,16 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCollectionById } from "redux/actions/collectionAction";
+import { useSelector } from "react-redux";
 
 const CollectionHeader = () => {
   //handle the routes
   const router = useRouter();
   const collection_id = router.query.id;
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    getCollectionById(dispatch, collection_id);
-  }, [dispatch, collection_id]);
-
-
-
-  useEffect(() => {
-    getCollectionById(dispatch, collection_id);
-  }, [dispatch, collection_id]);
   //get relevent collection
-  const collection = useSelector((state) => state.collection.collection);
+  const collections = useSelector((state) => state.collection.collections);
+  const collection = collections.find((item) => item._id == collection_id);
+  // console.log(collection);
 
-  //const collection = collections.find((item) => item._id == collection_id);
- // console.log(collection);
-
-  console.log(collection);
   return (
     <div>
       <div className="relative">

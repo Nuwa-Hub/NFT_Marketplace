@@ -12,7 +12,7 @@ const CollectionSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-console.log(mongoose.models.Collection)
+
 //module.exports = mongoose.model("Collection", CollectionSchema);
 //delete mongoose.models["Collection"];
 export default mongoose.models.Collection || mongoose.model("Collection", CollectionSchema);

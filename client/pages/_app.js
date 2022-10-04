@@ -7,7 +7,8 @@ import { Provider } from "react-redux";
 
 function MyApp({ Component, ...rest }) {
   const Layout = Component.layout || UserLayout;
-  const { store, pageProps } = wrapper.useWrappedStore(rest);
+  const { store, props } = wrapper.useWrappedStore(rest);
+  //localStorage.clear();
   return (
     <>
       {/* <Head>
@@ -16,7 +17,7 @@ function MyApp({ Component, ...rest }) {
 
       <Provider store={store}>
         <Layout>
-          <Component {...pageProps} />
+          <Component {...props.pageProps} />
         </Layout>
       </Provider>
     </>

@@ -5,7 +5,7 @@ import userSlice from "./slices/userSlice";
 import NFTSlice from "./slices/NFTSlice";
 
 import { applyMiddleware, createStore } from "redux";
-import { createWrapper } from "next-redux-wrapper";
+import { HYDRATE, createWrapper } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
@@ -38,6 +38,21 @@ const rootReducer = combineReducers({
   NFT: NFTSlice,
 });
 
+const masterReducer = (state, action) => {
+  //console.log(action.payload);
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state, // use previous state
+      collection: {
+        collections: action.payload.collection.collections,
+      },
+    };
+    return nextState;
+  } else {
+    return rootReducer(state, action);
+  }
+};
+
 const makeStore = ({ isServer }) => {
   if (isServer) {
     return createStore(rootReducer, bindMiddleware([thunkMiddleware]));
@@ -49,12 +64,12 @@ const makeStore = ({ isServer }) => {
         ? createWebStorage("local")
         : createNoopStorage();
     const persistConfig = {
-      key: "myProject",
-      whitelist: ["visitedProducts", "user", "cart"],
+      key: "root",
+      version: 1,
       storage,
     };
 
-    const persistedReducer = persistReducer(persistConfig, rootReducer);
+    const persistedReducer = persistReducer(persistConfig, masterReducer);
     const store = createStore(
       persistedReducer,
       bindMiddleware([thunkMiddleware])

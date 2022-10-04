@@ -15,6 +15,7 @@
 		"@heroicons/react": "^1.0.6",
 		"@pinata/sdk": "^1.1.26",
 		"@popperjs/core": "^2.9.1",
+		"@react-native-async-storage/async-storage": "^1.17.10",
 		"@reduxjs/toolkit": "^1.8.5",
 		"@web3auth/torus-evm-adapter": "^2.1.2",
 		"@web3auth/web3auth": "^2.1.2",

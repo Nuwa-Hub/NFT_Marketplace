@@ -15,8 +15,8 @@ export default function Home() {
       <Head>
         <title>Kryptonaut</title>
       </Head>
-      <Hero />
-      <Trending />
+        <Hero /> 
+     {/* <Trending />  */}
     </div>
   );
 }

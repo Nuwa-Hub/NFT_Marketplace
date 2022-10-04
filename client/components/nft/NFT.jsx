@@ -2,20 +2,20 @@ import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import Accordion_ from "./Accordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getNFTByNftId } from "redux/actions/NFTAction";
+import {  useSelector } from "react-redux";
+
 
 const Nft = () => {
+	//get current NFT id
 	const router = useRouter();
 	const nft_id = router.query.id;
-	const dispatch = useDispatch();
-	const nft = useSelector((state) => state.NFT.NFTs);
-	console.log(nft);
 
-	useEffect(() => {
-		getNFTByNftId(dispatch, nft_id);
-	}, [dispatch, nft_id]);
+	//get relevent nft by NFT array
+	const nfts = useSelector((state) => state.NFT.NFTs);
+	const nft =nfts.find((item) => item._id == nft_id);
+	//console.log(nft);
+
+
 	return (
 		<div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">

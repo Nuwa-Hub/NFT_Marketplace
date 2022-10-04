@@ -47,13 +47,3 @@ export const getAllCollection = async (dispatch) => {
 	}
 };
 
-//get all collection by id
-export const getCollectionById = async (dispatch,collection_id) => {
-	try {
-	  const res = await publicRequest.get(`/collection/${collection_id}`);
-	  console.log(res.data);
-	  dispatch(getCollectionSuccess(res.data));
-	} catch (err) {
-	  dispatch(getCollectionFailure());
-	}
-  }

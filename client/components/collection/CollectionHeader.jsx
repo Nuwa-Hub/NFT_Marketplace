@@ -7,13 +7,13 @@ const CollectionHeader = () => {
   //handle the routes
   const router = useRouter();
   const collection_id = router.query.id;
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCollectionById(dispatch, collection_id);
   }, [dispatch, collection_id]);
 
-  const dispatch = useDispatch();
+
 
   useEffect(() => {
     getCollectionById(dispatch, collection_id);

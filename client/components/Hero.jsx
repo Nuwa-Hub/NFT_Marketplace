@@ -16,9 +16,8 @@ const Hero = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bgImg.src})` }}
-      // name='home' className={"w-full h-screen bg-cover flex flex-col justify-between"}>
       name="home"
-      className={"w-full h-screen bg-cover flex flex-col justify-between"}
+      className="w-full h-screen bg-cover flex flex-col justify-between"
     >
       <div className="grid grid-cols-3 gap-4 max-w-[1240px] m-auto">
         <div className="col-span-2 flex flex-col justify-center md:items-start w-full px-2 py-8">

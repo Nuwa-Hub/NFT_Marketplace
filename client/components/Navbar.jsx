@@ -30,7 +30,7 @@ const Navbar = () => {
     }
   }, [userToken, dispatch]);
   return (
-    <div className="w-screen h-[80px] z-10 bg-zinc-200 sticky top-0 ">
+    <div className="w-full h-[80px] z-10 bg-zinc-200 sticky top-0 ">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center">
           <img className="w-16" src={Logo.src} alt="logo" />

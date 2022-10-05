@@ -16,7 +16,7 @@ export default function Home() {
       <Head>
         <title>Kryptonaut</title>
       </Head>
-        <Hero /> 
+        {/* <Hero />  */}
         <SlideShow/>
      {/* <Trending />  */}
     </div>

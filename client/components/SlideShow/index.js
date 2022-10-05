@@ -9,25 +9,25 @@ const index = () => {
             <img src="/dog.jpg" />
           </span>
           <span style={{"--i": "2"}}>
-            <img src="/dog.jpg" />
+            <img src="/dog1.jpg" />
           </span>
           <span style={{"--i": "3"}}>
             <img src="/dog.jpg" />
           </span>
           <span style={{"--i": "4"}}>
-            <img src="/dog.jpg" />
+            <img src="/dp.jpeg" />
           </span>
           <span style={{"--i": "5"}}>
-            <img src="/dog.jpg" />
+            <img src="/cover.jpg" />
           </span>
           <span style={{"--i": "6"}}>
-            <img src="/dog.jpg" />
+            <img src="/blue.jpg" />
           </span>
           <span style={{"--i": "7"}}>
-            <img src="/dog.jpg" />
+            <img src="/pex.jpg" />
           </span>
           <span style={{"--i": "8"}}>
-            <img src="/dog.jpg" />
+            <img src="/im.jpg" />
           </span>
         </div>
 </div>

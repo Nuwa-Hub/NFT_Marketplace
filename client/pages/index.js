@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import React from "react";
 
 import Hero from "../components/Hero";
+import SlideShow from "../components/SlideShow";
 import Trending from "../components/Trending";
 export default function Home() {
   const { useState } = React;
@@ -16,6 +17,7 @@ export default function Home() {
         <title>Kryptonaut</title>
       </Head>
         <Hero /> 
+        <SlideShow/>
      {/* <Trending />  */}
     </div>
   );

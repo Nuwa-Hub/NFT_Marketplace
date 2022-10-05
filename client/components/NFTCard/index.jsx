@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
 
-const index = ({ nft }) => {
+const index = () => {
  //console.log(nft)
   return (
     <div className="nft">
       <div className="main flex flex-col p-4 w-full">
         <img
           className="tokenImage rounded-lg h-64 max-w-full object-cover"
-          src={nft.image}
+          src="/dog1.jpg"
           alt="NFT"
         />
         <h2>Candlemass</h2>
         <div className="tokenInfo flex items-center justify-between">
           <div className="price">
             <ins>$</ins>
-            <p>{nft.price} ETH</p>
+            <p>10 ETH</p>
           </div>
           <div className="duration">
             <ins>Rarity:</ins>
@@ -24,7 +24,7 @@ const index = ({ nft }) => {
         </div>
         <div>
           <p style={{ margin: "10px 0px" }}>
-            Category: <span>{nft.description}</span>{" "}
+            Category: <span>dsdf</span>{" "}
           </p>
         </div>
         <div></div>

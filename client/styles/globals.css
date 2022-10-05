@@ -107,11 +107,11 @@ a {
 	box-sizing: border-box;
   }*/
   .slide-show {
-	display: flex;
+	
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
-	background: rgb(255, 255, 255);
+	min-height: 80vh;
+	
   } 
   .box {
 	position: relative;

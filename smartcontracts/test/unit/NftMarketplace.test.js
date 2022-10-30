@@ -31,9 +31,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
               it("exclusively items that haven't been listed", async function () {
                   await nftMarketplace.listItem(basicNft.address, TOKEN_ID, PRICE)
                   const error = `AlreadyListed("${basicNft.address}", ${TOKEN_ID})`
-                  //   await expect(
-                  //       nftMarketplace.listItem(basicNft.address, TOKEN_ID, PRICE)
-                  //   ).to.be.revertedWith("AlreadyListed")
+              
                   await expect(
                       nftMarketplace.listItem(basicNft.address, TOKEN_ID, PRICE)
                   ).to.be.revertedWith(error)

@@ -1,45 +1,86 @@
+import { combineReducers } from "@reduxjs/toolkit";
+import adminSlices from "./slices/adminSlices";
+import collectionSlice from "./slices/collectionSlice";
+import userSlice from "./slices/userSlice";
+import NFTSlice from "./slices/NFTSlice";
 
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import adminSlices from './slices/adminSlices'
-import collectionSlice from './slices/collectionSlice'
-import userSlice from './slices/userSlice'
-import NFTSlice from './slices/NFTSlice'
+import { applyMiddleware, createStore } from "redux";
+import { HYDRATE, createWrapper } from "next-redux-wrapper";
+import thunkMiddleware from "redux-thunk";
+import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+const bindMiddleware = (middleware) => {
+  if (process.env.NODE_ENV !== "production") {
+    const { composeWithDevTools } = require("redux-devtools-extension");
+    return composeWithDevTools(applyMiddleware(...middleware));
+  }
+  return applyMiddleware(...middleware);
+};
 
-const persistConfig = {
-  key: "root",
-  version: 1,
-  storage,
+const createNoopStorage = () => {
+  return {
+    getItem(_key) {
+      return Promise.resolve(null);
+    },
+    setItem(_key, value) {
+      return Promise.resolve(value);
+    },
+    removeItem(_key) {
+      return Promise.resolve();
+    },
+  };
 };
 
 const rootReducer = combineReducers({
   collection: collectionSlice,
-     user: userSlice,
-     admin: adminSlices,
-     NFT:NFTSlice
+  user: userSlice,
+  admin: adminSlices,
+  NFT: NFTSlice,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+const masterReducer = (state, action) => {
+  //console.log(action.payload);
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state, // use previous state
+      collection: {
+        collections: action.payload.collection.collections,
       },
-    }),
-});
+    };
+    return nextState;
+  } else {
+    return rootReducer(state, action);
+  }
+};
 
-export let persistor = persistStore(store);
+const makeStore = ({ isServer }) => {
+  if (isServer) {
+    return createStore(rootReducer, bindMiddleware([thunkMiddleware]));
+  } else {
+    const { persistStore, persistReducer } = require("redux-persist");
+
+    const storage =
+      typeof window !== "undefined"
+        ? createWebStorage("local")
+        : createNoopStorage();
+    const persistConfig = {
+      key: "root",
+      version: 1,
+      storage,
+    };
+
+    const persistedReducer = persistReducer(persistConfig, masterReducer);
+    const store = createStore(
+      persistedReducer,
+      bindMiddleware([thunkMiddleware])
+    );
+
+    store.__persistor = persistStore(store);
+
+    return store;
+  }
+};
+
+export const wrapper = createWrapper(makeStore, {
+  debug: false,
+});

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DecliningPriceSell from "./DecliningPriceSell";
 import HighestBidderSell from "./HighestBidderSell";
 const AuctionForm = () => {
-	const [highest, setHighest] = useState(1);
+	const [highest, setHighest] = useState(null);
 	return (
 		<div>
 			<div className="text-xl mx-2 mt-5 font-mono tracking-tight text-bold dark:text-white">
@@ -13,20 +13,20 @@ const AuctionForm = () => {
 				<div className="group relative mx-4">
 					<div className="w-full h-20 flex justify-center items-center rounded-lg shadow-sm shadow-cyan-500/50">
 						<button className="w-full bg-white text-black px-6 h-10 rounded border-none ">
-							Choose the auction method
+							{highest === null ? 'Choose the auction method' : highest ? 'Highest Bidder' : 'Declining Price'}
 						</button>
 					</div>
-					<nav
+					<div
 						tabIndex="0"
-						className="border border-2 bg-white invisible  rounded w-60 absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
+						className="border-2 bg-white invisible  rounded w-60 absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
 					>
-						<ul className="py-1">
+						<ul className="py-1 cursor-pointer">
 							<li>
 								<div
 									className="block px-4 py-2 hover:bg-gray-100"
 									onClick={() => setHighest(0)}
 								>
-									Sell with declining price
+									Declining price
 								</div>
 							</li>
 							<li>
@@ -34,14 +34,14 @@ const AuctionForm = () => {
 									className="block px-4 py-2 hover:bg-gray-100"
 									onClick={() => setHighest(1)}
 								>
-									Sell to highest bidder
+									Highest bidder
 								</div>
 							</li>
 						</ul>
-					</nav>
+					</div>
 				</div>
 			</div>
-			{highest ? <DecliningPriceSell /> : <HighestBidderSell />}
+			{highest === null ? null : highest ? <HighestBidderSell /> : <DecliningPriceSell />}
 		</div>
 	);
 };

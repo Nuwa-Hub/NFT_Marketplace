@@ -1,19 +1,28 @@
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "Yup";
+import { publicRequest, userRequest } from "utils/requestMethods";
+
+
 const FixedPriceForm = () => {
+	const router
 	const formik = useFormik({
 		initialValues: {
-			price: "",
+			startPrice: "",
 			startDate: "",
 			endDate: "",
 		},
 		onSubmit: (values) => {
-			//TODO: submit the form
+			values = { ...values, nft: 1 }
+			publicRequest.post("/auction", values).then((res) => {
+				console.log(res);
+			}).catch((err) => {
+				console.log(err);
+			});
 			console.log(values);
 		},
 		validationSchema: yup.object({
-			price: yup.number().required("Price is required").positive("Price must be positive"),
+			startPrice: yup.number().required("Price is required").positive("Price must be positive"),
 			startDate: yup.date().required("Start date is required"),
 			endDate: yup.date().required("End date is required").min(yup.ref("startDate"), "End date must be after start date"),
 		}),
@@ -46,15 +55,15 @@ const FixedPriceForm = () => {
 						<input
 							className="w-full h-20  p-4 border-0"
 							type="number"
-							name="price"
-							id="price"
+							name="startPrice"
+							id="startPrice"
 							placeholder="Amount"
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
-							value={formik.values.price}
+							value={formik.values.startPrice}
 						/>
 					</div>
-					{formik.touched.price && formik.errors.price ? <p className="text-red-600">{formik.errors.price}</p> : null}
+					{formik.touched.startPrice && formik.errors.startPrice ? <p className="text-red-600">{formik.errors.startPrice}</p> : null}
 				</div>
 			</div>
 

@@ -20,8 +20,10 @@ export default async function handler(req, res) {
 	if (method === "POST") {
 		// console.log(req.body)
 		try {
+			console.log(req.body);
 			const newAuction = new Auction(req.body);
 			const auction = await newAuction.save();
+			console.log(auction);
 			res.status(201).json(auction);
 		} catch (err) {
 			res.status(500).json(err);

@@ -2,8 +2,20 @@ import AuctionForm from "./AuctionForm";
 import FixedPriceForm from "./FixedPriceForm";
 import ListingType from "./ListingType";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+
 const Listing = () => {
+	const router = useRouter();
+	const nftID = router.query.id;
+	const nfts = useSelector((state) => state.NFT.NFTs);
+	const nft = nfts.find((item) => item._id == nftID);
 	const [timed, setTimed] = useState(null);
+	console.log(nfts);
+	if (!nft) {
+		return <p>not found</p>
+	}
+
 	return (
 		<div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">

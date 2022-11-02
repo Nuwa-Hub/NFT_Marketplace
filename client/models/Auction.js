@@ -5,14 +5,15 @@ const AuctionSchema = new mongoose.Schema(
 		owner: { type: String, default: "" },
 		nft: { type: String, default: "" },
 		bid: { type: Array, default: "" },
-		start_time: { type: String, default: "" },
-		ending_time: { type: String, default: "" },
+		startDate: { type: String, default: "" },
+		endDate: { type: String, default: "" },
 		auctionType: { type: String },
-		price: { type: String },
+		startPrice: { type: String },
+		endPrice: { type: String },
 		access: { type: Boolean, default: true },
 	},
 	{ timestamps: true }
 );
-
+delete mongoose.models["Auction"];
 export default mongoose.models.Auction ||
 	mongoose.model("Auction", AuctionSchema);

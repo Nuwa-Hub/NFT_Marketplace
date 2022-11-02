@@ -2,7 +2,7 @@ import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import Accordion_ from "./Accordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 const Nft = () => {
@@ -12,7 +12,10 @@ const Nft = () => {
 
 	//get relevent nft by NFT array
 	const nfts = useSelector((state) => state.NFT.NFTs);
-	const nft =nfts.find((item) => item._id == nft_id);
+	const nft = nfts.find((item) => item._id == nft_id);
+	if (!nft) {
+		return <p>not found</p>
+	}
 	//console.log(nft);
 
 

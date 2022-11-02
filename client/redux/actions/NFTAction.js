@@ -7,7 +7,7 @@ export const addNFTs = async (dispatch, newNFT) => {
 		const res = await publicRequest.post(`/nft`, newNFT);
 
 		console.log(res.data);
-	} catch (err) {}
+	} catch (err) { }
 };
 
 //get all NFT

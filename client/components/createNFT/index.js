@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNFTs } from "redux/actions/NFTAction";
 import Select from "react-select";
 import { getAllCollections } from "redux/actions/collectionAction";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { storage } from "common/firebase";
+
 //select options
 
 const CreateNFT = () => {
@@ -20,70 +23,68 @@ const CreateNFT = () => {
   const collections = useSelector((state) => state.collection.collections);
 
   useEffect(() => {
-	  getAllCollections(dispatch);
+    getAllCollections(dispatch);
   }, [dispatch]);
   const options = collections.map((collection) => ({
     value: collection._id,
     label: collection.collectionName,
   }));
-  console.log(collections)
-
 
   //This function uploads the NFT image to IPFS
-  async function uploadImgToIPFS(file) {
-    //check for file extension
-    try {
-      //upload the file to IPFS
-      const response = await uploadFileToIPFS(file);
-      if (response.success === true) {
-        console.log("Uploaded image to Pinata: ", response.pinataURL);
-        return response.pinataURL;
-      }
-    } catch (e) {
-      console.log("Error during file upload", e);
-      return false;
-    }
+  async function uploadFileToFireStore(e) {
+    const imgRef = ref(storage, "NFTs");
+    uploadBytes(imgRef, NFTImg)
+      .then(() => {
+        getDownloadURL(imgRef)
+          .then((url) => {
+            console.log(`uploded img successfully ${url}`);
+            setNFTImgUrl(url);
+            const newNFT = {
+              ...e,
+              Img: url,
+              owner: currentUser._id,
+              collectionId: collection_id.value,
+            };
+            console.log(newNFT);
+            //call add nft fuction 
+            addNFTs(dispatch, newNFT);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
   const handleClick = async (e, { resetForm }) => {
-    const NFTImgURL = "";
-    if (NFTImg) {
-      NFTImgURL = await uploadImgToIPFS(NFTImg);
-    }
-    const newNFT = {
-      ...e,
-      Img: NFTImgURL,
-      owner: currentUser._id,
-      collectionId: collection_id.value,
-    };
-    //console.log(newNFT);
-    addNFTs(dispatch, newNFT);
+    const p = await uploadFileToFireStore(e);
 
     resetForm();
   };
 
-
   function previewImgFile(file) {
-    
     const reader = new FileReader();
-   
-    reader.addEventListener("load", () => {
-      // convert image file to base64 string
-      setPreImg(reader.result);
-    }, false);
+
+    reader.addEventListener(
+      "load",
+      () => {
+        // convert image file to base64 string
+        setPreImg(reader.result);
+      },
+      false
+    );
     if (file) {
       reader.readAsDataURL(file);
     }
-   
-   }
+  }
 
   //validate
   const validate = Yup.object({
     NFTName: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
   });
-
-
 
   return (
     <section className="bg-cream-lighter p-6 shadow flex">
@@ -148,36 +149,45 @@ const CreateNFT = () => {
 
                     <div className="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative mt-4">
                       <label className="flex justify-center w-full max-w-xs h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-lg appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-					  {preImg && <img id="banner" alt="Image previewban" src={preImg} className="w-full h-32 rounded-lg"/>}
-					   {!preImg && <span className="flex items-center space-x-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-6 h-6 text-gray-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                            />
-                          </svg>
-                          <span className="font-medium text-gray-600">
-                            Drop files to Attach, or
-                            <span className="text-blue-600 underline">
-                              browse
+                        {preImg && (
+                          <img
+                            id="banner"
+                            alt="Image previewban"
+                            src={preImg}
+                            className="w-full h-32 rounded-lg"
+                          />
+                        )}
+                        {!preImg && (
+                          <span className="flex items-center space-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="w-6 h-6 text-gray-600"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                              />
+                            </svg>
+                            <span className="font-medium text-gray-600">
+                              Drop files to Attach, or
+                              <span className="text-blue-600 underline">
+                                browse
+                              </span>
                             </span>
                           </span>
-                        </span>}
+                        )}
                         <input
                           type="file"
                           name="NFTImg"
                           className="hidden"
                           onChange={(e) => {
                             setNFTImg(e.target.files[0]);
-							previewImgFile(e.target.files[0])
+                            previewImgFile(e.target.files[0]);
                           }}
                         />
                       </label>
@@ -194,13 +204,13 @@ const CreateNFT = () => {
                   </button>
                 </div>
                 <div className="w-2/5">
-				<Select
-                      options={options}
-                      placeholder="Select Collaborator..."
-                      className="createtaskuserselector"
-                      onChange={setColletionId}
-                    />
-				</div>
+                  <Select
+                    options={options}
+                    placeholder="Select Collaborator..."
+                    className="createtaskuserselector"
+                    onChange={setColletionId}
+                  />
+                </div>
               </div>
             </Form>
           </div>

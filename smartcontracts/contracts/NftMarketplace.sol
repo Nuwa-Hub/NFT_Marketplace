@@ -15,6 +15,9 @@ error NotOwner();
 error NotApprovedForMarketplace();
 error PriceMustBeAboveZero();
 
+// Error thrown for isNotOwner modifier
+// error IsNotOwner()
+
 contract NftMarketplace is ReentrancyGuard {
     struct Listing {
         uint256 price;
@@ -46,8 +49,7 @@ contract NftMarketplace is ReentrancyGuard {
 
     modifier notListed(
         address nftAddress,
-        uint256 tokenId,
-        address owner
+        uint256 tokenId
     ) {
         Listing memory listing = s_listings[nftAddress][tokenId];
         if (listing.price > 0) {
@@ -77,6 +79,22 @@ contract NftMarketplace is ReentrancyGuard {
         _;
     }
 
+    // IsNotOwner Modifier - Nft Owner can't buy his/her NFT
+    // Modifies buyItem function
+    // Owner should only list, cancel listing or update listing
+    /* modifier isNotOwner(
+        address nftAddress,
+        uint256 tokenId,
+        address spender
+    ) {
+        IERC721 nft = IERC721(nftAddress);
+        address owner = nft.ownerOf(tokenId);
+        if (spender == owner) {
+            revert IsNotOwner();
+        }
+        _;
+    } */
+
     /////////////////////
     // Main Functions //
     /////////////////////
@@ -92,7 +110,7 @@ contract NftMarketplace is ReentrancyGuard {
         uint256 price
     )
         external
-        notListed(nftAddress, tokenId, msg.sender)
+        notListed(nftAddress, tokenId)
         isOwner(nftAddress, tokenId, msg.sender)
     {
         if (price <= 0) {
@@ -132,6 +150,7 @@ contract NftMarketplace is ReentrancyGuard {
         external
         payable
         isListed(nftAddress, tokenId)
+        // isNotOwner(nftAddress, tokenId, msg.sender)
         nonReentrant
     {
         // Challenge - How would you refactor this contract to take:

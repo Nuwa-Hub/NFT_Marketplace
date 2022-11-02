@@ -13,5 +13,5 @@ const AdminSchema = new mongoose.Schema(
   { timestamps: true }
 );
 //module.exports = mongoose.model("Admin", AdminSchema);
-delete mongoose.models["Admin"];
+
 module.exports = mongoose.model("Admin", AdminSchema);

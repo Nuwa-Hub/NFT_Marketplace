@@ -7,18 +7,19 @@ import React from "react";
 import Hero from "../components/Hero";
 import SlideShow from "../components/SlideShow";
 import Trending from "../components/Trending";
+
 export default function Home() {
   const { useState } = React;
 
   return (
-    <div>
-
+    <div className="bg-zinc-200">
       <Head>
         <title>Kryptonaut</title>
       </Head>
-         <Hero /> 
-        <SlideShow/>
-     {/* <Trending />  */}
+       <Hero />
+     {/* <SwiperSlider />  */}
+      <SlideShow /> 
+      {/* <Trending />  */}
     </div>
   );
 }

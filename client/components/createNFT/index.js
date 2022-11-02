@@ -32,7 +32,7 @@ const CreateNFT = () => {
 
   //This function uploads the NFT image to IPFS
   async function uploadFileToFireStore(e) {
-    const imgRef = ref(storage, "NFTs");
+    const imgRef = ref(storage,  `nft-${NFTImg.lastModifiedDate}`);
     uploadBytes(imgRef, NFTImg)
       .then(() => {
         getDownloadURL(imgRef)
@@ -48,6 +48,7 @@ const CreateNFT = () => {
             console.log(newNFT);
             //call add nft fuction 
             addNFTs(dispatch, newNFT);
+            alert("Create NFT successfully!")
           })
           .catch((err) => {
             console.log(err);

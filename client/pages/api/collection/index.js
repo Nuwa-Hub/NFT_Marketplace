@@ -20,6 +20,7 @@ export default async function handler(req, res) {
 	}
 	//for insert data
 	if (method === "POST") {
+		
 		// console.log(req.body)
 		try {
 			const newCollection = new Collection(req.body);

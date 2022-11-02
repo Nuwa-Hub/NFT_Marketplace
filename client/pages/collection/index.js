@@ -16,24 +16,24 @@ import { getCollectionsSuccess } from "redux/slices/collectionSlice";
 //   };
 // }
 
-export const getServerSideProps = wrapper.getServerSideProps(
+// export const getServerSideProps = wrapper.getServerSideProps(
   
-  (store) => async () => {
-    const res = await publicRequest.get(`/collection`);
-   // console.log(res.data)
-    store.dispatch(getCollectionsSuccess(res.data));
-})
+//   (store) => async () => {
+//     const res = await publicRequest.get(`/collection`);
+//    console.log(res.data)
+//     store.dispatch(getCollectionsSuccess(res.data));
+// })
 
 const explorecollection = () => {
   //console.log(collections);
   //const collections=[]
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
    const collections = useSelector((state) => state.collection.collections);
 
-  // useEffect(() => {
-  // 	getAllCollections(dispatch);
-  // }, [dispatch]);
+  useEffect(() => {
+  	getAllCollections(dispatch);
+  }, [dispatch]);
 
 
   return (

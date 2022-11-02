@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-
 const index = () => {
- //console.log(nft)
+  //console.log(nft)
   return (
     <div className="nft">
       <div className="main flex flex-col p-4 w-full">

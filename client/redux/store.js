@@ -45,6 +45,7 @@ const masterReducer = (state, action) => {
       ...state, // use previous state
       collection: {
         collections: action.payload.collection.collections,
+        
       },
     };
     return nextState;

@@ -10,8 +10,9 @@ const NFTSchema = new mongoose.Schema(
 		access: { type: Boolean, default: true },
 		mint: { type: Boolean, default: false },
 		price: { type: String, default: "" },
+		tokenId: { type: String, default: "" },
 	},
 	{ timestamps: true }
 );
-
+delete mongoose.models["NFT"];
 export default mongoose.models.NFT || mongoose.model("NFT", NFTSchema);

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 const index = ({nft}) => {
   console.log(nft)
   return (
+    <Link href={`/nft/${nft._id}`}>
     <div className="nft">
+    
       <div className="main flex flex-col p-4 w-full">
         <img
           className="tokenImage rounded-lg h-64 max-w-full object-cover"
@@ -50,7 +53,9 @@ const index = ({nft}) => {
           </button>
         </div>
       </div>
+     
     </div>
+    </Link>
   );
 };
 

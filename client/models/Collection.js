@@ -9,10 +9,11 @@ const CollectionSchema = new mongoose.Schema(
     description:{ type: String , default:""},
     nfts:{ type: Array , default:""},
     access:{type:Boolean,default:true},
+    type:{ type: String , default:""},
   },
   { timestamps: true }
 );
 
 //module.exports = mongoose.model("Collection", CollectionSchema);
-//delete mongoose.models["Collection"];
+delete mongoose.models["Collection"];
 export default mongoose.models.Collection || mongoose.model("Collection", CollectionSchema);

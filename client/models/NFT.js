@@ -9,7 +9,7 @@ const NFTSchema = new mongoose.Schema(
 		description: { type: String, default: "" },
 		access: { type: Boolean, default: true },
 		mint: { type: Boolean, default: false },
-		price: { type: String, default: "" },
+		isListed: { type: Boolean, default: false },
 		tokenId: { type: String, default: "" },
 	},
 	{ timestamps: true }

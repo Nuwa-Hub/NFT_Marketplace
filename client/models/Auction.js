@@ -8,8 +8,9 @@ const AuctionSchema = new mongoose.Schema(
 		startDate: { type: String, default: "" },
 		endDate: { type: String, default: "" },
 		auctionType: { type: String },
-		startPrice: { type: String },
-		endPrice: { type: String },
+		startingPrice: { type: String },
+		endingPrice: { type: String },
+		isCompleted: { type: Boolean, default: false },
 		access: { type: Boolean, default: true },
 	},
 	{ timestamps: true }

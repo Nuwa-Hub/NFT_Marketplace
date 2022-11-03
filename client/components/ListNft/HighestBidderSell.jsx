@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { useFormik } from "formik";
-import * as yup from "Yup";
+import * as Yup from "yup";
+import { publicRequest, userRequest } from "utils/requestMethods";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 const HighestBidderSell = () => {
+	const router = useRouter();
+	const user = useSelector((state) => state.user);
 	const formik = useFormik({
 		initialValues: {
 			startingPrice: "",
@@ -9,13 +14,18 @@ const HighestBidderSell = () => {
 			endDate: "",
 		},
 		onSubmit: (values) => {
-			//TODO: submit the form
+			values = { ...values, nft: router.query.id, owner: user.currentUser.walletAdress, auctionType: 'high' };
+			publicRequest.post("auction", values).then((res) => {
+				console.log(res);
+			}).catch((err) => {
+				console.log(err);
+			});
 			console.log(values);
 		},
-		validationSchema: yup.object({
-			startingPrice: yup.number().required("Starting price is required").positive("Starting price must be positive"),
-			startDate: yup.date().required("Start date is required"),
-			endDate: yup.date().required("End date is required").min(yup.ref("startDate"), "End date must be after start date"),
+		validationSchema: Yup.object({
+			startingPrice: Yup.number().required("Starting price is required").positive("Starting price must be positive"),
+			startDate: Yup.date().required("Start date is required"),
+			endDate: Yup.date().required("End date is required").min(Yup.ref("startDate"), "End date must be after start date"),
 
 		}),
 	});

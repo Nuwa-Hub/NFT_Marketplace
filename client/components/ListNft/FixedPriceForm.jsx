@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useFormik } from "formik";
-import * as yup from "Yup";
+import * as Yup from "yup";
 import { publicRequest, userRequest } from "utils/requestMethods";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -11,23 +11,19 @@ const FixedPriceForm = () => {
 	const user = useSelector((state) => state.user);
 	const formik = useFormik({
 		initialValues: {
-			startPrice: "",
-			startDate: "",
-			endDate: "",
+			price: "",
 		},
 		onSubmit: (values) => {
-			// values = { ...values, nft: router.query.id, owner: user.currentUser.walletAdress };
-			publicRequest.put(`nft/${router.query.id}`, values).then((res) => {
+			values = { ...values, nft: router.query.id, seller: user.currentUser.walletAdress };
+			publicRequest.post('listing', values).then((res) => {
 				console.log(res);
 			}).catch((err) => {
 				console.log(err);
 			});
 			console.log(values);
 		},
-		validationSchema: yup.object({
-			startPrice: yup.number().required("Price is required").positive("Price must be positive"),
-			startDate: yup.date().required("Start date is required"),
-			endDate: yup.date().required("End date is required").min(yup.ref("startDate"), "End date must be after start date"),
+		validationSchema: Yup.object({
+			price: Yup.number().required("Price is required").positive("Price must be positive"),
 		}),
 	})
 	return (
@@ -58,56 +54,18 @@ const FixedPriceForm = () => {
 						<input
 							className="w-full h-20  p-4 border-0"
 							type="number"
-							name="startPrice"
-							id="startPrice"
+							name="price"
+							id="price"
 							placeholder="Amount"
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
-							value={formik.values.startPrice}
+							value={formik.values.price}
 						/>
 					</div>
-					{formik.touched.startPrice && formik.errors.startPrice ? <p className="text-red-600">{formik.errors.startPrice}</p> : null}
+					{formik.touched.price && formik.errors.price ? <p className="text-red-600">{formik.errors.price}</p> : null}
 				</div>
 			</div>
 
-			<div className="text-xl mx-2 mt-5 font-mono tracking-tight text-bold dark:text-white">
-				Duration
-			</div>
-
-			<div className="flex flex-auto mx-2 mt-5 content-center ">
-				<div className="basis-1/2 items-center mx-4">
-					<div className="w-full h-20 flex justify-center items-center rounded-lg shadow-sm shadow-cyan-500/50">
-						<input
-							className="w-full h-20  p-4 border-0"
-							type="date"
-							name="startDate"
-							id="startDate"
-							placeholder="Start Date"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							value={formik.values.startDate}
-						/>
-					</div>
-					{formik.touched.startDate && formik.errors.startDate ? <p className="text-red-600">{formik.errors.startDate}</p> : null}
-				</div>
-
-				<div className="basis-1/2 items-center mx-4">
-					<div className="w-full h-20 flex justify-center items-center rounded-lg shadow-sm shadow-cyan-500/50">
-						<input
-							className="w-full h-20  p-4 border-0"
-							type="date"
-							name="endDate"
-							id="endDate"
-							placeholder="End Date"
-							onChange={formik.handleChange}
-							onBlur={formik.handleBlur}
-							value={formik.values.endDate}
-
-						/>
-					</div>
-					{formik.touched.endDate && formik.errors.endDate ? <p className="text-red-600">{formik.errors.endDate}</p> : null}
-				</div>
-			</div>
 			<div className="flex flex-auto mx-2 mt-5 content-center ">
 				<div className="basis-1/2 items-center m-1">
 					<button

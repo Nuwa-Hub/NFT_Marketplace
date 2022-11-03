@@ -1,4 +1,5 @@
 import Auction from "models/Auction";
+import NFT from "models/NFT";
 import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
@@ -23,7 +24,7 @@ export default async function handler(req, res) {
 			console.log(req.body);
 			const newAuction = new Auction(req.body);
 			const auction = await newAuction.save();
-			console.log(auction);
+			await NFT.findByIdAndUpdate(req.body.nft, { isListed: true })
 			res.status(201).json(auction);
 		} catch (err) {
 			res.status(500).json(err);

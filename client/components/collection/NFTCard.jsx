@@ -13,6 +13,7 @@ export default function NFTCard() {
 
   useEffect(() => {
     getNFTsByCollectionId(dispatch, collection_id);
+    console.log("sfsdfdf")
   }, [dispatch, collection_id]);
 
   //get all NFTs that include to the relevent collection

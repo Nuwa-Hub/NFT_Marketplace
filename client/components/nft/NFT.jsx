@@ -3,6 +3,9 @@ import Accordion_ from "./Accordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { publicRequest, userRequest } from "utils/requestMethods";
+import { list } from "firebase/storage";
 
 
 const Nft = () => {
@@ -15,13 +18,27 @@ const Nft = () => {
 
 	//get relevent nft by NFT array
 	const nfts = useSelector((state) => state.NFT.NFTs);
+	const collections = useSelector((state) => state.collection.collections);
 	const nft = nfts.find((item) => item._id == nft_id);
+	const [listing, setListing] = useState(null);
+	useEffect(() => {
+		if (nft) {
+			document.title = nft.NFTName;
+			publicRequest.get(`listing/${nft_id}`).then((res) => {
+				console.log(res);
+				setListing(res.data);
+			}).catch((err) => {
+				console.log(err);
+			});
+		}
+	}, [nft]);
 	if (!nft) {
 		return <p>not found</p>
 	}
-	console.log(nft);
-	console.log(user);
-
+	const collection = collections.find((item) => item._id == nft.collectionId);
+	// console.log(collection);
+	// console.log(user);
+	console.log(user.currentUser.walletAdress, nft.owner);
 
 	return (
 		<div>
@@ -44,7 +61,7 @@ const Nft = () => {
 						<div className="mb-2 mx-2">
 							<p className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
 								{/* Collection Name */}
-								Cryptopuppies
+								{collection.collectionName}
 							</p>
 						</div>
 
@@ -76,20 +93,36 @@ const Nft = () => {
 								{nft.price}
 							</p>
 						</div>
-						<div className="flex flex-auto mx-2 mt-5 content-center ">
-							<div className="basis-1/2 items-center m-1">
-								<button
-									type="button"
-									className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
-								>
-									<div className="flex items-center justify-between flex-1">
-										<span className="text-lg font-medium text-white">
-											Buy Now
-										</span>
+						{user.currentUser.walletAdress == nft.owner ?
+							<div className="flex flex-auto mx-2 mt-5 content-center ">
+								<div className="basis-1/2 items-center m-1">
+									<button
+										type="button"
+										className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
+									>
+										<Link href={`/nft/${nft_id}/list`} className="flex items-center justify-between flex-1">
+											<a className="text-lg font-medium text-white">
+												List Now
+											</a>
+										</Link>
+									</button>
+								</div>
+							</div> :
+							listing == null ? null :
+								<div className="flex flex-auto mx-2 mt-5 content-center ">
+									<div className="basis-1/2 items-center m-1">
+										<button
+											type="button"
+											className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
+										>
+											<div className="flex items-center justify-between flex-1">
+												<span className="text-lg font-medium text-white">
+													Buy Now for {listing?.price} ETH
+												</span>
+											</div>
+										</button>
 									</div>
-								</button>
-							</div>
-						</div>
+								</div>}
 					</div>
 				</div>
 				<Accordion_ />

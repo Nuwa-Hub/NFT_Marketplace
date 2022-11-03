@@ -9,7 +9,7 @@ const exploreNFT = () => {
   const ethers = require("ethers");
   const dispatch = useDispatch();
   //get current user
-  const currentUser = useSelector((state) => state.user.currentUser?._id);
+  const currentUser = useSelector((state) => state.user.currentUser?.walletAdress);
   console.log(currentUser)
   useEffect(() => {
     currentUser && getNFTByUserId(dispatch, currentUser);
@@ -33,7 +33,7 @@ const exploreNFT = () => {
                   className="flex flex-wrap w-full  sm:w-full md:w-1/2 lg:w-1/4"
                   key={index}
                 >
-                  <NFTCard nft={item} user="user"/>
+                  <NFTCard nft={item} user="user" />
                 </div>
               ))}
           </div>

@@ -42,3 +42,14 @@ export const getNFTByNftId = async (dispatch, nft_id) => {
 		dispatch(getNFTFailure());
 	}
 };
+
+//get  NFT by user id
+export const getNFTByUserId = async (dispatch, user_id) => {
+	try {
+		const res = await publicRequest.get(`/nft/user/${user_id}`);
+		//console.log(res.data)
+		dispatch(getNFTSuccess(res.data));
+	} catch (err) {
+		dispatch(getNFTFailure());
+	}
+};

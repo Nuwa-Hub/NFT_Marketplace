@@ -11,6 +11,7 @@ const NFTSchema = new mongoose.Schema(
 		mint: { type: Boolean, default: false },
 		price: { type: String, default: "" },
 		tokenId: { type: String, default: "" },
+		listing: { type: String, default: "" },
 	},
 	{ timestamps: true }
 );

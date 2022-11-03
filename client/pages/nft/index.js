@@ -19,7 +19,7 @@ const exploreNFT = () => {
   //if (!dataFetched)  getAllNFTs();
 const getnfts=useSelector((state) => state.NFT.NFTs)
 
-console.log(getnfts)
+//console.log(getnfts)
 
   return (
     <div className="overflow-hidden">

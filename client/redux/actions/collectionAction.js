@@ -37,3 +37,13 @@ export const getCollectionById = async (dispatch, collection_id) => {
 	}
 }
 
+//get all collection by user id
+export const getCollectionByUserId = async (dispatch, user_id) => {
+	try {
+		const res = await publicRequest.get(`/collection/user/${user_id}`);
+		console.log(res.data);
+		dispatch(getCollectionSuccess(res.data));
+	} catch (err) {
+		dispatch(getCollectionFailure());
+	}
+}

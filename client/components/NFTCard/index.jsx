@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const index = ({nft}) => {
-  console.log(nft)
+const index = ({nft,user}) => {
+  //console.log(user)
+  const trailLink=""
+  if (user){
+     trailLink="list"
+  }
   return (
-    <Link href={`/nft/${nft._id}`}>
+    <Link href={`/nft/${nft._id}/${trailLink}`}>
     <div className="nft">
     
       <div className="main flex flex-col p-4 w-full">

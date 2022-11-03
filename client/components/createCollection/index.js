@@ -17,7 +17,7 @@ const CreateCollection = () => {
   const [msg, setMsg] = useState("");
 
   const dispatch = useDispatch();
-  
+
   //get current user
   const currentUser = useSelector((state) => state.user.currentUser);
 
@@ -29,52 +29,52 @@ const CreateCollection = () => {
 
     // upload banner img
     if (bannerImg) {
-         const imgRef1 = ref(storage, `BannerImg-${bannerImg.lastModifiedDate}`);
-    uploadBytes(imgRef1,bannerImg)
-      .then(() => {
-        getDownloadURL(imgRef1)
-          .then((url1) => {
-            console.log(`uploded banner img successfully ${url1}`);
-            
-			if (profileImg) {
-				const imgRef2 = ref(storage, `ProfileImg-${profileImg.lastModifiedDate}`);
-				uploadBytes(imgRef2, profileImg)
-				  .then(() => {
-					getDownloadURL(imgRef2)
-					  .then((url2) => {
-						console.log(`uploded img successfully ${url2}`);
-								   
-						const newCollection = {
-							...e,
-							bannerImg: url1,
-							profileImg: url2,
-							owner: currentUser._id,
-						  };
-						  console.log(newCollection);
-						  addCollections(dispatch, newCollection);
-						  alert("Collection Created");
-			
-					 
-					  })
-					  .catch((err) => {
-						console.log(err);
-					  });
-				  })
-				  .catch((err) => {
-					console.log(err.message);
-				  });
-			  }
-         
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      const imgRef1 = ref(storage, `BannerImg-${bannerImg.lastModifiedDate}`);
+      uploadBytes(imgRef1, bannerImg)
+        .then(() => {
+          getDownloadURL(imgRef1)
+            .then((url1) => {
+              console.log(`uploded banner img successfully ${url1}`);
+
+              if (profileImg) {
+                const imgRef2 = ref(storage, `ProfileImg-${profileImg.lastModifiedDate}`);
+                uploadBytes(imgRef2, profileImg)
+                  .then(() => {
+                    getDownloadURL(imgRef2)
+                      .then((url2) => {
+                        console.log(`uploded img successfully ${url2}`);
+
+                        const newCollection = {
+                          ...e,
+                          bannerImg: url1,
+                          profileImg: url2,
+                          owner: currentUser.walletAdress,
+                        };
+                        console.log(newCollection);
+                        addCollections(dispatch, newCollection);
+                        alert("Collection Created");
+
+
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  })
+                  .catch((err) => {
+                    console.log(err.message);
+                  });
+              }
+
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
- 
+
     resetForm();
   };
 
@@ -117,7 +117,7 @@ const CreateCollection = () => {
     collectionName: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
   });
-console.log(bannerImg)
+  console.log(bannerImg)
   return (
     <section className="bg-cream-lighter p-6 shadow">
       <Formik

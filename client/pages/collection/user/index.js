@@ -17,7 +17,7 @@ import { getCollectionsSuccess } from "redux/slices/collectionSlice";
 // }
 
 // export const getServerSideProps = wrapper.getServerSideProps(
-  
+
 //   (store) => async () => {
 //     const res = await publicRequest.get(`/collection`);
 //    console.log(res.data)
@@ -28,11 +28,11 @@ const explorecollection = () => {
   //console.log(collections);
   //const collections=[]
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user.currentUser?._id);
-   const collections = useSelector((state) => state.collection.collections);
+  const currentUser = useSelector((state) => state.user.currentUser?.walletAddress);
+  const collections = useSelector((state) => state.collection.collections);
 
   useEffect(() => {
-    currentUser && getCollectionByUserId(dispatch,currentUser);
+    currentUser && getCollectionByUserId(dispatch, currentUser);
   }, [dispatch]);
 
 
@@ -49,7 +49,7 @@ const explorecollection = () => {
                 className="flex flex-wrap w-full  sm:w-full md:w-1/2 lg:w-1/3"
                 key={collection._id}
               >
-                <Collectioncard key={collection._id} collection={collection} user="user"/>
+                <Collectioncard key={collection._id} collection={collection} user="user" />
               </div>
             ))}
           </div>

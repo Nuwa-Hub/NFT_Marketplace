@@ -17,7 +17,7 @@ import { getCollectionsSuccess } from "redux/slices/collectionSlice";
 // }
 
 // export const getServerSideProps = wrapper.getServerSideProps(
-  
+
 //   (store) => async () => {
 //     const res = await publicRequest.get(`/collection`);
 //    console.log(res.data)
@@ -29,10 +29,10 @@ const explorecollection = () => {
   //const collections=[]
   const dispatch = useDispatch();
 
-   const collections = useSelector((state) => state.collection.collections);
+  const collections = useSelector((state) => state.collection.collections);
 
   useEffect(() => {
-  	getAllCollections(dispatch);
+    getAllCollections(dispatch);
   }, [dispatch]);
 
 

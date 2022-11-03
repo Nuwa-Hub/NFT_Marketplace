@@ -10,13 +10,17 @@ const Nft = () => {
 	const router = useRouter();
 	const nft_id = router.query.id;
 
+	//get current user
+	const user = useSelector((state) => state.user);
+
 	//get relevent nft by NFT array
 	const nfts = useSelector((state) => state.NFT.NFTs);
 	const nft = nfts.find((item) => item._id == nft_id);
 	if (!nft) {
 		return <p>not found</p>
 	}
-	//console.log(nft);
+	console.log(nft);
+	console.log(user);
 
 
 	return (
@@ -55,7 +59,7 @@ const Nft = () => {
 							<div className="basis-1/2 items-center m-1">
 								<p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
 									{/* Owners Name */}
-									Owned by @0x123456789
+									Owned by {nft.owner}
 								</p>
 							</div>
 

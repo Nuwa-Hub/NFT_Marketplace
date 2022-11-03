@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (req.method === "GET") {
 		try {
-			const collection = await Collection.find({owner:req.query.owner});
+			const collection = await Collection.find({ owner: req.query.owner });
 			res.status(200).json(collection);
 		} catch (err) {
 			res.status(500).json(err);

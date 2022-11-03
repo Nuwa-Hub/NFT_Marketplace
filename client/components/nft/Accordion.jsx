@@ -5,21 +5,21 @@ import PriceHistoryTable from "./PriceHistoryTable";
 const Accordion_ = () => {
 	return (
 		<div className="mt-10">
-			<div class="bg-white w-full border border-blue-300 divide-y divide-gray-200">
+			<div className="bg-white w-full border border-blue-300 divide-y divide-gray-200">
 				<details>
-					<summary class="question py-3 px-4 cursor-pointer select-none w-full outline-none">
+					<summary className="question py-3 px-4 cursor-pointer select-none w-full outline-none">
 						Price History
 					</summary>
 					<PriceHistoryTable />
 				</details>
 				<details>
-					<summary class="question py-3 px-4 cursor-pointer select-none w-full">
+					<summary className="question py-3 px-4 cursor-pointer select-none w-full">
 						Listings
 					</summary>
 					<ListingTable />
 				</details>
 				<details>
-					<summary class="question py-3 px-4 cursor-pointer select-none w-full">
+					<summary className="question py-3 px-4 cursor-pointer select-none w-full">
 						Item Activity
 					</summary>
 					<ItemActivityTable />

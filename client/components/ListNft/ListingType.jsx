@@ -11,9 +11,9 @@ const ListingType = (props) => {
 					}}
 				>
 					<div className=" w-full h-20 flex justify-center items-center transform hover:scale-110 hover:bg-green-50 duration-500 ease-in-out rounded-lg shadow-md shadow-cyan-500/50">
-						<text className="text-xl font-mono tracking-tight text-slate-500 dark:text-white">
+						<p className="text-xl font-mono tracking-tight text-slate-500 dark:text-white">
 							Fixed Price
-						</text>
+						</p>
 					</div>
 				</div>
 
@@ -24,9 +24,9 @@ const ListingType = (props) => {
 					}}
 				>
 					<div className="w-full h-20 flex justify-center items-center transform hover:scale-110 hover:bg-green-50 duration-500 ease-in-out rounded-lg shadow-md shadow-cyan-500/50">
-						<text className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
+						<p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
 							Timed Auction
-						</text>
+						</p>
 					</div>
 				</div>
 			</div>

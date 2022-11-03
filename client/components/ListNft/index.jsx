@@ -1,17 +1,30 @@
 import AuctionForm from "./AuctionForm";
 import FixedPriceForm from "./FixedPriceForm";
 import ListingType from "./ListingType";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { publicRequest, userRequest } from "utils/requestMethods";
 
 const Listing = () => {
 	const router = useRouter();
 	const nftID = router.query.id;
-	const nfts = useSelector((state) => state.NFT.NFTs);
-	const nft = nfts.find((item) => item._id == nftID);
 	const [timed, setTimed] = useState(null);
-	console.log(nfts);
+	const [nft, setNft] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		if (router.isReady) {
+			publicRequest.get(`/nft/${nftID}`).then((res) => {
+				setNft(res.data);
+				setLoading(false);
+			}).catch((err) => {
+				console.log(err);
+			});
+		}
+	}, [router.isReady])
+	if (loading) {
+		return <div>Loading...</div>
+	}
 	if (!nft) {
 		return <p>not found</p>
 	}
@@ -27,7 +40,7 @@ const Listing = () => {
 									<img
 										alt="gallery"
 										className="block object-cover object-center w-full h-full rounded-lg"
-										src="/dog.jpg"
+										src={nft.Img}
 									/>
 								</div>
 							</a>
@@ -35,10 +48,10 @@ const Listing = () => {
 					</div>
 					<div className="col-span-2 m-4">
 						<div className="mb-2 mx-2">
-							<text className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
+							<p className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
 								{/* Collection Name */}
 								List Item For Sale
-							</text>
+							</p>
 						</div>
 
 						<div className="mx-2 mt-5 cursor-pointer">

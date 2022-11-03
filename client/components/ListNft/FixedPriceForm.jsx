@@ -2,10 +2,13 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "Yup";
 import { publicRequest, userRequest } from "utils/requestMethods";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 
 const FixedPriceForm = () => {
-	const router
+	const router = useRouter();
+	const user = useSelector((state) => state.user);
 	const formik = useFormik({
 		initialValues: {
 			startPrice: "",
@@ -13,8 +16,8 @@ const FixedPriceForm = () => {
 			endDate: "",
 		},
 		onSubmit: (values) => {
-			values = { ...values, nft: 1 }
-			publicRequest.post("/auction", values).then((res) => {
+			// values = { ...values, nft: router.query.id, owner: user.currentUser.walletAdress };
+			publicRequest.put(`nft/${router.query.id}`, values).then((res) => {
 				console.log(res);
 			}).catch((err) => {
 				console.log(err);
@@ -94,7 +97,7 @@ const FixedPriceForm = () => {
 							className="w-full h-20  p-4 border-0"
 							type="date"
 							name="endDate"
-							if="endDate"
+							id="endDate"
 							placeholder="End Date"
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}

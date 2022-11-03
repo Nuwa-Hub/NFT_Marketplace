@@ -9,80 +9,80 @@ const index = () => {
         <div className="flex justify-start w-1/2 items-center">
           {/*       
 KC */}
-          <div class="grid mt-8  gap-8 grid-cols-1 md:grid-cols-1 xl:grid-cols-1">
-            <div class="flex flex-col">
-              <div class="bg-white shadow-md  rounded-3xl p-4">
-                <div class="flex-none lg:flex">
-                  <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
+          <div className="grid mt-8  gap-8 grid-cols-1 md:grid-cols-1 xl:grid-cols-1">
+            <div className="flex flex-col">
+              <div className="bg-white shadow-md  rounded-3xl p-4">
+                <div className="flex-none lg:flex">
+                  <div className=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1622180203374-9524a54b734d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
                       alt="Just a flower"
-                      class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl"
+                      className=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl"
                     />
                   </div>
-                  <div class="flex-auto ml-3 justify-evenly py-2">
-                    <div class="flex flex-wrap ">
-                      <div class="w-full flex-none text-xs text-blue-700 font-medium ">
+                  <div className="flex-auto ml-3 justify-evenly py-2">
+                    <div className="flex flex-wrap ">
+                      <div className="w-full flex-none text-xs text-blue-700 font-medium ">
                         Shop
                       </div>
-                      <h2 class="flex-auto text-lg font-medium">
+                      <h2 className="flex-auto text-lg font-medium">
                         Massive Dynamic
                       </h2>
                     </div>
-                    <p class="mt-3"></p>
-                    <div class="flex py-4  text-sm text-gray-500">
-                      <div class="flex-1 inline-flex items-center">
+                    <p className="mt-3"></p>
+                    <div className="flex py-4  text-sm text-gray-500">
+                      <div className="flex-1 inline-flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-3 text-gray-400"
+                          className="h-5 w-5 mr-3 text-gray-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
-                            stroke-width="2"
+                            strokeWidth="2"
                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                           ></path>
                           <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
-                            stroke-width="2"
+                            strokeWidth="2"
                             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                           ></path>
                         </svg>
-                        <p class="">Cochin,KL</p>
+                        <p className="">Cochin,KL</p>
                       </div>
-                      <div class="flex-1 inline-flex items-center">
+                      <div className="flex-1 inline-flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-2 text-gray-400"
+                          className="h-5 w-5 mr-2 text-gray-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
-                            stroke-width="2"
+                            strokeWidth="2"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                           ></path>
                         </svg>
-                        <p class="">05-25-2021</p>
+                        <p className="">05-25-2021</p>
                       </div>
                     </div>
-                    <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
-                    <div class="flex space-x-3 text-sm font-medium">
-                      <div class="flex-auto flex space-x-3">
-                        <button class="mb-2 md:mb-0 bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
-                          <span class="text-green-400 hover:text-green-500 rounded-lg">
+                    <div className="flex p-4 pb-2 border-t border-gray-200 "></div>
+                    <div className="flex space-x-3 text-sm font-medium">
+                      <div className="flex-auto flex space-x-3">
+                        <button className="mb-2 md:mb-0 bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
+                          <span className="text-green-400 hover:text-green-500 rounded-lg">
                             <svg
                               aria-hidden="true"
                               focusable="false"
                               data-prefix="fab"
                               data-icon="shopify"
-                              class="svg-inline--fa fa-shopify  w-5 h-5  "
+                              className="svg-inline--fa fa-shopify  w-5 h-5  "
                               role="img"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 448 512"
@@ -97,7 +97,7 @@ KC */}
                         </button>
                       </div>
                       <button
-                        class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
+                        className="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                         type="button"
                         aria-label="like"
                       >
@@ -109,83 +109,83 @@ KC */}
               </div>
             </div>
             {/* card2 */}
-            <div class="flex flex-col ">
-              <div class="bg-white shadow-md  rounded-3xl p-4">
-                <div class="flex-none lg:flex">
-                  <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
+            <div className="flex flex-col ">
+              <div className="bg-white shadow-md  rounded-3xl p-4">
+                <div className="flex-none lg:flex">
+                  <div className=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1585399000684-d2f72660f092?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1951&amp;q=80"
                       alt="Just a flower"
-                      class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl"
+                      className=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl"
                     />
                   </div>
-                  <div class="flex-auto ml-3 justify-evenly py-2">
-                    <div class="flex flex-wrap ">
-                      <div class="w-full flex-none text-xs text-blue-700 font-medium ">
+                  <div className="flex-auto ml-3 justify-evenly py-2">
+                    <div className="flex flex-wrap ">
+                      <div className="w-full flex-none text-xs text-blue-700 font-medium ">
                         Shop
                       </div>
-                      <h2 class="flex-auto text-lg font-medium">
+                      <h2 className="flex-auto text-lg font-medium">
                         Umbrella Corporation
                       </h2>
                     </div>
-                    <p class="mt-3"></p>
-                    <div class="flex py-4  text-sm text-gray-500">
-                      <div class="flex-1 inline-flex items-center">
+                    <p className="mt-3"></p>
+                    <div className="flex py-4  text-sm text-gray-500">
+                      <div className="flex-1 inline-flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-3 text-gray-400"
+                          className="h-5 w-5 mr-3 text-gray-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
-                            stroke-width="2"
+                            strokeWidth="2"
                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                           ></path>
                           <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
-                            stroke-width="2"
+                            strokeWidth="2"
                             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                           ></path>
                         </svg>
-                        <p class="">Mumbai,MH</p>
+                        <p className="">Mumbai,MH</p>
                       </div>
-                      <div class="flex-1 inline-flex items-center">
+                      <div className="flex-1 inline-flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-2 text-gray-400"
+                          className="h-5 w-5 mr-2 text-gray-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
-                            stroke-width="2"
+                            strokeWidth="2"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                           ></path>
                         </svg>
-                        <p class="">05-25-2021</p>
+                        <p className="">05-25-2021</p>
                       </div>
                     </div>
-                    <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
-                    <div class="flex space-x-3 text-sm font-medium">
-                      <div class="flex-auto flex space-x-3">
-                        <button class="mb-2 md:mb-0 bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
-                          <span class="text-green-400 hover:text-green-500 rounded-lg">
+                    <div className="flex p-4 pb-2 border-t border-gray-200 "></div>
+                    <div className="flex space-x-3 text-sm font-medium">
+                      <div className="flex-auto flex space-x-3">
+                        <button className="mb-2 md:mb-0 bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
+                          <span className="text-green-400 hover:text-green-500 rounded-lg">
                             <img
                               src="https://image.flaticon.com/icons/png/512/168/168810.png"
-                              class="svg-inline--fa fa-shopify  w-5 h-5 "
+                              className="svg-inline--fa fa-shopify  w-5 h-5 "
                             />
                           </span>
                           <span>60 Products</span>
                         </button>
                       </div>
                       <button
-                        class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
+                        className="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                         type="button"
                         aria-label="like"
                       >
@@ -200,7 +200,7 @@ KC */}
         </div>
         <div className="slide-show hidden lg:flex">
           <div className="box">
-            <video src="./videos/video1.mp4" width="600" height="300" controls/>
+            <video src="./videos/video1.mp4" width="600" height="300" controls />
           </div>
         </div>
       </div>

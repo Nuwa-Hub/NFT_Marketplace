@@ -38,25 +38,25 @@ const Nft = () => {
 					</div>
 					<div className="col-span-2 m-4">
 						<div className="mb-2 mx-2">
-							<text className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
+							<p className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
 								{/* Collection Name */}
 								Cryptopuppies
-							</text>
+							</p>
 						</div>
 
 						<div className="mx-2 mt-5 ">
-							<text className="text-5xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
+							<p className="text-5xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
 								{/* NFT Name */}
 								{nft.NFTName}
-							</text>
+							</p>
 						</div>
 
 						<div className="flex flex-auto mx-2 mt-5 content-center ">
 							<div className="basis-1/2 items-center m-1">
-								<text className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
+								<p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
 									{/* Owners Name */}
 									Owned by @0x123456789
-								</text>
+								</p>
 							</div>
 
 							<div className="basis-1/2 mx-2 ">
@@ -67,10 +67,10 @@ const Nft = () => {
 						</div>
 						{/* If it is a bidding buy now should be bid now */}
 						<div className="mx-2 mt-5 ">
-							<text className="text-xl font-mono tracking-tight text-zinc-400 dark:text-white">
+							<p className="text-xl font-mono tracking-tight text-zinc-400 dark:text-white">
 								{/* NFT Name */}
 								{nft.price}
-							</text>
+							</p>
 						</div>
 						<div className="flex flex-auto mx-2 mt-5 content-center ">
 							<div className="basis-1/2 items-center m-1">

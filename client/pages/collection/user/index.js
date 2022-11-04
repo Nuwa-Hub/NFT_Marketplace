@@ -28,12 +28,14 @@ const explorecollection = () => {
   //console.log(collections);
   //const collections=[]
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user.currentUser?.walletAddress);
+  const currentUser = useSelector((state) => state.user.currentUser?.walletAdress);
   const collections = useSelector((state) => state.collection.collections);
-
+ 
   useEffect(() => {
-    currentUser && getCollectionByUserId(dispatch, currentUser);
-  }, [dispatch]);
+    if(currentUser){  
+        console.log(currentUser)
+        getCollectionByUserId(dispatch, currentUser);}
+  }, [dispatch,currentUser]);
 
 
   return (

@@ -40,6 +40,7 @@ export const getCollectionById = async (dispatch, collection_id) => {
 //get all collection by user id
 export const getCollectionByUserId = async (dispatch, user_wallet) => {
 	try {
+		console.log("sdffd")
 		const res = await publicRequest.get(`/collection/user/${user_wallet}`);
 		console.log(res.data);
 		dispatch(getCollectionSuccess(res.data));

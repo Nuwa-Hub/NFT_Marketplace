@@ -32,7 +32,7 @@ export const collectionSlice = createSlice({
     },
     getCollectionSuccess: (state, action) => {
       state.isFetching = false;
-      state.collection = action.payload;
+      state.collections = action.payload;
     },
     getCollectionFailure: (state) => {
       state.isFetching = false;

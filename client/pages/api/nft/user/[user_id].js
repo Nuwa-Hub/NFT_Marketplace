@@ -2,7 +2,7 @@ import NFT from "models/NFT";
 import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
-	const { nft_id } = req.query;
+	
     
 	await connectDB();
 
@@ -18,14 +18,15 @@ export default async function handler(req, res) {
 	}
 	if (req.method === "PUT") {
 		try {
+			
 			const updateNFT = await NFT.findByIdAndUpdate(
-				req.params.id,
+				req.query.user_id,
 				{ $set: req.body },
 				{ new: true }
 			);
 			res.status(200).json(updateNFT);
 		} catch (err) {
-			console.log("err")
+			console.log(err)
 			res.status(500).json(err);
 		}
 	}

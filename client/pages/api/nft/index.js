@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (method === "GET") {
 		try {
-			const nfts = await NFT.find();
+			const nfts = await NFT.find({isListed:"true"});
 			res.status(200).json(nfts);
 		} catch (err) {
 			res.status(500).json(err);

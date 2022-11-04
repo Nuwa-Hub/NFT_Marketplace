@@ -23,11 +23,18 @@ export const NFTSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    updateNFTSuccess: (state, action) => {
+      state.isFetching = false;
+      state.NFTs = action.payload;
+      state.NFTs[
+        state.NFTs.findIndex((item) => item._id === action.payload._id)
+      ] = action.payload;
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getNFTFailure,getNFTSuccess,getNFTStart } = NFTSlice.actions
+export const { getNFTFailure,getNFTSuccess,getNFTStart,updateNFTSuccess } = NFTSlice.actions
 
 export const selectValue= (state)=>state.NFT.value
 

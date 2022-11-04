@@ -1,6 +1,6 @@
 import NFTCard from "components/NFTCard";
 import React, { useEffect, useState } from "react";
-import MarketplaceJSON from './Marketplace.json';
+
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 

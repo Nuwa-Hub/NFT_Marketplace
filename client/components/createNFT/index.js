@@ -15,7 +15,7 @@ const CreateNFT = () => {
   const [NFTImg, setNFTImg] = useState("");
   const [NFTImgUrl, setNFTImgUrl] = useState("");
   const [preImg, setPreImg] = useState("");
-
+  const [fileURL, setFileURL] = useState(null);
   const [collection_id, setColletionId] = useState("");
   const dispatch = useDispatch();
 
@@ -44,6 +44,7 @@ const CreateNFT = () => {
               Img: url,
               owner: currentUser.walletAdress,
               collectionId: collection_id.value,
+              pinataurl:fileURL,
             };
             console.log(newNFT);
             //call add nft fuction 
@@ -59,7 +60,26 @@ const CreateNFT = () => {
       });
   }
 
+  
+    //This function uploads the NFT image to IPFS
+    async function uploadNftToPinata(file) {
+     
+      //check for file extension
+      try {
+          //upload the file to IPFS
+          const response = await uploadFileToIPFS(file);
+          if(response.success === true) {
+              console.log("Uploaded image to Pinata: ", response.pinataURL)
+              setFileURL(response.pinataURL);
+          }
+      }
+      catch(e) {
+          console.log("Error during file upload", e);
+      }
+  }
+
   const handleClick = async (e, { resetForm }) => {
+  
     const p = await uploadFileToFireStore(e);
 
     resetForm();
@@ -189,6 +209,7 @@ const CreateNFT = () => {
                           onChange={(e) => {
                             setNFTImg(e.target.files[0]);
                             previewImgFile(e.target.files[0]);
+                            uploadNftToPinata(e.target.files[0])
                           }}
                         />
                       </label>

@@ -12,6 +12,7 @@ const AuctionSchema = new mongoose.Schema(
 		endingPrice: { type: String },
 		isCompleted: { type: Boolean, default: false },
 		access: { type: Boolean, default: true },
+		winner: { type: String, default: "" },
 	},
 	{ timestamps: true }
 );

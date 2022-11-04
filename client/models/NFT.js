@@ -12,6 +12,7 @@ const NFTSchema = new mongoose.Schema(
 		isListed: { type: Boolean, default: false },
 		tokenId: { type: String, default: "" },
 		listing: { type: String, default: "" },
+		price: { type: String, default: "" },
 	},
 	{ timestamps: true }
 );

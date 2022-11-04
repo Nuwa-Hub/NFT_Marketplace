@@ -5,7 +5,6 @@ const ListingSchema = new mongoose.Schema(
         seller: { type: String, default: "" },
         nft: { type: String, default: "" },
         price: { type: String, default: "" },
-        buyer: { type: String, default: "" },
         isCompleted: { type: Boolean, default: false },
     },
     { timestamps: true }

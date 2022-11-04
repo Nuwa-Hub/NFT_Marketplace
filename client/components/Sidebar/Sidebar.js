@@ -119,6 +119,53 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
+              <li className="items-center">
+                <Link href="/admin/collections">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/collections") !== -1
+                        ? "text-sky-500 hover:text-sky-600"
+                        : "text-slate-700 hover:text-slate-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fa fa-folder mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/collections") !== -1
+                          ? "opacity-75"
+                          : "text-slate-300")
+                      }
+                    ></i>{" "}
+                    Collections
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/admin/nfts">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/nfts") !== -1
+                        ? "text-sky-500 hover:text-sky-600"
+                        : "text-slate-700 hover:text-slate-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fa fa-address-card mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/nfts") !== -1
+                          ? "opacity-75"
+                          : "text-slate-300")
+                      }
+                    ></i>{" "}
+                    NFTs
+                  </a>
+                </Link>
+              </li>
+              <hr className="my-4 md:min-w-full" />
 
               <li className="items-center">
                 <Link href="/admin/add">
@@ -156,7 +203,7 @@ export default function Sidebar() {
                   >
                     <i
                       className={
-                        "fas fa-table mr-2 text-sm " +
+                        "fa fa-users mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/users") !== -1
                           ? "opacity-75"
                           : "text-slate-300")
@@ -179,7 +226,7 @@ export default function Sidebar() {
                   >
                     <i
                       className={
-                        "fas fa-table mr-2 text-sm " +
+                        "fa fa-users mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/admins") !== -1
                           ? "opacity-75"
                           : "text-slate-300")
@@ -189,6 +236,8 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
+              <hr className="my-4 md:min-w-full" />
+
               <li className="items-center">
                 <Link href="/admin/profile">
                   <a
@@ -202,7 +251,7 @@ export default function Sidebar() {
                   >
                     <i
                       className={
-                        "fas fa-table mr-2 text-sm " +
+                        "fa fa-user-circle mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/profile") !== -1
                           ? "opacity-75"
                           : "text-slate-300")
@@ -212,8 +261,9 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
+              <hr className="my-4 md:min-w-full" />
               <li>
-                <button onClick={clickLogOut}>
+                <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" onClick={clickLogOut}>
                   Logout
                 </button>
               </li>
@@ -245,7 +295,7 @@ export default function Sidebar() {
             </ul>
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
             {/* <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Auth Layout Pages

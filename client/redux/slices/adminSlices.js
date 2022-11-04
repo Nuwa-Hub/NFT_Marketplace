@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerAdmin, getAdminDetails, adminLogin } from "redux/actions/adminAction";
+import { registerAdmin, getAdminDetails, adminLogin, getAdminData } from "redux/actions/adminAction";
 
 // let adminToken = null
 // if (typeof window !== "undefined") {
@@ -12,6 +12,7 @@ const adminSlice = createSlice({
         adminToken: null,
         pending: false,
         error: null,
+        data: null,
     },
     reducers: {
         adminLogout: (state) => {
@@ -25,6 +26,9 @@ const adminSlice = createSlice({
         //     state.currentUser = action.payload.user;
         //     state.userToken = action.payload.userToken;
         // },
+        [getAdminData.fulfilled]: (state, action) => {
+            state.data = action.payload;
+        },
         [getAdminDetails.fulfilled]: (state, action) => {
             state.currentAdmin = action.payload.admin;
         },

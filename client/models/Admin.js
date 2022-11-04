@@ -13,5 +13,6 @@ const AdminSchema = new mongoose.Schema(
   { timestamps: true }
 );
 //module.exports = mongoose.model("Admin", AdminSchema);
-
-module.exports = mongoose.model("Admin", AdminSchema);
+delete mongoose.models["Admin"];
+export default mongoose.models.Admin ||
+  mongoose.model("Admin", AdminSchema);

@@ -1,5 +1,6 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { getAdminData } from "redux/actions/adminAction";
+import { useDispatch, useSelector } from "react-redux";
 // components
 
 import CardLineChart from "components/Cards/CardLineChart.js";
@@ -12,6 +13,13 @@ import AdminNFTCard from "components/Cards/AdminNFTCard.js";
 import Admin from "layouts/Admin.js";
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.admin.data);
+  useEffect(() => {
+    if (!data) {
+      dispatch(getAdminData());
+    }
+  }, []);
   return (
     <>
       <div className="flex flex-wrap">

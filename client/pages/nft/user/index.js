@@ -33,7 +33,7 @@ const exploreNFT = () => {
                   className="flex flex-wrap w-full  sm:w-full md:w-1/2 lg:w-1/4"
                   key={index}
                 >
-                  <NFTCard nft={item} user="user"/>
+                  <NFTCard nft={item} user="user" />
                 </div>
               ))}
           </div>

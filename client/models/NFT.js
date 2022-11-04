@@ -14,6 +14,7 @@ const NFTSchema = new mongoose.Schema(
 		tokenId: { type: String, default: "" },
 		listing: { type: String, default: "" },
 		pinataurl:{ type: String, default: "" },
+		
 	},
 	{ timestamps: true }
 );

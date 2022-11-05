@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAdminData } from "redux/actions/adminAction";
 
 // components
 
 export default function AdminNFTCard() {
   const [nfts, setNfts] = useState([]);
+  const data = useSelector((state) => state.admin.data?.nfts)
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetch("/api/nft")
-      .then((res) => res.json())
-      .then((data) => {
-        setNfts(data);
-      })
-  }, [])
+    if (data) {
+      setNfts(data);
+    } else {
+      dispatch(getAdminData());
+    }
+  }, [data])
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">

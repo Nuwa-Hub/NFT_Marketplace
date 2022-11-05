@@ -109,3 +109,29 @@ export const getAdmins = createAsyncThunk(
         }
     }
 )
+export const getAdminData = createAsyncThunk(
+    'admin/adminData',
+    async (arg, { getState, rejectWithValue }) => {
+        try {
+            // get user data from store
+            const { user } = getState()
+
+            // configure authorization header with user's token
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${user.userToken}`,
+                },
+            }
+
+            const nfts = await (await axios.get(`/api/nft/all`, config)).data
+            const collections = await (await axios.get(`/api/collection`, config)).data
+            return { nfts, collections }
+        } catch (error) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message)
+            } else {
+                return rejectWithValue(error.message)
+            }
+        }
+    }
+)

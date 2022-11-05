@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getAdminData } from "redux/actions/adminAction";
 // components
 
 export default function AdminCollectionCard() {
   const [collections, setCollections] = useState([]);
+  const data = useSelector((state) => state.admin.data?.collections)
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetch("/api/collection")
-      .then((res) => res.json())
-      .then((data) => {
-        setCollections(data);
-      })
-  }, [])
+    if (data) {
+      setCollections(data);
+    } else {
+      dispatch(getAdminData());
+    }
+  }, [data])
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">

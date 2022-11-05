@@ -8,13 +8,14 @@ const NFTSchema = new mongoose.Schema(
 		Img: { type: String, default: "" },
 		description: { type: String, default: "" },
 		access: { type: Boolean, default: true },
-		price:{ type: String, default: "" },
+		price: { type: String, default: "" },
 		mint: { type: Boolean, default: false },
 		isListed: { type: Boolean, default: false },
 		tokenId: { type: String, default: "" },
 		listing: { type: String, default: "" },
-		pinataurl:{ type: String, default: "" },
-		
+		pinataurl: { type: String, default: "" },
+		visits: { type: Number, default: 0 },
+
 	},
 	{ timestamps: true }
 );

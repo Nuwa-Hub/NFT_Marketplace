@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAdminData } from "redux/actions/adminAction";
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
@@ -19,8 +18,6 @@ export default function NFTTable({ color }) {
     if (collections) {
       setData(collections);
       setLoading(false);
-    } else {
-      dispatch(getAdminData());
     }
   }, [collections])
 
@@ -84,7 +81,7 @@ export default function NFTTable({ color }) {
                     {collection.owner}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {collection.description}
+                    {collection.description.substring(0, 50) + "..."}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {collection.nfts.length}

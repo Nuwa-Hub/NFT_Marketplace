@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateNFTByUserId } from "redux/actions/NFTAction";
+import { publicRequest } from "utils/requestMethods";
 
 const Nft = () => {
   const [message, updateMessage] = useState("");
@@ -24,6 +25,11 @@ const Nft = () => {
   const nft = nfts.find((item) => item._id == nft_id);
   if (!nft) {
     return <p>not found</p>;
+  }
+  if (nft_id) {
+    publicRequest.get(`nft/${nft_id}`).then((res) => {
+      console.log(res.data);
+    });
   }
   //console.log(nft);
   //console.log(user);
@@ -85,7 +91,7 @@ const Nft = () => {
 
       console.log(tid);
       //console.log(transaction)
-      const newnft = { mint: true, tokenId: tid._hex, isListed: false,owner:user.walletAdress };
+      const newnft = { mint: true, tokenId: tid._hex, isListed: false, owner: user.walletAdress };
       updateNFTByUserId(distpatch, newnft, nft._id);
 
       alert("Successfully listed your NFT!");
@@ -120,7 +126,7 @@ const Nft = () => {
       });
       await transaction.wait();
 
-      const newnft = {isListed: false,owner:user.walletAdress};
+      const newnft = { isListed: false, owner: user.walletAdress };
       updateNFTByUserId(distpatch, newnft, nft._id);
       alert("You successfully bought the NFT!");
       updateMessage("");
@@ -131,7 +137,7 @@ const Nft = () => {
 
   async function executebuyNFT(e) {
     e.preventDefault();
-    
+
     if (nft.mint == true) {
       console.log("buy");
       await buyNFT();

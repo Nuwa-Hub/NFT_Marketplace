@@ -10,6 +10,7 @@ export default async function handler(req, res) {
 	if (req.method === "GET") {
 		try {
 			const collection = await Collection.findById(collection_id);
+			await Collection.findByIdAndUpdate(collection_id, { visits: collection.visits + 1 });
 			res.status(200).json(collection);
 		} catch (err) {
 			res.status(500).json(err);

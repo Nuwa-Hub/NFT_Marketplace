@@ -51,8 +51,6 @@ const Nft = () => {
   }
 
   async function listNFT() {
-    
-
     //Upload data to IPFS
     try {
       const ethers = require("ethers");
@@ -87,7 +85,7 @@ const Nft = () => {
 
       console.log(tid);
       //console.log(transaction)
-      const newnft = { mint: true, tokenId: tid._hex, isListed: false };
+      const newnft = { mint: true, tokenId: tid._hex, isListed: false,owner:user.walletAdress };
       updateNFTByUserId(distpatch, newnft, nft._id);
 
       alert("Successfully listed your NFT!");
@@ -98,45 +96,49 @@ const Nft = () => {
     }
   }
 
-const hexToDecimal = hex => parseInt(hex, 16);
-  
-async function buyNFT() {
-  const tokenId=hexToDecimal(nft.tokenId)
-  try {
+  const hexToDecimal = (hex) => parseInt(hex, 16);
+
+  async function buyNFT() {
+    const tokenId = hexToDecimal(nft.tokenId);
+    try {
       const ethers = require("ethers");
       //After adding your Hardhat network to your metamask, this code will get providers and signers
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
 
       //Pull the deployed contract instance
-      let contract = new ethers.Contract(Marketplace.address, Marketplace.abi, signer);
-      const salePrice = ethers.utils.parseUnits('0.001', 'ether')
-      updateMessage("Buying the NFT... Please Wait (Upto 5 mins)")
+      let contract = new ethers.Contract(
+        Marketplace.address,
+        Marketplace.abi,
+        signer
+      );
+      const salePrice = ethers.utils.parseUnits("0.001", "ether");
+      updateMessage("Buying the NFT... Please Wait (Upto 5 mins)");
       //run the executeSale function
-      let transaction = await contract.executeSale(tokenId, {value:salePrice});
+      let transaction = await contract.executeSale(tokenId, {
+        value: salePrice,
+      });
       await transaction.wait();
 
-      alert('You successfully bought the NFT!');
+      const newnft = {isListed: false,owner:user.walletAdress};
+      updateNFTByUserId(distpatch, newnft, nft._id);
+      alert("You successfully bought the NFT!");
       updateMessage("");
+    } catch (e) {
+      alert("Upload Error" + e);
+    }
   }
-  catch(e) {
-      alert("Upload Error"+e)
-  }
-}
 
   async function executebuyNFT(e) {
     e.preventDefault();
-    console.log(nft.mint)
-      if (nft.mint==true){
-        console.log("buy")
-        await buyNFT()
-      }
-      else{
-   
-        console.log("mint")
-        await listNFT()
-      }
-
+    
+    if (nft.mint == true) {
+      console.log("buy");
+      await buyNFT();
+    } else {
+      console.log("mint");
+      await listNFT();
+    }
   }
   //end of the nft blockchain ++++++++++++++++++++++
   return (
@@ -175,7 +177,7 @@ async function buyNFT() {
               <div className="basis-1/2 items-center m-1">
                 <p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
                   {/* Owners Name */}
-                  Owned by {nft.owner==user.walletAdress ? "you" : nft.owner}
+                  Owned by {nft.owner == user.walletAdress ? "you" : nft.owner}
                 </p>
               </div>
 
@@ -194,17 +196,21 @@ async function buyNFT() {
             </div>
             <div className="flex flex-auto mx-2 mt-5 content-center ">
               <div className="basis-1/2 items-center m-1">
-              {nft.owner==user.walletAdress ? <></> : <button
-                  type="button"
-                  onClick={executebuyNFT}
-                  className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
-                >
-                  <div className="flex items-center justify-between flex-1">
-                    <span className="text-lg font-medium text-white">
-                      Buy Now
-                    </span>
-                  </div>
-                </button>}
+                {nft.owner == user.walletAdress ? (
+                  <></>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={executebuyNFT}
+                    className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
+                  >
+                    <div className="flex items-center justify-between flex-1">
+                      <span className="text-lg font-medium text-white">
+                        Buy Now
+                      </span>
+                    </div>
+                  </button>
+                )}
               </div>
             </div>
           </div>

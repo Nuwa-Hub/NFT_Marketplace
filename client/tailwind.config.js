@@ -35,7 +35,8 @@ module.exports = {
 	},
 	variants: {
 		extend: {
-			display: ["group-hover",
+			display: [
+				"group-hover",
 				"responsive",
 				"group-hover",
 				"focus-within",
@@ -47,7 +48,8 @@ module.exports = {
 				"focus",
 				"active",
 				"visited",
-				"disabled",],
+				"disabled",
+			],
 		},
 	},
 	colors: {
@@ -61,6 +63,7 @@ module.exports = {
 		silver: "#ecebff",
 		"bubble-gum": "#ff77e9",
 		bermuda: "#78dcca",
+		slate: "#e2e8f0",
 	},
 	boxShadow: {
 		"3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
@@ -76,4 +79,4 @@ module.exports = {
 	},
 	plugins: [require("@tailwindcss/forms")],
 	darkMode: "class",
-}; 
+};

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAdminData } from "redux/actions/adminAction";
+import { useSelector } from "react-redux";
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
@@ -13,14 +12,12 @@ export default function NFTTable({ color }) {
   const tableHeader = ["NFT Name", "Collection", "Owner", "Price", "Description", "Actions"];
   const nfts = useSelector((state) => state.admin.data?.nfts)
   const collections = useSelector((state) => state.admin.data?.collections)
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   useEffect(() => {
     setLoading(true)
     if (nfts) {
       setData(nfts);
       setLoading(false);
-    } else {
-      dispatch(getAdminData());
     }
   }, [nfts])
 

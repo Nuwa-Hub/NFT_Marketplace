@@ -14,13 +14,18 @@ export default function CardLineChart() {
           "May",
           "June",
           "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
         ],
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            data: [65, 78, 66, 44, 56, 67, 75, 40, 59, 80, 81, 56],
             fill: false,
           },
           {
@@ -28,7 +33,7 @@ export default function CardLineChart() {
             fill: false,
             backgroundColor: "#fff",
             borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
+            data: [40, 68, 86, 74, 56, 60, 87, 114, 136, 106, 30, 63],
           },
         ],
       },
@@ -121,7 +126,7 @@ export default function CardLineChart() {
         </div>
         <div className="p-4 flex-auto">
           {/* Chart */}
-          <div className="relative h-350-px">
+          <div className="relative h-96">
             <canvas id="line-chart"></canvas>
           </div>
         </div>

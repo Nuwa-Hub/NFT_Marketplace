@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
+import { publicRequest } from "utils/requestMethods";
 const CollectionHeader = () => {
   //handle the routes
   const router = useRouter();
@@ -10,6 +11,13 @@ const CollectionHeader = () => {
   const collections = useSelector((state) => state.collection.collections);
   const collection = collections.find((item) => item._id == collection_id);
   // console.log(collection);
+
+  if (collection) {
+    publicRequest.get(`collection/${collection_id}`).then((res) => {
+      console.log(res.data);
+    });
+  }
+
 
   return (
     <div>

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateNFTByUserId } from "redux/actions/NFTAction";
 import HighestBidModal from "./HighestBidModal";
 import BuyNowModal from "./BuyNowModal";
+import { publicRequest } from "utils/requestMethods";
 
 const Nft = () => {
 	const [message, updateMessage] = useState("");
@@ -27,6 +28,11 @@ const Nft = () => {
 	const nft = nfts.find((item) => item._id == nft_id);
 	if (!nft) {
 		return <p>not found</p>;
+	}
+	if (nft_id) {
+		publicRequest.get(`nft/${nft_id}`).then((res) => {
+			console.log(res.data);
+		});
 	}
 	//console.log(nft);
 	//console.log(user);

@@ -64,7 +64,7 @@ const Listing = () => {
 							</div>
 						) : (
 							<div className="mx-2 mt-5 ">
-								<FixedPriceForm />
+								<FixedPriceForm nft={nft}/>
 							</div>
 						)}
 

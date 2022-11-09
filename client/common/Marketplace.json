@@ -1,5 +1,5 @@
 {
-  "address": "0x8D4252D284Fa56CA722Ac40Dc2812E3FE165A528",
+  "address": "0x8B955621E1A3D6Dd2BC5A622B5ED580c1c9cB42D",
   "abi": [
     { "type": "constructor", "payable": false, "inputs": [] },
     {
@@ -63,6 +63,18 @@
       "payable": false,
       "inputs": [{ "type": "address", "name": "owner" }],
       "outputs": [{ "type": "uint256" }]
+    },
+    {
+      "type": "function",
+      "name": "createLisToken",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [
+        { "type": "uint256", "name": "tokenId" },
+        { "type": "uint256", "name": "price" }
+      ],
+      "outputs": []
     },
     {
       "type": "function",

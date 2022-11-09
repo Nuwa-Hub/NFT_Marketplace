@@ -4,12 +4,12 @@ import * as Yup from "yup";
 import { publicRequest, userRequest } from "utils/requestMethods";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Marketplace from "../../common/Marketplace.json";
 
-
-const FixedPriceForm = () => {
+const FixedPriceForm = ({nft}) => {
 	const router = useRouter();
 	const user = useSelector((state) => state.user);
-	const formik = useFormik({
+	const  formik= useFormik({
 		initialValues: {
 			price: "",
 		},
@@ -26,6 +26,55 @@ const FixedPriceForm = () => {
 			price: Yup.number().required("Price is required").positive("Price must be positive"),
 		}),
 	})
+
+	const hexToDecimal = (hex) => parseInt(hex, 16);
+
+	async function listingNFT() {
+	  const tokenId = hexToDecimal(nft.tokenId);
+	  try {
+		const ethers = require("ethers");
+		//After adding your Hardhat network to your metamask, this code will get providers and signers
+		const provider = new ethers.providers.Web3Provider(window.ethereum);
+		const signer = provider.getSigner();
+  
+		//Pull the deployed contract instance
+		let contract = new ethers.Contract(
+		  Marketplace.address,
+		  Marketplace.abi,
+		  signer
+		);
+		const salePrice = ethers.utils.parseUnits("0.001", "ether");
+		let listingPrice = await contract.getListPrice();
+		listingPrice = listingPrice.toString();
+		//run the executeSale function
+		//let ns = await contract.getAllNFTs()
+		//console.log(ns)
+		let transaction = await contract.createLisToken(tokenId,salePrice,{
+			value: listingPrice,
+		  });
+		await transaction.wait();
+  
+		// const newnft = { isListed: false, owner: user.walletAdress };
+		// updateNFTByUserId(distpatch, newnft, nft._id);
+		alert("You successfully list the NFT!");
+	
+	  } catch (e) {
+		alert("Upload Error" + e);
+	  }
+	}
+
+	async function handleSubmited(e) {
+		e.preventDefault();
+	
+		if (nft.mint == true) {
+		  console.log("buy");
+		  await listingNFT()
+
+		} else {
+		  console.log("mint");
+		 
+		}
+	  }
 	return (
 		<form onSubmit={formik.handleSubmit}>
 			<div className="text-xl mx-2 font-mono tracking-tight text-bold dark:text-white">
@@ -69,6 +118,7 @@ const FixedPriceForm = () => {
 			<div className="flex flex-auto mx-2 mt-5 content-center ">
 				<div className="basis-1/2 items-center m-1">
 					<button
+				     	onClick={handleSubmited}
 						type="submit"
 						className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
 					>

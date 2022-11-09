@@ -89,7 +89,7 @@ const Nft = () => {
 
       let tid = await contract.getCurrentToken();
 
-      console.log(tid);
+      //console.log(tid);
       //console.log(transaction)
       const newnft = { mint: true, tokenId: tid._hex, isListed: false, owner: user.walletAdress };
       updateNFTByUserId(distpatch, newnft, nft._id);
@@ -118,9 +118,11 @@ const Nft = () => {
         Marketplace.abi,
         signer
       );
-      const salePrice = ethers.utils.parseUnits("0.001", "ether");
+      const salePrice = ethers.utils.parseUnits("0.025", "ether");
       updateMessage("Buying the NFT... Please Wait (Upto 5 mins)");
       //run the executeSale function
+      let ns = await contract.getAllNFTs()
+      console.log(ns)
       let transaction = await contract.executeSale(tokenId, {
         value: salePrice,
       });

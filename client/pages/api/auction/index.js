@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (method === "GET") {
 		try {
-			const auctions = await Auction.find();
+			const auctions = await Auction.find().populate("nft").populate("winningBid").populate("bid");
 			res.status(200).json(auctions);
 		} catch (err) {
 			res.status(500).json(err);
@@ -28,6 +28,7 @@ export default async function handler(req, res) {
 			res.status(201).json(auction);
 		} catch (err) {
 			res.status(500).json(err);
+			console.log(err);
 		}
 	}
 }

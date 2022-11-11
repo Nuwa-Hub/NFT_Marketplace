@@ -4,6 +4,7 @@ import ListingType from "./ListingType";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { publicRequest, userRequest } from "utils/requestMethods";
+import { useDispatch, useSelector } from "react-redux";
 
 const Listing = () => {
 	const router = useRouter();
@@ -11,6 +12,7 @@ const Listing = () => {
 	const [timed, setTimed] = useState(null);
 	const [nft, setNft] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const user = useSelector((state) => state.user.currentUser);
 
 	useEffect(() => {
 		if (router.isReady) {
@@ -27,6 +29,9 @@ const Listing = () => {
 	}
 	if (!nft) {
 		return <p>not found</p>
+	}
+	if (nft.owner !== user.walletAdress) {
+		return <p>Not your NFT</p>
 	}
 
 	return (

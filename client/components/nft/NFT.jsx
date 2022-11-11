@@ -13,234 +13,250 @@ import BuyNowModal from "./BuyNowModal";
 import { publicRequest } from "utils/requestMethods";
 
 const Nft = () => {
-	const [message, updateMessage] = useState("");
-	const [buy, setBuy] = useState(false);
-	//get current NFT id
-	const router = useRouter();
-	const nft_id = router.query.id;
+  const [message, updateMessage] = useState("");
+  const [buy, setBuy] = useState(false);
+  const [nft, setNFT] = useState(false);
+  //get current NFT id
+  const router = useRouter();
+  const nft_id = router.query.id;
 
-	//get current user
-	const user = useSelector((state) => state.user.currentUser);
+  //get current user
+  const user = useSelector((state) => state.user.currentUser);
 
-	const distpatch = useDispatch();
-	//get relevent nft by NFT array
-	const nfts = useSelector((state) => state.NFT.NFTs);
-	const nft = nfts.find((item) => item._id == nft_id);
-	if (!nft) {
-		return <p>not found</p>;
-	}
-	if (nft_id) {
-		publicRequest.get(`nft/${nft_id}`).then((res) => {
-			console.log(res.data);
-		});
-	}
-	//console.log(nft);
-	//console.log(user);
+  const distpatch = useDispatch();
+ 
+  
+  console.log(nft_id)
+  useEffect(() => {
 
-	//nft blockchain part++++++++++++++++
+       if (nft_id) {
+    publicRequest.get(`nft/${nft_id}`).then((res) => {
+      setNFT(res.data);
+    });
+  }
+   //nft_id && getNFTByNftId(distpatch,nft_id);
+  }, [distpatch,nft_id]);
 
-	//This function uploads the metadata to IPDS
-	async function uploadMetadataToIPFS() {
-		const nftJSON = {
-			name: nft.NFTName,
-			description: nft.description,
-			image: nft.pinataurl,
-		};
+   //get relevent nft by NFT array
+   //const nft = useSelector((state) => state.NFT.NFT);
 
-		try {
-			//upload the metadata JSON to IPFS
-			const response = await uploadJSONToIPFS(nftJSON);
-			if (response.success === true) {
-				console.log("Uploaded JSON to Pinata: ", response);
-				return response.pinataURL;
-			}
-		} catch (e) {
-			console.log("error uploading JSON metadata:", e);
-		}
-	}
+  if (!nft) {
+    return <p>not found</p>;
+  }
+  //  if (nft_id) {
+  //   publicRequest.get(`nft/${nft_id}`).then((res) => {
+  //     console.log(res.data);
+  //   });
+  // }
+  //console.log(nft);
+  //console.log(user);
 
-	async function listNFT() {
-		//Upload data to IPFS
-		try {
-			const ethers = require("ethers");
+  //nft blockchain part++++++++++++++++
 
-			const metadataURL = await uploadMetadataToIPFS();
-			//After adding your Hardhat network to your metamask, this code will get providers and signers
-			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			const signer = provider.getSigner();
-			updateMessage("Please wait.. uploading (upto 5 mins)");
+  //This function uploads the metadata to IPDS
+  async function uploadMetadataToIPFS() {
+    const nftJSON = {
+      name: nft.NFTName,
+      description: nft.description,
+      image: nft.pinataurl,
+    };
 
-			//Pull the deployed contract instance
-			let contract = new ethers.Contract(
-				Marketplace.address,
-				Marketplace.abi,
-				signer
-			);
+    try {
+      //upload the metadata JSON to IPFS
+      const response = await uploadJSONToIPFS(nftJSON);
+      if (response.success === true) {
+        console.log("Uploaded JSON to Pinata: ", response);
+        return response.pinataURL;
+      }
+    } catch (e) {
+      console.log("error uploading JSON metadata:", e);
+    }
+  }
 
-			//massage the params to be sent to the create NFT request
-			const price = ethers.utils.parseUnits("0.001", "ether");
-			let listingPrice = await contract.getListPrice();
-			listingPrice = listingPrice.toString();
+  async function listNFT() {
+    //Upload data to IPFS
+    try {
+      const ethers = require("ethers");
 
-			//actually create the NFT
+      const metadataURL = await uploadMetadataToIPFS();
+      //After adding your Hardhat network to your metamask, this code will get providers and signers
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      updateMessage("Please wait.. uploading (upto 5 mins)");
 
-			let transaction = await contract.createToken(metadataURL, price, {
-				value: listingPrice,
-			});
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(
+        Marketplace.address,
+        Marketplace.abi,
+        signer
+      );
 
-			await transaction.wait();
+      //massage the params to be sent to the create NFT request
+      const price = ethers.utils.parseUnits("0.001", "ether");
+      let listingPrice = await contract.getListPrice();
+      listingPrice = listingPrice.toString();
 
-			let tid = await contract.getCurrentToken();
+      //actually create the NFT
 
-			console.log(tid);
-			//console.log(transaction)
-			const newnft = {
-				mint: true,
-				tokenId: tid._hex,
-				isListed: false,
-				owner: user.walletAdress,
-			};
-			updateNFTByUserId(distpatch, newnft, nft._id);
+      let transaction = await contract.createToken(metadataURL, price,nft.owner,{
+        value: listingPrice,
+      });
 
-			alert("Successfully listed your NFT!");
+      await transaction.wait();
 
-			//window.location.replace("/")
-		} catch (e) {
-			alert("Upload error" + e);
-		}
-	}
+      let tid = await contract.getCurrentToken();
 
-	const hexToDecimal = (hex) => parseInt(hex, 16);
+      //console.log(tid);
+      //console.log(transaction)
+      const newnft = {
+        mint: true,
+        tokenId: tid._hex,
+        isListed: false,
+        owner: user.walletAdress,
+      };
+      updateNFTByUserId(distpatch, newnft, nft._id);
 
-	async function buyNFT() {
-		const tokenId = hexToDecimal(nft.tokenId);
-		try {
-			const ethers = require("ethers");
-			//After adding your Hardhat network to your metamask, this code will get providers and signers
-			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			const signer = provider.getSigner();
+      alert("Successfully listed your NFT!");
 
-			//Pull the deployed contract instance
-			let contract = new ethers.Contract(
-				Marketplace.address,
-				Marketplace.abi,
-				signer
-			);
-			const salePrice = ethers.utils.parseUnits("0.001", "ether");
-			updateMessage("Buying the NFT... Please Wait (Upto 5 mins)");
-			//run the executeSale function
-			let transaction = await contract.executeSale(tokenId, {
-				value: salePrice,
-			});
-			await transaction.wait();
+      //window.location.replace("/")
+    } catch (e) {
+      alert("Upload error" + e);
+    }
+  }
 
-			const newnft = { isListed: false, owner: user.walletAdress };
-			updateNFTByUserId(distpatch, newnft, nft._id);
-			alert("You successfully bought the NFT!");
-			updateMessage("");
-		} catch (e) {
-			alert("Upload Error" + e);
-		}
-	}
+  const hexToDecimal = (hex) => parseInt(hex, 16);
 
-	async function executebuyNFT(e) {
-		e.preventDefault();
-		setBuy(true);
-		if (nft.mint == true) {
-			console.log("buy");
-			await buyNFT();
-		} else {
-			console.log("mint");
-			await listNFT();
-		}
-	}
-	//end of the nft blockchain ++++++++++++++++++++++
-	return (
-		<div>
-			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
-				<div className="grid grid-cols-1  md:grid-cols-3">
-					<div className="items-center">
-						<div className="max-w-sm  m-4 bg-zinc-200 rounded-lg border border-gray-200 hover:shadow-lg transition ease-in-out  hover:-translate-y-1 hover:scale-110 ">
-							<a href="#">
-								<div className="w-full aspect-square ">
-									<img
-										alt="gallery"
-										className="block object-cover object-center w-full h-full rounded-lg"
-										src={nft.Img}
-									/>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div className="col-span-2 m-4">
-						<div className="mb-2 mx-2">
-							<p className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
-								{/* Collection Name */}
-								Cryptopuppies
-							</p>
-						</div>
+  async function buyNFT() {
+    const tokenId = hexToDecimal(nft.tokenId);
+    try {
+      const ethers = require("ethers");
+      //After adding your Hardhat network to your metamask, this code will get providers and signers
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
 
-						<div className="mx-2 mt-5 ">
-							<p className="text-5xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
-								{/* NFT Name */}
-								{nft.NFTName}
-							</p>
-						</div>
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(
+        Marketplace.address,
+        Marketplace.abi,
+        signer
+      );
+      const salePrice = ethers.utils.parseUnits("0.025", "ether");
+      updateMessage("Buying the NFT... Please Wait (Upto 5 mins)");
+      //run the executeSale function
+      //let owner = await contract.withdraw()
+      // console.log(owner)
+      let ns = await contract.getAllNFTs();
+      console.log(ns);
+      let transaction = await contract.executeSale(tokenId, {
+        value: salePrice,
+      });
+      await transaction.wait();
 
-						<div className="flex flex-auto mx-2 mt-5 content-center ">
-							<div className="basis-1/2 items-center m-1">
-								<p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
-									{/* Owners Name */}
-									Owned by{" "}
-									{nft.owner == user.walletAdress
-										? "you"
-										: nft.owner}
-								</p>
-							</div>
+      const newnft = { isListed: false, owner: user.walletAdress };
+      updateNFTByUserId(distpatch, newnft, nft._id);
+      alert("You successfully bought the NFT!");
+      updateMessage("");
+    } catch (e) {
+      alert("Upload Error" + e);
+    }
+  }
 
-							<div className="basis-1/2 mx-2 ">
-								{/* Like Button */}
-								{!true && <BsSuitHeartFill size={28} />}
-								{true && <BsSuitHeart size={28} />}
-							</div>
-						</div>
-						{/* If it is a bidding buy now should be bid now */}
-						<div className="mx-2 mt-5 ">
-							<p className="text-xl font-mono tracking-tight text-zinc-400 dark:text-white">
-								{/* NFT Name */}
-								{nft.price}
-							</p>
-						</div>
-						<div className="flex flex-auto mx-2 mt-5 content-center ">
-							<div className="basis-1/2 items-center m-1">
-								{nft.owner == user.walletAdress ? (
-									<></>
-								) : (
-									<button
-										type="button"
-										onClick={executebuyNFT}
-										className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
-									>
-										{buy && (
-											<div>
-												<BuyNowModal />
-											</div>
-										)}
-										<div className="flex items-center justify-between flex-1">
-											<span className="text-lg font-medium text-white">
-												Buy Now
-											</span>
-										</div>
-									</button>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
-				<Accordion_ />
-			</div>
-		</div>
-	);
+  async function executebuyNFT(e) {
+    e.preventDefault();
+    //setBuy(true);
+    if (nft.mint == true) {
+      console.log("buy");
+      await buyNFT();
+    } else {
+      console.log("mint");
+      await listNFT();
+    }
+  }
+  //console.log(buy)
+  //end of the nft blockchain ++++++++++++++++++++++
+  return (
+    <div>
+      <div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
+        <div className="grid grid-cols-1  md:grid-cols-3">
+          <div className="items-center">
+            <div className="max-w-sm  m-4 bg-zinc-200 rounded-lg border border-gray-200 hover:shadow-lg transition ease-in-out  hover:-translate-y-1 hover:scale-110 ">
+              <a href="#">
+                <div className="w-full aspect-square ">
+                  <img
+                    alt="gallery"
+                    className="block object-cover object-center w-full h-full rounded-lg"
+                    src={nft.Img}
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="col-span-2 m-4">
+            <div className="mb-2 mx-2">
+              <p className=" text-2xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
+                {/* Collection Name */}
+                Cryptopuppies
+              </p>
+            </div>
+
+            <div className="mx-2 mt-5 ">
+              <p className="text-5xl font-bold font-mono tracking-tight text-gray-900 dark:text-white">
+                {/* NFT Name */}
+                {nft.NFTName}
+              </p>
+            </div>
+
+            <div className="flex flex-auto mx-2 mt-5 content-center ">
+              <div className="basis-1/2 items-center m-1">
+                <p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
+                  {/* Owners Name */}
+                  Owned by {nft.owner == user.walletAdress ? "you" : nft.owner}
+                </p>
+              </div>
+
+              <div className="basis-1/2 mx-2 ">
+                {/* Like Button */}
+                {!true && <BsSuitHeartFill size={28} />}
+                {true && <BsSuitHeart size={28} />}
+              </div>
+            </div>
+            {/* If it is a bidding buy now should be bid now */}
+            <div className="mx-2 mt-5 ">
+              <p className="text-xl font-mono tracking-tight text-zinc-400 dark:text-white">
+                {/* NFT Name */}
+                {nft.price}
+              </p>
+            </div>
+            <div className="flex flex-auto mx-2 mt-5 content-center ">
+              <div className="basis-1/2 items-center m-1">
+                {nft.owner == user.walletAdress ? (
+                  <></>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={()=>{setBuy(true)}}
+                    className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
+                  >
+                    {buy && (
+                      <div>
+                        <BuyNowModal executebuyNFT={executebuyNFT} setBuy={setBuy} buy={buy}/>
+                      </div>
+                    )}
+                    <div className="flex items-center justify-between flex-1">
+                      <span className="text-lg font-medium text-white">
+                        Buy Now
+                      </span>
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <Accordion_ />
+      </div>
+    </div>
+  );
 };
 
 export default Nft;

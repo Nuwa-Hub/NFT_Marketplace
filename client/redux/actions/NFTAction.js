@@ -1,4 +1,4 @@
-import { getNFTFailure, getNFTSuccess, updateNFTSuccess } from "redux/slices/NFTSlice";
+import { getNFTFailure, getNFTsFailure, getNFTsSuccess, getNFTSuccess, updateNFTSuccess } from "redux/slices/NFTSlice";
 import { publicRequest, userRequest } from "/utils/requestMethods";
 
 //add NFT
@@ -15,9 +15,9 @@ export const getAllNFTs = async (dispatch) => {
 	try {
 		const res = await publicRequest.get(`/nft`);
 		//console.log(res.data)
-		dispatch(getNFTSuccess(res.data));
+		dispatch(getNFTsSuccess(res.data));
 	} catch (err) {
-		dispatch(getNFTFailure());
+		dispatch(getNFTsFailure());
 	}
 };
 
@@ -26,9 +26,9 @@ export const getNFTsByCollectionId = async (dispatch, collection_id) => {
 	try {
 		const res = await publicRequest.get(`/nft/collection/${collection_id}`);
 		//console.log(res.data)
-		dispatch(getNFTSuccess(res.data));
+		dispatch(getNFTsSuccess(res.data));
 	} catch (err) {
-		dispatch(getNFTFailure());
+		dispatch(getNFTsFailure());
 	}
 };
 

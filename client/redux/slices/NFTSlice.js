@@ -1,23 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   NFTs: [],
+  NFT: "",
   isFetching: false,
   error: false,
-}
+};
 
 export const NFTSlice = createSlice({
-  name: 'NFT',
+  name: "NFT",
   initialState,
   reducers: {
-     //GET ALL
-     getNFTStart: (state) => {
+    //GET ALL
+    getNFTsStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    getNFTSuccess: (state, action) => {
+    getNFTsSuccess: (state, action) => {
       state.isFetching = false;
       state.NFTs = action.payload;
+    },
+    getNFTsFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getNFTSuccess: (state, action) => {
+      state.isFetching = false;
+      state.NFT = action.payload;
     },
     getNFTFailure: (state) => {
       state.isFetching = false;
@@ -31,11 +40,19 @@ export const NFTSlice = createSlice({
       ] = action.payload;
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { getNFTFailure,getNFTSuccess,getNFTStart,updateNFTSuccess } = NFTSlice.actions
+export const {
+  getNFTsFailure,
+  getNFTsSuccess,
+  getNFTsStart,
+  getNFTFailure,
+  getNFTSuccess,
+  getNFTStart,
+  updateNFTSuccess,
+} = NFTSlice.actions;
 
-export const selectValue= (state)=>state.NFT.value
+export const selectValue = (state) => state.NFT.value;
 
-export default NFTSlice.reducer
+export default NFTSlice.reducer;

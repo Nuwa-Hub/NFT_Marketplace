@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../../common/pinata";
 import Marketplace from "../../common/Marketplace.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { updateNFTByUserId } from "redux/actions/NFTAction";
+import { getNFTByNftId, updateNFTByUserId } from "redux/actions/NFTAction";
 import HighestBidModal from "./HighestBidModal";
 import BuyNowModal from "./BuyNowModal";
 import { publicRequest } from "utils/requestMethods";
@@ -17,6 +17,8 @@ const Nft = () => {
 	const [message, updateMessage] = useState("");
 	const [buy, setBuy] = useState(false);
 	const [bid, setBid] = useState(false);
+	const [nft, setNFT] = useState(false);
+	const [favorite, setFavorite] = useState(false);
 	//get current NFT id
 	const router = useRouter();
 	const nft_id = router.query.id;
@@ -25,18 +27,29 @@ const Nft = () => {
 	const user = useSelector((state) => state.user.currentUser);
 
 	const distpatch = useDispatch();
+
+	console.log(nft_id);
+	useEffect(() => {
+		if (nft_id) {
+			publicRequest.get(`nft/${nft_id}`).then((res) => {
+				setNFT(res.data);
+			});
+		}
+		//nft_id && getNFTByNftId(distpatch,nft_id);
+	}, [distpatch, nft_id]);
+
 	//get relevent nft by NFT array
-	const nfts = useSelector((state) => state.NFT.NFTs);
-	const nft = nfts.find((item) => item._id == nft_id);
+	//const nft = useSelector((state) => state.NFT.NFT);
+
 	const [list, setList] = useState(null);
 	if (!nft) {
 		return <p>not found</p>;
 	}
-	if (nft_id) {
-		publicRequest.get(`nft/${nft_id}`).then((res) => {
-			// console.log(res.data);
-		});
-	}
+	//  if (nft_id) {
+	//   publicRequest.get(`nft/${nft_id}`).then((res) => {
+	//     // console.log(res.data);
+	//   });
+	// }
 	//get list details
 	async function getListingDetails() {
 		// console.log(`/auction/nft/${nft_id}`);
@@ -104,15 +117,20 @@ const Nft = () => {
 
 			//actually create the NFT
 
-			let transaction = await contract.createToken(metadataURL, price, {
-				value: listingPrice,
-			});
+			let transaction = await contract.createToken(
+				metadataURL,
+				price,
+				nft.owner,
+				{
+					value: listingPrice,
+				}
+			);
 
 			await transaction.wait();
 
 			let tid = await contract.getCurrentToken();
 
-			// console.log(tid);
+			//console.log(tid);
 			//console.log(transaction)
 			const newnft = {
 				mint: true,
@@ -146,9 +164,13 @@ const Nft = () => {
 				Marketplace.abi,
 				signer
 			);
-			const salePrice = ethers.utils.parseUnits("0.001", "ether");
+			const salePrice = ethers.utils.parseUnits("0.025", "ether");
 			updateMessage("Buying the NFT... Please Wait (Upto 5 mins)");
 			//run the executeSale function
+			//let owner = await contract.withdraw()
+			// console.log(owner)
+			let ns = await contract.getAllNFTs();
+			console.log(ns);
 			let transaction = await contract.executeSale(tokenId, {
 				value: salePrice,
 			});
@@ -165,7 +187,7 @@ const Nft = () => {
 
 	async function executebuyNFT(e) {
 		e.preventDefault();
-		setBuy(true);
+		//setBuy(true);
 		if (nft.mint == true) {
 			console.log("buy");
 			await buyNFT();
@@ -183,6 +205,12 @@ const Nft = () => {
 
 		setBid(false);
 	}
+
+	const handleFavorite = () => {
+		favorite ? setFavorite(false) : setFavorite(true);
+		// do other handling favo parts such as making a request to the server
+	};
+	//console.log(buy)
 	//end of the nft blockchain ++++++++++++++++++++++
 	return (
 		<div>
@@ -229,8 +257,10 @@ const Nft = () => {
 
 							<div className="basis-1/2 mx-2 ">
 								{/* Like Button */}
-								{!true && <BsSuitHeartFill size={28} />}
-								{true && <BsSuitHeart size={28} />}
+								<button onClick={handleFavorite}>
+									{favorite && <BsSuitHeartFill size={28} />}
+									{!favorite && <BsSuitHeart size={28} />}
+								</button>
 							</div>
 						</div>
 						{/* If it is a bidding buy now should be bid now */}
@@ -303,12 +333,20 @@ const Nft = () => {
 													//TODO dec bidding should call buyfunction with current price
 													<button
 														type="button"
-														onClick={executebuyNFT}
+														onClick={() => {
+															setBuy(true);
+														}}
 														className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
 													>
 														{buy && (
 															<div>
-																<BuyNowModal />
+																<BuyNowModal
+																	executebuyNFT={
+																		executebuyNFT
+																	}
+																	setBuy={setBuy}
+																	buy={buy}
+																/>
 															</div>
 														)}
 														<div className="flex items-center justify-between flex-1">

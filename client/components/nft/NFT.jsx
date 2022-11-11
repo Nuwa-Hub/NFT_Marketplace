@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../../common/pinata";
 import Marketplace from "../../common/Marketplace.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { updateNFTByUserId } from "redux/actions/NFTAction";
+import { getNFTByNftId, updateNFTByUserId } from "redux/actions/NFTAction";
 import HighestBidModal from "./HighestBidModal";
 import BuyNowModal from "./BuyNowModal";
 import { publicRequest } from "utils/requestMethods";
@@ -15,7 +15,6 @@ import { publicRequest } from "utils/requestMethods";
 const Nft = () => {
 	const [message, updateMessage] = useState("");
 	const [buy, setBuy] = useState(false);
-	const [favourite, setFavorite] = useState(false);
 	//get current NFT id
 	const router = useRouter();
 	const nft_id = router.query.id;
@@ -201,19 +200,8 @@ const Nft = () => {
 
 							<div className="basis-1/2 mx-2 ">
 								{/* Like Button */}
-								<button
-									onClick={() => {
-										favourite
-											? setFavorite(false)
-											: setFavorite(true);
-									}}
-								>
-									{favourite && <BsSuitHeart size={28} />}
-
-									{!favourite && (
-										<BsSuitHeartFill size={28} />
-									)}
-								</button>
+								{!true && <BsSuitHeartFill size={28} />}
+								{true && <BsSuitHeart size={28} />}
 							</div>
 						</div>
 						{/* If it is a bidding buy now should be bid now */}

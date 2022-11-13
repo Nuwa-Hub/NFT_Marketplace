@@ -1,6 +1,7 @@
 import Auction from "models/Auction";
 import Bid from "models/Bid";
 import connectDB from "utils/connectDB";
+const mongoose = require("mongoose");
 
 export default async function handler(req, res) {
     const { nft_id } = req.query;
@@ -10,7 +11,7 @@ export default async function handler(req, res) {
     //get method for rendering data
     if (req.method === "GET") {
         try {
-            const auction = await Auction.find({ nft: nft_id }).where("isCompleted").equals(false).sort({ createdAt: -1 }).populate("nft").populate("winningBid").populate("bid");
+            const auction = await Auction.find({ nft: new mongoose.Types.ObjectId(nft_id), $or: [{ 'status': "Bidding" }, { 'status': 'Pending' }] }).sort({ createdAt: -1 }).populate("nft").populate("winningBid").populate("bid");
             res.status(200).json(auction);
         } catch (err) {
             res.status(500).json(err);

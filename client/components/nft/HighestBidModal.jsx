@@ -28,7 +28,7 @@ const HighestBidModal = ({ closeBidNFT, auction }) => {
 				.required("Starting price is required")
 				.positive("Starting price must be positive")
 				.moreThan(auction.startingPrice, "Bid must be greater than starting price")
-				.moreThan(auction.winningBid.value, "Bid must be greater than current bid")
+				.moreThan(auction.winningBid ? auction.winningBid.value : auction.startingPrice, "Bid must be greater than current bid")
 		}),
 	});
 	return (

@@ -3,6 +3,7 @@ import adminSlices from "./slices/adminSlices";
 import collectionSlice from "./slices/collectionSlice";
 import userSlice from "./slices/userSlice";
 import NFTSlice from "./slices/NFTSlice";
+import FavouriteSlice from "./slices/FavouriteSlice";
 
 import { applyMiddleware, createStore } from "redux";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   user: userSlice,
   admin: adminSlices,
   NFT: NFTSlice,
+  favourite:FavouriteSlice,
 });
 
 const masterReducer = (state, action) => {

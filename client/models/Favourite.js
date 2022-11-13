@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const FavoriteSchema = new mongoose.Schema(
   {
     owner: { type: String, default: "" },
-    nfts: { type: String, default: "" },
+    nftId: { type: String, default: "" },
   },
   { timestamps: true }
 );

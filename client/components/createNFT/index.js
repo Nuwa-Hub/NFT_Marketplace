@@ -25,6 +25,7 @@ const CreateNFT = () => {
   useEffect(() => {
     getAllCollections(dispatch);
   }, [dispatch]);
+  
   const options = collections.map((collection) => ({
     value: collection._id,
     label: collection.collectionName,
@@ -44,12 +45,12 @@ const CreateNFT = () => {
               Img: url,
               owner: currentUser.walletAdress,
               collectionId: collection_id.value,
-              pinataurl:fileURL,
+              pinataurl: fileURL,
             };
             console.log(newNFT);
-            //call add nft fuction 
+            //call add nft fuction
             addNFTs(dispatch, newNFT);
-            alert("Create NFT successfully!")
+            alert("Create NFT successfully!");
           })
           .catch((err) => {
             console.log(err);
@@ -60,26 +61,22 @@ const CreateNFT = () => {
       });
   }
 
-  
-    //This function uploads the NFT image to IPFS
-    async function uploadNftToPinata(file) {
-     
-      //check for file extension
-      try {
-          //upload the file to IPFS
-          const response = await uploadFileToIPFS(file);
-          if(response.success === true) {
-              console.log("Uploaded image to Pinata: ", response.pinataURL)
-              setFileURL(response.pinataURL);
-          }
+  //This function uploads the NFT image to IPFS
+  async function uploadNftToPinata(file) {
+    //check for file extension
+    try {
+      //upload the file to IPFS
+      const response = await uploadFileToIPFS(file);
+      if (response.success === true) {
+        console.log("Uploaded image to Pinata: ", response.pinataURL);
+        setFileURL(response.pinataURL);
       }
-      catch(e) {
-          console.log("Error during file upload", e);
-      }
+    } catch (e) {
+      console.log("Error during file upload", e);
+    }
   }
 
   const handleClick = async (e, { resetForm }) => {
-  
     const p = await uploadFileToFireStore(e);
 
     resetForm();
@@ -209,7 +206,7 @@ const CreateNFT = () => {
                           onChange={(e) => {
                             setNFTImg(e.target.files[0]);
                             previewImgFile(e.target.files[0]);
-                            uploadNftToPinata(e.target.files[0])
+                            uploadNftToPinata(e.target.files[0]);
                           }}
                         />
                       </label>

@@ -11,7 +11,7 @@ import { getNFTByNftId, updateNFTByUserId } from "redux/actions/NFTAction";
 import HighestBidModal from "./HighestBidModal";
 import BuyNowModal from "./BuyNowModal";
 import { publicRequest } from "utils/requestMethods";
-import { async } from "@firebase/util";
+import { addFavourite, deleteFavourite } from "redux/actions/FavouriteAction";
 
 const Nft = () => {
 	const [message, updateMessage] = useState("");
@@ -25,17 +25,20 @@ const Nft = () => {
 
 	//get current user
 	const user = useSelector((state) => state.user.currentUser);
+	const favs = useSelector((state) => state.favourite.favourites);
 
 	const distpatch = useDispatch();
 
-	console.log(nft_id);
 	useEffect(() => {
+		if (favs.includes(nft_id)) {
+			setFavorite(true);
+		}
 		if (nft_id) {
+			console.log(nft_id);
 			publicRequest.get(`nft/${nft_id}`).then((res) => {
 				setNFT(res.data);
 			});
 		}
-		//nft_id && getNFTByNftId(distpatch,nft_id);
 	}, [distpatch, nft_id]);
 
 	//get relevent nft by NFT array
@@ -214,12 +217,24 @@ const Nft = () => {
 		e.preventDefault();
 		setBid(true);
 	}
-	const handleFavorite = () => {
-		favorite ? setFavorite(false) : setFavorite(true);
-		// do other handling favo parts such as making a request to the server
-	};
 	//console.log(buy)
 	//end of the nft blockchain ++++++++++++++++++++++
+
+	//add favourite
+	const handleFavorite = () => {
+		if (!favorite) {
+			setFavorite(true);
+			const newFav = {
+				owner: user._id,
+				nftId: nft_id,
+			};
+			addFavourite(distpatch, newFav);
+		} else {
+			setFavorite(false);
+			deleteFavourite(distpatch, user._id, nft_id);
+		}
+	};
+
 	return (
 		<div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
@@ -256,10 +271,7 @@ const Nft = () => {
 							<div className="basis-1/2 items-center m-1">
 								<p className="text-xl  font-mono tracking-tight text-slate-500 dark:text-white">
 									{/* Owners Name */}
-									Owned by{" "}
-									{nft.owner == user.walletAdress
-										? "you"
-										: nft.owner}
+									Owned by {nft.owner == user.walletAdress ? "you" : nft.owner}
 								</p>
 							</div>
 

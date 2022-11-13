@@ -22,6 +22,33 @@ export default function NFTCard() {
 
 	return (
 		<section className="overflow-hidden text-gray-700 ">
+			<div class="m-10 bg-white shadow-md block">
+				<div class="p-2 w-full flex justify-around">
+					<button class="p-1 px-4 m-0.5 hover:text-blue-800 hover:border-blue-500 text-sm font-bold border-2 text-gray-600 border-gray-300 bg-white rounded-lg">
+						<span class="w-full flex align-middle">
+							Price low to high
+						</span>
+					</button>
+					<button class="p-1 px-2 m-0.5 text-sm font-bold border-2 text-blue-800 border-blue-500 bg-white rounded-lg">
+						<span class="w-full inline-flex leading-4 align-middle">
+							<svg
+								class="fill-current w-4 mr-2 h-4"
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+							>
+								<path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+							</svg>
+							Statistiche
+						</span>
+					</button>
+					<button class="p-1 px-4 m-0.5 hover:text-blue-800 hover:border-blue-500 text-sm font-bold border-2 text-gray-600 border-gray-300 bg-white rounded-lg">
+						<span class="w-full flex align-middle">Circolare</span>
+					</button>
+					<button class="p-1 px-4 m-0.5 hover:text-blue-800 hover:border-blue-500 text-sm font-bold border-2 text-gray-600 border-gray-300 bg-white rounded-lg">
+						<span class="w-full flex align-middle">Circolare</span>
+					</button>
+				</div>
+			</div>
 			<div className="container px-2 py-2 mx-auto lg:pt-12 lg:px-2">
 				<div className="flex flex-wrap -m-1 md:-m-2">
 					{nfts.map((nft) => (

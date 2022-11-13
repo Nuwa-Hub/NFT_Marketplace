@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCollections } from "redux/actions/collectionAction";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { storage } from "common/firebase";
+import Select from "react-select";
 
 const CreateCollection = () => {
   const [bannerImg, setBannerImg] = useState("");
@@ -16,16 +17,16 @@ const CreateCollection = () => {
 
   const [msg, setMsg] = useState("");
 
+  const [coltype, setcoltype] = useState("");
+  console.log(coltype)
   const dispatch = useDispatch();
 
   //get current user
   const currentUser = useSelector((state) => state.user.currentUser);
 
-
   const handleClick = async (e, { resetForm }) => {
     const bannerImgURL = "";
     const profileImgURL = "";
-
 
     // upload banner img
     if (bannerImg) {
@@ -37,7 +38,10 @@ const CreateCollection = () => {
               console.log(`uploded banner img successfully ${url1}`);
 
               if (profileImg) {
-                const imgRef2 = ref(storage, `ProfileImg-${profileImg.lastModifiedDate}`);
+                const imgRef2 = ref(
+                  storage,
+                  `ProfileImg-${profileImg.lastModifiedDate}`
+                );
                 uploadBytes(imgRef2, profileImg)
                   .then(() => {
                     getDownloadURL(imgRef2)
@@ -49,12 +53,11 @@ const CreateCollection = () => {
                           bannerImg: url1,
                           profileImg: url2,
                           owner: currentUser.walletAdress,
+                          type:coltype,
                         };
                         console.log(newCollection);
                         addCollections(dispatch, newCollection);
                         alert("Collection Created");
-
-
                       })
                       .catch((err) => {
                         console.log(err);
@@ -64,7 +67,6 @@ const CreateCollection = () => {
                     console.log(err.message);
                   });
               }
-
             })
             .catch((err) => {
               console.log(err);
@@ -111,13 +113,37 @@ const CreateCollection = () => {
       reader.readAsDataURL(file);
     }
   }
+  //select options
 
+  const options = [
+ 
+    {
+      value: "children",
+      label: "Children",
+    },
+    {
+      value: "artwork",
+      label: "Art Work",
+    },
+    {
+      value: "animals",
+      label: "Animals",
+    },
+    {
+      value: "vitual fashion",
+      label: "Vitual Fashion",
+    }, {
+      value: "gaming",
+      label: "Gaming",
+    },
+
+  ];
   //validate
   const validate = Yup.object({
     collectionName: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
   });
-  console.log(bannerImg)
+  console.log(bannerImg);
   return (
     <section className="bg-cream-lighter p-6 shadow">
       <Formik
@@ -159,6 +185,21 @@ const CreateCollection = () => {
                       onChange={handleChange}
                     />
                     <ErrorMessage name="collectionName" component="div" />
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block uppercase text-xl font-bold font-mono p-2">
+                      Select Type
+                    </label>
+                    <div className="w-2/5">
+                      <Select
+                        options={options}
+                        placeholder="Select Collaborator..."
+                        className="createtaskuserselector"
+                        onChange={(e)=>{setcoltype(e.value)}}
+                      />
+                    </div>
+                    <ErrorMessage name="description" component="div" />
                   </div>
 
                   <div className="mb-4">

@@ -25,6 +25,7 @@ const CreateNFT = () => {
   useEffect(() => {
     getAllCollections(dispatch);
   }, [dispatch]);
+  
   const options = collections.map((collection) => ({
     value: collection._id,
     label: collection.collectionName,

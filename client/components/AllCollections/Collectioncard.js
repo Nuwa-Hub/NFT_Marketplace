@@ -5,7 +5,8 @@ const Collectioncard = ({ collection,user }) => {
 	// console.log(collection);
 	return (
 		<Link href={user ? `/collection/user/${collection._id}`:  `/collection/${collection._id}`}>
-			<div className="nft">
+			<div className="nft ">
+
 				<div className="main flex flex-col p-4 w-full">
 					<img
 						className="tokenImage rounded-lg h-64 max-w-full object-cover"

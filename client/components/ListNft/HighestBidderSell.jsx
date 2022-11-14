@@ -9,12 +9,12 @@ const HighestBidderSell = () => {
 	const user = useSelector((state) => state.user);
 	const formik = useFormik({
 		initialValues: {
-			startingPrice: "",
-			startDate: "",
-			endDate: "",
+			startingPrice: 0,
+			startDate: null,
+			endDate: null,
 		},
 		onSubmit: (values) => {
-			values = { ...values, nft: router.query.id, owner: user.currentUser.walletAdress, auctionType: 'high' };
+			values = { ...values, nft: router.query.id, owner: user.currentUser.walletAdress, auctionType: 'Highest' };
 			publicRequest.post("auction", values).then((res) => {
 				console.log(res);
 			}).catch((err) => {

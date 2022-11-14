@@ -123,8 +123,8 @@ export const getAdminData = createAsyncThunk(
                 },
             }
 
-            const nfts = await (await axios.get(`/api/nft/all`, config)).data
-            const collections = await (await axios.get(`/api/collection`, config)).data
+            const nfts = await (await axios.get(`/api/admin/nft`, config)).data
+            const collections = await (await axios.get(`/api/admin/collection`, config)).data
             return { nfts, collections }
         } catch (error) {
             if (error.response && error.response.data.message) {

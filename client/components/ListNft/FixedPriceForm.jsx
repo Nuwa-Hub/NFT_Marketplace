@@ -13,7 +13,7 @@ const FixedPriceForm = ({nft}) => {
 		initialValues: {
 			price: "",
 		},
-		onSubmit: (values) => {
+		onSubmit: async (values) => {
 			values = { ...values, nft: router.query.id, seller: user.currentUser.walletAdress };
 			publicRequest.post('listing', values).then((res) => {
 				console.log(res);
@@ -119,7 +119,6 @@ const FixedPriceForm = ({nft}) => {
 				<div className="basis-1/2 items-center m-1">
 					<button
 				     	onClick={handleSubmited}
-						type="submit"
 						className="break-inside bg-green-600 rounded-full px-8 py-4 mb-4 w-full hover:bg-green-700 transition ease-in-out duration-150"
 					>
 						<div className="flex items-center justify-between flex-1">

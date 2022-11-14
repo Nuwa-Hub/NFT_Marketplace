@@ -5,10 +5,15 @@ import Logo_dark from "../assets/logo-dark.svg";
 import Logo from "../assets/logo.svg";
 import ConnectWalletButton from "./ConnectWalletButton";
 import { useDispatch, useSelector } from "react-redux";
+import { publicRequest } from "utils/requestMethods";
 import { useRouter } from "next/router";
+import NavbarHelper from "./SearchHelpers/NavbarHelper";
 
 const Navbar = () => {
 	const [nav, setNav] = useState(false);
+	const [collection_search_result, setCollectionSearchResult] = useState([]);
+	const [nft_search_result, setNftSearchResult] = useState([]);
+	const [search, setSearch] = useState(false);
 	const handleClick = () => setNav(!nav);
 	const handleClose = () => setNav(!nav);
 	const [adminButton, setAdminButton] = useState(null);
@@ -29,14 +34,35 @@ const Navbar = () => {
 		}
 	}, [userToken, dispatch]);
 
-	const handleSubmit = (e) => {
+	const handleChange = (e) => {
 		e.preventDefault();
-		console.log(term);
+		// console.log(e.target.value);
+		setTerm(e.target.value);
 	};
 
-	const handleSearch = (e) => {
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		setTerm(e.target.value);
-		console.log(term);
+		// console.log(term);
+		const collection_res = await publicRequest.get(
+			`/collection/keyword?keyword=${term}`
+		);
+		// console.log(term);
+		const nft_res = await publicRequest.get(`/nft/keyword?keyword=${term}`);
+		setCollectionSearchResult(collection_res.data);
+		setNftSearchResult(nft_res.data);
+		setSearch(true);
+		// console.log(nft_res.data);
+		// console.log(collection_res.data);
+		// console.log(collection_search_result);
+		// console.log(nft_search_result);
+	};
+
+	const handleSearchClose = () => {
+		setSearch(false);
+		setTerm("");
+		setCollectionSearchResult([]);
+		setNftSearchResult([]);
 	};
 	return (
 		<div className="w-full h-[80px] z-10 bg-zinc-200 sticky top-0 ">
@@ -47,33 +73,36 @@ const Navbar = () => {
 						Kryptonaut
 					</h1>
 				</div>
-				<form className="w-[50%]" onSubmit={handleSubmit}>
-					<label
+				<form className="w-[50%]">
+					{/* <label
 						htmlFor="default-search"
 						className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
 					>
 						Search
-					</label>
+					</label> */}
 					<div className="relative">
-						<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-							<svg
-								aria-hidden="true"
-								className="w-5 h-5 text-gray-500 dark:text-gray-400"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-								></path>
-							</svg>
+						<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-auto">
+							<button onClick={handleSubmit}>
+								<svg
+									aria-hidden="true"
+									className="w-5 h-5 text-gray-500 dark:text-gray-400"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+									></path>
+								</svg>
+							</button>
 						</div>
 						<input
-							onChange={handleSearch}
+							onChange={handleChange}
+							onSubmit={handleSubmit}
 							type="search"
 							id="default-search"
 							className="block p-4 pl-10 w-full text-sm text-gray-900 bg-zinc-200 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -81,6 +110,13 @@ const Navbar = () => {
 							required
 						/>
 					</div>
+					{search && (
+						<NavbarHelper
+							handleClose={handleSearchClose}
+							collection_search_result={collection_search_result}
+							nft_search_result={nft_search_result}
+						/>
+					)}
 				</form>
 				<div className="hidden md:flex pr-4">
 					<ul className="hidden md:flex">

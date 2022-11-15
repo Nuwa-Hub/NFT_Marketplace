@@ -7,10 +7,12 @@ import React from "react";
 import Hero from "../components/Hero";
 import SlideShow from "../components/SlideShow";
 import Trending from "../components/Trending";
+import RaffleModel from "@/components/RaffleModel";
+
 
 export default function Home() {
   const { useState } = React;
-
+  //localStorage.clear();
   return (
     <div className="bg-zinc-200">
       <Head>
@@ -18,7 +20,8 @@ export default function Home() {
       </Head>
        <Hero />
      {/* <SwiperSlider />  */}
-      <SlideShow /> 
+      {/* <SlideShow />  */}
+      <RaffleModel/>
       {/* <Trending />  */}
     </div>
   );

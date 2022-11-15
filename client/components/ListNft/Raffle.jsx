@@ -21,7 +21,7 @@ const Raffle = () => {
       values = {
         ...values,
         nft: router.query.id,
-        seller: user.currentUser.walletAdress,
+        owner: user.currentUser.walletAdress,
       };
       publicRequest.post('raffle', values).then((res) => {
       	console.log(res);

@@ -2,11 +2,14 @@ const mongoose = require("mongoose");
 
 const NotificationSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true},
-    senderId: { type: String, default:"" },
-    receiverId: { type: String, default:"" },
+    type: { type: String, enum: ['Auction', 'Raffle'], required: true },
+    userWalletAddress: { type: String, required: true },
+    nft: { type: mongoose.Schema.Types.ObjectId, ref: 'NFT' },
+    isRead: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Notification", NotificationSchema);
+delete mongoose.models["Notification"];
+export default mongoose.models.Notification ||
+  mongoose.model("Notification", NotificationSchema);

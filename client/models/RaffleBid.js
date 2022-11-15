@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const RaffleBidSchema = new mongoose.Schema(
 	{
-		raffleId: { type: String, required: true },
+		raffleId: { type: mongoose.Schema.Types.ObjectId, ref: 'Raffle', },
 		bidder: { type: String, default: "" },
 
 	},

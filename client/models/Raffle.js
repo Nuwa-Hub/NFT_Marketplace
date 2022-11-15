@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const RaffleSchema = new mongoose.Schema(
   {
     owner: { type: String, default: "" },
-    nft: { type: String, default: "" },
-    bid: { type: Array, default: "" },
+    nft: { type: mongoose.Schema.Types.ObjectId, ref: 'NFT' },
+    bid: [{ type: mongoose.Schema.Types.ObjectId, ref: 'RaffleBid' }],
     endDate: { type: mongoose.Schema.Types.Date, default: "" },
     startDate: { type: mongoose.Schema.Types.Date, default: "" },
     fixedValue: { type: Number },

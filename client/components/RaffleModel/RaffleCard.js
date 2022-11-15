@@ -75,7 +75,7 @@ const RaffleCard = ({ nft }) => {
         </div>
         <div>
           <p style={{ margin: "10px 0px" }}>
-            Category: <span>dsdf</span>{" "}
+            Description: <span>{nft.description}</span>{" "}
           </p>
         </div>
         <div></div>
@@ -101,7 +101,7 @@ const RaffleCard = ({ nft }) => {
               addRafbid();
             }}
           >
-            Primary
+            Bid
           </button>
         </div>
       </div>

@@ -7,7 +7,7 @@ const CollectionSchema = new mongoose.Schema(
     bannerImg: { type: String, default: "" },
     profileImg: { type: String, default: "" },
     description: { type: String, default: "" },
-    nfts: { type: Array, default: "" },
+    nfts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'NFT' }],
     access: { type: Boolean, default: true },
     type: { type: String, default: "" },
     visits: { type: Number, default: 0 },

@@ -1,4 +1,5 @@
 import NFT from "models/NFT";
+import Collection from "models/Collection";
 import connectDB from "utils/connectDB";
 
 export default async function handler(req, res) {
@@ -22,6 +23,10 @@ export default async function handler(req, res) {
 		try {
 			const newNFT = new NFT(req.body);
 			const nft = await newNFT.save();
+			await Collection.findOneAndUpdate(
+				{ _id: req.body.collectionId },
+				{ $push: { nfts: nft._id } }
+			);
 			res.status(201).json(nft);
 		} catch (err) {
 			res.status(500).json(err);

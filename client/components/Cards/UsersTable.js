@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import Link from "next/link";
 
 export default function UsersTable({ color }) {
   const [data, setData] = useState(null)
@@ -116,7 +117,11 @@ export default function UsersTable({ color }) {
                         +(color === "light" ? "text-slate-600" : "text-white")
                       }
                     >
-                      {user.username}
+                      <Link href={`/admin/users/${user.walletAdress}`}>
+                        <a>
+                          {user.username}
+                        </a>
+                      </Link>
                     </span>
                   </th>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

@@ -169,6 +169,29 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
+              <li className="items-center">
+                <Link href="/admin/auctions">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/auctions") !== -1
+                        ? "text-sky-500 hover:text-sky-600"
+                        : "text-slate-700 hover:text-slate-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fa fa-gavel mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/auctions") !== -1
+                          ? "opacity-75"
+                          : "text-slate-300")
+                      }
+                    ></i>{" "}
+                    Auctions
+                  </a>
+                </Link>
+              </li>
               <hr className="my-4 md:min-w-full" />
 
               <li className="items-center">

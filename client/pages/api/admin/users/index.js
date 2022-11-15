@@ -16,14 +16,23 @@ export default async function handler(req, res) {
         // if (authHeader && authHeader.startsWith("Bearer ")) {
         try {
 
-            let users = await User.find();
-            let collections = null
-            let nfts = null
-            for (let i = 0; i < users.length; i++) {
-                collections = await Collection.countDocuments({ owner: users[i].walletAdress });
-                nfts = await NFT.countDocuments({ owner: users[i].walletAdress });
-                users[i] = { ...users[i]._doc, collections, nfts }
-            }
+            const users = await User.aggregate([
+                {
+                    '$lookup': {
+                        'from': 'collections',
+                        'localField': 'walletAdress',
+                        'foreignField': 'owner',
+                        'as': 'collections'
+                    }
+                }, {
+                    '$lookup': {
+                        'from': 'nfts',
+                        'localField': 'walletAdress',
+                        'foreignField': 'owner',
+                        'as': 'nfts'
+                    }
+                }
+            ])
             console.log(users);
             res.status(200).json({ users });
         } catch (err) {

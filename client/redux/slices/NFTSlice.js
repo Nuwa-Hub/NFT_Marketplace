@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   NFTs: [],
+  rafNft:[],
   NFT: "",
   isFetching: false,
   error: false,
@@ -28,6 +29,10 @@ export const NFTSlice = createSlice({
       state.isFetching = false;
       state.NFT = action.payload;
     },
+    getRafNFTSuccess: (state, action) => {
+      state.isFetching = false;
+      state.rafNft = action.payload;
+    },
     getNFTFailure: (state) => {
       state.isFetching = false;
       state.error = true;
@@ -51,6 +56,7 @@ export const {
   getNFTSuccess,
   getNFTStart,
   updateNFTSuccess,
+  getRafNFTSuccess,
 } = NFTSlice.actions;
 
 export const selectValue = (state) => state.NFT.value;

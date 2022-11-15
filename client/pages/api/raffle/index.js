@@ -1,4 +1,5 @@
 
+
 import NFT from "models/NFT";
 import Raffle from "models/Raffle";
 import connectDB from "utils/connectDB";
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (method === "GET") {
 		try {
-			const raffles = await Raffle.find();
+			const raffles = await NFT.find({ isListed: true, listType:"raffle"});
 			res.status(200).json(raffles);
 		} catch (err) {
 			res.status(500).json(err);
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
 			console.log(req.body);
 			const newraffle = new Raffle(req.body);
 			const raffle = await newraffle.save();
-			await NFT.findByIdAndUpdate(req.body.nft, { isListed: true })
+			await NFT.findByIdAndUpdate(req.body.nft, { isListed: true, listType:"raffle",listId:raffle._id})
 			res.status(201).json(raffle);
 		} catch (err) {
 			res.status(500).json(err);

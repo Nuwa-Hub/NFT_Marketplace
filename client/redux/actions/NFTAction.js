@@ -1,4 +1,4 @@
-import { getNFTFailure, getNFTsFailure, getNFTsSuccess, getNFTSuccess, updateNFTSuccess } from "redux/slices/NFTSlice";
+import { getNFTFailure, getNFTsFailure, getNFTsSuccess, getNFTSuccess, getRafNFTSuccess, updateNFTSuccess } from "redux/slices/NFTSlice";
 import { publicRequest, userRequest } from "/utils/requestMethods";
 
 //add NFT
@@ -62,5 +62,16 @@ export const updateNFTByUserId = async (dispatch,newNFT,nft_id) => {
 		dispatch(updateNFTSuccess(res.data));
 	} catch (err) {
 		
+	}
+};
+
+//get  NFT by nft id
+export const getraffleNFT = async (dispatch) => {
+	try {
+		const res = await publicRequest.get(`/raffle`);
+		console.log(res.data)
+		dispatch(getRafNFTSuccess(res.data));
+	} catch (err) {
+		dispatch(getNFTFailure());
 	}
 };

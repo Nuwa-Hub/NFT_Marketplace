@@ -56,7 +56,7 @@ export default function AdminCollectionCard() {
                     {collection.collectionName}
                   </th>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                    {collection.nfts.length}
+                    {collection.nfts ? collection.nfts.length : 0}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {collection.visits}

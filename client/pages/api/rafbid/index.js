@@ -1,6 +1,7 @@
+import Bid from "models/Bid";
 import Auction from "models/Auction";
-import NFT from "models/NFT";
 import connectDB from "utils/connectDB";
+import RaffleBid from "models/RaffleBid";
 
 export default async function handler(req, res) {
 	const { method } = req;
@@ -11,8 +12,8 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (method === "GET") {
 		try {
-			const auctions = await Auction.find().populate("nft").populate("winningBid").populate("bid");
-			res.status(200).json(auctions);
+			const biddings = await RaffleBid.find();
+			res.status(200).json(biddings);
 		} catch (err) {
 			res.status(500).json(err);
 		}
@@ -21,11 +22,18 @@ export default async function handler(req, res) {
 	if (method === "POST") {
 		// console.log(req.body)
 		try {
-			console.log(req.body);
-			const newAuction = new Auction(req.body);
-			const auction = await newAuction.save();
-			await NFT.findByIdAndUpdate(req.body.nft, { isListed: true })
-			res.status(201).json(auction);
+			const newBid = new RaffleBid(req.body);
+			const bid = await newBid.save();
+			res.status(201).json(bid);
+		} catch (err) {
+			res.status(500).json(err);
+		}
+	}
+	if (method === "DELETE") {
+		// console.log(req.body)
+		try {
+			await Bid.remove();
+			res.status(201).json({ message: "All Bids Deleted" });
 		} catch (err) {
 			res.status(500).json(err);
 			console.log(err);

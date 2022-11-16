@@ -4,7 +4,7 @@ const NFTSchema = new mongoose.Schema(
 	{
 		owner: { type: String, default: "" },
 		NFTName: { type: String, default: "" },
-		collectionId: { type: String, required: true },
+		collectionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Collection', required: true },
 		Img: { type: String, default: "" },
 		description: { type: String, default: "" },
 		access: { type: Boolean, default: true },
@@ -15,7 +15,8 @@ const NFTSchema = new mongoose.Schema(
 		listing: { type: String, default: "" },
 		pinataurl: { type: String, default: "" },
 		visits: { type: Number, default: 0 },
-
+        listType:{ type: String, default: ""},
+		listId:{ type: String, default: ""},
 	},
 	{ timestamps: true }
 );

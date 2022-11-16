@@ -15,9 +15,6 @@ export default function Tables() {
         <div className="w-full mb-12 px-4 pt-8">
           <UsersTable />
         </div>
-        {/* <div className="w-full mb-12 px-4">
-          <CardTable color="dark" />
-        </div> */}
       </div>
     </>
   );

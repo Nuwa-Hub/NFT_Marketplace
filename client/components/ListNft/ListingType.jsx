@@ -29,6 +29,18 @@ const ListingType = (props) => {
 						</p>
 					</div>
 				</div>
+				<div
+					className="basis-1/2 items-center m-4"
+					onClick={() => {
+						props.setTimed(3);
+					}}
+				>
+					<div className=" w-full h-20 flex justify-center items-center transform hover:scale-110 hover:bg-green-50 duration-500 ease-in-out rounded-lg shadow-md shadow-cyan-500/50">
+						<p className="text-xl font-mono tracking-tight text-slate-500 dark:text-white">
+							raffle
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

@@ -9,7 +9,9 @@ export default async function handler(req, res) {
 	//get method for rendering data
 	if (req.method === "GET") {
 		try {
-			const auction = await Auction.findById(auction_id);
+			const auction = await Auction.findById(auction_id).populate(
+				"nft"
+			);
 			res.status(200).json(auction);
 		} catch (err) {
 			res.status(500).json(err);

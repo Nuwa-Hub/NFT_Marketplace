@@ -7,7 +7,14 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 
+import { useSelector } from 'react-redux'
 export default function Admin({ children }) {
+  const admin = useSelector((state) => state.admin.currentAdmin);
+  if (!admin) {
+    return <>
+      <p>not authorize</p>
+    </>;
+  }
   return (
     <>
       <Sidebar />

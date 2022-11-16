@@ -2,17 +2,16 @@ const mongoose = require("mongoose");
 
 const RaffleSchema = new mongoose.Schema(
   {
- 
-    owner: { type: String, default:"" },
-    nft: { type: String, default:"" },
-    bid:{ type: Array , default:""},
-    start_time:{ type: Array , default:""},
-    ending_time:{type:Boolean,default:""},
-    fixedValue:{type:String},
-    access:{type:Boolean,default:true},
-
+    owner: { type: String, default: "" },
+    nft: { type: mongoose.Schema.Types.ObjectId, ref: 'NFT' },
+    endDate: { type: mongoose.Schema.Types.Date, default: "" },
+    startDate: { type: mongoose.Schema.Types.Date, default: "" },
+    fixedValue: { type: Number },
+    isCompleted: { type: Boolean, default: false },
+    access: { type: Boolean, default: true },
+    winner: { type: String, default: "" },
   },
   { timestamps: true }
 );
-
-module.exports = mongoose.model("Collection", RaffleSchema);
+delete mongoose.models["Raffle"];
+module.exports = mongoose.model("Raffle", RaffleSchema);

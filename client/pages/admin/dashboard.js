@@ -3,7 +3,7 @@ import { getAdminData } from "redux/actions/adminAction";
 import { useDispatch, useSelector } from "react-redux";
 // components
 
-import CardLineChart from "components/Cards/CardLineChart.js";
+import AdminStatsCardLineChart from "components/Cards/AdminStatsCardLineChart.js";
 import CardBarChart from "components/Cards/CardBarChart.js";
 import AdminCollectionCard from "components/Cards/AdminCollectionCard.js";
 import AdminNFTCard from "components/Cards/AdminNFTCard.js";
@@ -24,7 +24,7 @@ export default function Dashboard() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full mb-12 xl:mb-0 px-4">
-          <CardLineChart />
+          <AdminStatsCardLineChart />
         </div>
         {/* <div className="w-full xl:w-4/12 px-4">
           <CardBarChart />

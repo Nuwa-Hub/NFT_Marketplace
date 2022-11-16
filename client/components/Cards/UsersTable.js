@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { publicRequest } from "utils/requestMethods";
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
@@ -12,12 +13,14 @@ export default function UsersTable({ color }) {
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/admin/users')
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data)
+    publicRequest.get('admin/users')
+      .then((res) => {
+        setData(res.data)
         setLoading(false)
-        console.log(data)
+        console.log(res.data)
+      }).catch((err) => {
+        console.log(err)
+        setLoading(false)
       })
   }, [])
 
@@ -128,43 +131,10 @@ export default function UsersTable({ color }) {
                     <i className="fas fa-circle text-orange-500 mr-2"></i> {user.walletAdress}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {/* <div className="flex">
-      <img
-        src="/img/team-1-800x800.jpg"
-        alt="..."
-        className="w-10 h-10 rounded-full border-2 border-slate-50 shadow"
-      ></img>
-      <img
-        src="/img/team-2-800x800.jpg"
-        alt="..."
-        className="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
-      ></img>
-      <img
-        src="/img/team-3-800x800.jpg"
-        alt="..."
-        className="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
-      ></img>
-      <img
-        src="/img/team-4-470x470.png"
-        alt="..."
-        className="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
-      ></img>
-    </div> */}
-                    {user.collections}
+                    {user.collections.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {/* <div className="flex items-center">
-      <span className="mr-2">60%</span>
-      <div className="relative w-full">
-        <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-          <div
-            style={{ width: "60%" }}
-            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-          ></div>
-        </div>
-      </div>
-    </div> */}
-                    {user.nfts}
+                    {user.nfts.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                     <TableDropdown />

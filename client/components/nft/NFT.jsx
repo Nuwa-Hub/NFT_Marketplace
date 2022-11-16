@@ -7,7 +7,7 @@ import Marketplace from "../../common/Marketplace.json";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getNFTByNftId, updateNFTByUserId } from "redux/actions/NFTAction";
+import { getNFTByNftId, updateNFTByNFTId } from "redux/actions/NFTAction";
 import HighestBidModal from "./HighestBidModal";
 import BuyNowModal from "./BuyNowModal";
 import { publicRequest } from "utils/requestMethods";
@@ -133,7 +133,7 @@ const Nft = () => {
       );
 
       //massage the params to be sent to the create NFT request
-      const price = ethers.utils.parseUnits("0.001", "ether");
+      const price = ethers.utils.parseUnits("0.01", "ether");
       let listingPrice = await contract.getListPrice();
       listingPrice = listingPrice.toString();
 
@@ -144,7 +144,7 @@ const Nft = () => {
         price,
         nft.owner,
         {
-          value: listingPrice,
+          value: price,
         }
       );
 
@@ -160,7 +160,7 @@ const Nft = () => {
         isListed: false,
         owner: user.walletAdress,
       };
-      updateNFTByUserId(distpatch, newnft, nft._id);
+      updateNFTByNFTId(distpatch, newnft, nft._id);
 
       alert("Successfully listed your NFT!");
 

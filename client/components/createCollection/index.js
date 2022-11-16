@@ -7,6 +7,8 @@ import { addCollections } from "redux/actions/collectionAction";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { storage } from "common/firebase";
 import Select from "react-select";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateCollection = () => {
   const [bannerImg, setBannerImg] = useState("");
@@ -23,6 +25,21 @@ const CreateCollection = () => {
 
   //get current user
   const currentUser = useSelector((state) => state.user.currentUser);
+
+    //this is for notify messages
+    function notify(msg) {
+      toast(msg, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  
 
   const handleClick = async (e, { resetForm }) => {
     const bannerImgURL = "";
@@ -57,23 +74,28 @@ const CreateCollection = () => {
                         };
                         console.log(newCollection);
                         addCollections(dispatch, newCollection);
-                        alert("Collection Created");
+                        notify("Collection Created Successfully!");
+                        //alert("Collection Created");
                       })
                       .catch((err) => {
-                        console.log(err);
+                        notify("something went wrong!");
+                       // console.log(err);
                       });
                   })
                   .catch((err) => {
-                    console.log(err.message);
+                    notify("something went wrong!");
+                    //console.log(err.message);
                   });
               }
             })
             .catch((err) => {
-              console.log(err);
+              notify("something went wrong!");
+             // console.log(err);
             });
         })
         .catch((err) => {
-          console.log(err.message);
+          notify("something went wrong!");
+          //console.log(err.message);
         });
     }
 
@@ -166,6 +188,7 @@ const CreateCollection = () => {
         }) => (
           <>
             <div className="md:flex p-4">
+            <ToastContainer />
               <h2 className="justify-center uppercase text-4xl font-bold font-mono tracking-tight text-gray-900">
                 Create New Collection
               </h2>

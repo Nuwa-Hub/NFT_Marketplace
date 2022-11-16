@@ -8,7 +8,8 @@ import Select from "react-select";
 import { getAllCollections } from "redux/actions/collectionAction";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { storage } from "common/firebase";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 //select options
 
 const CreateNFT = () => {
@@ -25,7 +26,21 @@ const CreateNFT = () => {
   useEffect(() => {
     getAllCollections(dispatch);
   }, [dispatch]);
-  
+
+  //this is for notify messages
+  function notify(msg) {
+    toast(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+
   const options = collections.map((collection) => ({
     value: collection._id,
     label: collection.collectionName,
@@ -50,14 +65,17 @@ const CreateNFT = () => {
             console.log(newNFT);
             //call add nft fuction
             addNFTs(dispatch, newNFT);
-            alert("Create NFT successfully!");
+            notify("Create NFT successfully!");
+            // alert("Create NFT successfully!");
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
+            notify("something went wrong!");
           });
       })
       .catch((err) => {
-        console.log(err.message);
+        //console.log(err.message);
+        notify("something went wrong!");
       });
   }
 
@@ -72,7 +90,8 @@ const CreateNFT = () => {
         setFileURL(response.pinataURL);
       }
     } catch (e) {
-      console.log("Error during file upload", e);
+      //console.log("Error during file upload", e);
+      notify("something went wrong!");
     }
   }
 
@@ -106,6 +125,7 @@ const CreateNFT = () => {
 
   return (
     <section className="bg-cream-lighter p-6 shadow flex">
+      <ToastContainer />
       <Formik
         initialValues={{
           NFTName: "",
@@ -143,6 +163,7 @@ const CreateNFT = () => {
                       name="NFTName"
                       placeholder="Ex: CryptoPuppies"
                       onChange={handleChange}
+                      required
                     />
                     <ErrorMessage name="collectionName" component="div" />
                   </div>
@@ -157,6 +178,7 @@ const CreateNFT = () => {
                       name="description"
                       placeholder="Ex: Welcome to the home of Helions on OpenSea. Discover the best items in this collection."
                       onChange={handleChange}
+                      required
                     />
                     <ErrorMessage name="description" component="div" />
                   </div>
@@ -208,6 +230,7 @@ const CreateNFT = () => {
                             previewImgFile(e.target.files[0]);
                             uploadNftToPinata(e.target.files[0]);
                           }}
+                          required
                         />
                       </label>
                     </div>

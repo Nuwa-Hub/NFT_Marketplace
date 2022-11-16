@@ -32,6 +32,17 @@ export const getNFTsByCollectionId = async (dispatch, collection_id) => {
 	}
 };
 
+//get  NFT by collection id
+export const getUserNFTsByCollectionId = async (dispatch, collection_id) => {
+	try {
+		const res = await publicRequest.get(`/nft/collection/user/${collection_id}`);
+		//console.log(res.data)
+		dispatch(getNFTsSuccess(res.data));
+	} catch (err) {
+		dispatch(getNFTsFailure());
+	}
+};
+
 //get  NFT by nft id
 export const getNFTByNftId = async (dispatch, nft_id) => {
 	try {
@@ -55,7 +66,7 @@ export const getNFTByUserId = async (dispatch, user_id) => {
 };
 
 //get  NFT by user id
-export const updateNFTByUserId = async (dispatch,newNFT,nft_id) => {
+export const updateNFTByNFTId = async (dispatch,newNFT,nft_id) => {
 	try {
 		const res = await publicRequest.put(`/nft/user/${nft_id}`,newNFT);
 		//console.log(res.data)

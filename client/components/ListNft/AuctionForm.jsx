@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import DecliningPriceSell from "./DecliningPriceSell";
 import HighestBidderSell from "./HighestBidderSell";
-const AuctionForm = () => {
+const AuctionForm = ({nft}) => {
 	const [highest, setHighest] = useState(null);
 	return (
 		<div>
@@ -41,7 +41,7 @@ const AuctionForm = () => {
 					</div>
 				</div>
 			</div>
-			{highest === null ? null : highest ? <HighestBidderSell /> : <DecliningPriceSell />}
+			{highest === null ? null : highest ? <HighestBidderSell nft={nft} /> : <DecliningPriceSell nft={nft}/>}
 		</div>
 	);
 };

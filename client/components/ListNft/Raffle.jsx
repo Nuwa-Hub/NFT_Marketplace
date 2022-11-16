@@ -7,31 +7,88 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Marketplace from "../../common/Marketplace.json";
 
-const Raffle = () => {
+const Raffle = ({ nft }) => {
   const router = useRouter();
   const user = useSelector((state) => state.user);
 
+  const hexToDecimal = (hex) => parseInt(hex, 16);
+
+  async function listingNFT() {
+    const tokenId = hexToDecimal(nft.tokenId);
+    try {
+      const ethers = require("ethers");
+      //After adding your Hardhat network to your metamask, this code will get providers and signers
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(
+        Marketplace.address,
+        Marketplace.abi,
+        signer
+      );
+      const salePrice = ethers.utils.parseUnits("0.001", "ether");
+      let listingPrice = await contract.getListPrice();
+      listingPrice = listingPrice.toString();
+      //run the executeSale function
+      //let ns = await contract.getAllNFTs()
+      //console.log(ns)
+      let transaction = await contract.createLisToken(tokenId, salePrice, {
+        value: listingPrice,
+      });
+      await transaction.wait();
+
+      // const newnft = { isListed: false, owner: user.walletAdress };
+      // updateNFTByUserId(distpatch, newnft, nft._id);
+      alert("You successfully list the NFT!");
+    } catch (e) {
+      alert("Upload Error" + e);
+    }
+  }
+
   const formik = useFormik({
     initialValues: {
-        fixedValue: "",
+      fixedValue: "",
       startDate: "",
       endDate: "",
     },
-    onSubmit: (values) => {
-      values = {
-        ...values,
-        nft: router.query.id,
-        owner: user.currentUser.walletAdress,
-      };
-      publicRequest.post('raffle', values).then((res) => {
-      	console.log(res);
-      }).catch((err) => {
-      	console.log(err);
-      });
-      console.log(values);
+    onSubmit: async (values) => {
+      if (nft.mint == true) {
+        console.log("list");
+        await listingNFT();
+        values = {
+          ...values,
+          nft: router.query.id,
+          owner: user.currentUser.walletAdress,
+        };
+        publicRequest
+          .post("raffle", values)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        console.log(values);
+      } else {
+        values = {
+          ...values,
+          nft: router.query.id,
+          owner: user.currentUser.walletAdress,
+        };
+        publicRequest
+          .post("raffle", values)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        console.log(values);
+      }
     },
     validationSchema: Yup.object({
-        fixedValue: Yup.number()
+      fixedValue: Yup.number()
         .required("Starting price is required")
         .positive("Starting price must be positive"),
       startDate: Yup.date().required("Start date is required"),

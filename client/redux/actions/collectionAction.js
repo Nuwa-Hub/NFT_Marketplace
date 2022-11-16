@@ -19,7 +19,7 @@ export const addCollections = async (dispatch, newCollection) => {
 export const getAllCollections = async (dispatch) => {
 	try {
 		const res = await publicRequest.get(`/collection`);
-		//console.log(res.data);
+		console.log(res.data);
 		dispatch(getCollectionsSuccess(res.data));
 	} catch (err) {
 		dispatch(getCollectionsFailure());

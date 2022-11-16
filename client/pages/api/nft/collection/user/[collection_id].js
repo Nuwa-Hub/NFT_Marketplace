@@ -10,8 +10,7 @@ export default async function handler(req, res) {
 	if (req.method === "GET") {
 		try {
 			//console.log( req.query.collection_id)
-			const nfts = await NFT.find({collectionId:req.query.collection_id,isListed: "true",
-			listType : {$ne : "raffle"}}).populate("collectionId");;
+			const nfts = await NFT.find({collectionId:req.query.collection_id}).populate("collectionId");;
 			res.status(200).json(nfts);
 		} catch (err) {
 			res.status(500).json(err);

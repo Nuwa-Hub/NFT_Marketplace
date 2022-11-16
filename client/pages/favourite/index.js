@@ -9,7 +9,6 @@ const index = () => {
   const user = useSelector((state) => state.user.currentUser);
   const favs = useSelector((state) => state.favourite.favourites);
 
-
   useEffect(() => {
     user?._id && getAllFavouritesByUserId(dispatch, user?._id);
   },[user?._id]);

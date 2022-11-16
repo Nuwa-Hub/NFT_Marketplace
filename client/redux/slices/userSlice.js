@@ -11,11 +11,15 @@ const userSlice = createSlice({
         currentUser: null,
         userToken: null,
     },
+    
     reducers: {
         logout: (state) => {
             sessionStorage.removeItem("userToken");
             state.currentUser = null;
             state.userToken = null;
+        },
+        updateUserSuccess: (state,action) => {
+            state.currentUser = action.payload;   
         },
     },
     extraReducers: {
@@ -30,6 +34,7 @@ const userSlice = createSlice({
 });
 
 export const {
-    logout
+    logout,
+    updateUserSuccess
 } = userSlice.actions;
 export default userSlice.reducer;

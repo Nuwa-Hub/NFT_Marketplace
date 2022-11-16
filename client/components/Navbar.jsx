@@ -163,7 +163,7 @@ const Navbar = () => {
 							</Link>
 						</li>
 						<li className="p-2">
-							<Link href={`/`} smooth={true} duration={500}>
+							<Link href={`/profile`} smooth={true} duration={500}>
 								<a>
 									<CgProfile size={50} />
 								</a>

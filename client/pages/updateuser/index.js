@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 /*
   This example requires some changes to your config:
   
@@ -13,6 +15,15 @@
   ```
 */
 export default function UpdateUser() {
+    const [inputs, setInputs] = useState({});
+    const [file, setFile] = useState(null);
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+          return { ...prev, [e.target.name]: e.target.value };
+        });
+      };
+      console.log(inputs)
   return (
     <>
       <div>
@@ -39,18 +50,19 @@ export default function UpdateUser() {
                           htmlFor="company-website"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Website
+                          Username
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
-                          <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+                          {/* <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
                             http://
-                          </span>
+                          </span> */}
                           <input
                             type="text"
-                            name="company-website"
+                            name="username"
+                            onChange={handleChange}
                             id="company-website"
                             className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            placeholder="www.example.com"
+                            placeholder="abc"
                           />
                         </div>
                       </div>
@@ -71,6 +83,7 @@ export default function UpdateUser() {
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="you@example.com"
                           defaultValue={""}
+                          onChange={handleChange}
                         />
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
@@ -78,6 +91,32 @@ export default function UpdateUser() {
                         hyperlinked.
                       </p>
                     </div>
+
+
+                    <div className="grid grid-cols-3 gap-6">
+                      <div className="col-span-3 sm:col-span-2">
+                        <label
+                          htmlFor="company-website"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Username
+                        </label>
+                        <div className="mt-1 flex rounded-md shadow-sm">
+                         <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+                            +94
+                          </span> 
+                          <input
+                              onChange={handleChange}
+                            type="text"
+                            name="telNo"
+                            id="company-website"
+                            className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            placeholder="344535265"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700">
@@ -93,12 +132,22 @@ export default function UpdateUser() {
                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                           </svg>
                         </span>
-                        <button
+
+                        {/* <button
                           type="button"
                           className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                           Change
-                        </button>
+                        </button> */}
+                        <input
+                          type="file"
+                          name="img"
+                          id="company-website"
+                          className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          placeholder="abc"
+                          onChange={(e) => setFile(e.target.files[0])}
+                          
+                        />
                       </div>
                     </div>
                   </div>
@@ -138,8 +187,9 @@ export default function UpdateUser() {
                         </label>
                         <input
                           type="text"
-                          name="first-name"
+                          name="firstname"
                           id="first-name"
+                          onChange={handleChange}
                           autoComplete="given-name"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
@@ -154,7 +204,8 @@ export default function UpdateUser() {
                         </label>
                         <input
                           type="text"
-                          name="last-name"
+                          name="lastname"
+                          onChange={handleChange}
                           id="last-name"
                           autoComplete="family-name"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -170,7 +221,8 @@ export default function UpdateUser() {
                         </label>
                         <input
                           type="text"
-                          name="email-address"
+                          name="email"
+                          onChange={handleChange}
                           id="email-address"
                           autoComplete="email"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -184,17 +236,19 @@ export default function UpdateUser() {
                         >
                           Country
                         </label>
-                        <select
+                        <input
                           id="country"
                           name="country"
+                          onChange={handleChange}
                           autoComplete="country-name"
                           className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        >
-                          <option>United States</option>
+                        />
+                          {/* <option>United States</option>
                           <option>Canada</option>
-                          <option>Mexico</option>
-                        </select>
+                          <option>Mexico</option> */}
+                    
                       </div>
+
 
                       <div className="col-span-6">
                         <label
@@ -205,60 +259,33 @@ export default function UpdateUser() {
                         </label>
                         <input
                           type="text"
-                          name="street-address"
+                          name="address"
+                          onChange={handleChange}
                           id="street-address"
                           autoComplete="street-address"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
-                      <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                     
+                      <div className="col-span-6">
                         <label
-                          htmlFor="city"
+                          htmlFor="street-address"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          City
+                          Birthday
                         </label>
                         <input
-                          type="text"
-                          name="city"
-                          id="city"
-                          autoComplete="address-level2"
+                          type="date"
+                          name="birthday"
+                          id="street-address"
+                          onChange={handleChange}
+                          autoComplete="street-address"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
-
-                      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label
-                          htmlFor="region"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          State / Province
-                        </label>
-                        <input
-                          type="text"
-                          name="region"
-                          id="region"
-                          autoComplete="address-level1"
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        />
-                      </div>
-
-                      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label
-                          htmlFor="postal-code"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          ZIP / Postal code
-                        </label>
-                        <input
-                          type="text"
-                          name="postal-code"
-                          id="postal-code"
-                          autoComplete="postal-code"
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        />
-                      </div>
+                     
+                   
                     </div>
                   </div>
                   <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

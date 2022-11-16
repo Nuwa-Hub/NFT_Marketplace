@@ -68,10 +68,12 @@ const Navbar = () => {
 		<div className="w-full h-[80px] z-10 bg-zinc-200 sticky top-0 ">
 			<div className="px-2 flex justify-between items-center w-full h-full">
 				<div className="flex items-center">
-					<img className="w-16" src={Logo.src} alt="logo" />
-					<h1 className="text-3xl font-bold mr-4 sm:text-4xl">
+					<Link href={`/`} smooth={true} duration={500}>
+						<img className="w-16" src={Logo.src} alt="logo" />
+					</Link>
+					<h2 className="text-xl font-bold mr-4 sm:text-2xl">
 						Kryptonaut
-					</h1>
+					</h2>
 				</div>
 				<form className="w-[50%]">
 					{/* <label
@@ -80,7 +82,7 @@ const Navbar = () => {
 					>
 						Search
 					</label> */}
-					<div className="relative">
+					<div className="p-2 relative">
 						<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-auto">
 							<button onClick={handleSubmit}>
 								<svg
@@ -126,7 +128,7 @@ const Navbar = () => {
 								smooth={true}
 								duration={500}
 							>
-								<a>Explore</a>
+								<a>Explore Collections</a>
 							</Link>
 						</li>
 						<li className="p-4">
@@ -135,12 +137,28 @@ const Navbar = () => {
 								smooth={true}
 								duration={500}
 							>
-								<a>Create</a>
+								<a>Create NFT</a>
 							</Link>
 						</li>
+
+						{/* <li className="p-4">
+							<Link
+								href={`/collection/create`}
+								smooth={true}
+								duration={500}
+							>
+								<a>Create Collections</a>
+							</Link>
+
+						
+						</li> */}
 						<li className="p-4">
-							<Link href={`/`} smooth={true} duration={500}>
-								<a>Stats</a>
+							<Link
+								href={`/collection/create`}
+								smooth={true}
+								duration={500}
+							>
+								<a>Create Collection</a>
 							</Link>
 						</li>
 						{/* {currentUser && currentUser.isAdmin ? (

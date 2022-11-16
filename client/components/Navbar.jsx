@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+//import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Logo_dark from "../assets/logo-dark.svg";
 import Logo from "../assets/logo.svg";
 import ConnectWalletButton from "./ConnectWalletButton";
@@ -162,11 +162,11 @@ const Navbar = () => {
 					<ConnectWalletButton />
 				</div>
 				<div className="md:hidden mr-4" onClick={handleClick}>
-					{!nav ? (
+					{/* {!nav ? (
 						<MenuIcon className="w-5" />
 					) : (
 						<XIcon className="w-5" />
-					)}
+					)} */}
 				</div>
 			</div>
 

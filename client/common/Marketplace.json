@@ -1,5 +1,5 @@
 {
-  "address": "0xeFbe588dfB3A9E62af2889cae002DB7Af4c71940",
+  "address": "0xe56A315e2815cA191B481722fC673dF42ECeb897",
   "abi": [
     { "type": "constructor", "payable": false, "inputs": [] },
     {
@@ -92,6 +92,15 @@
     {
       "type": "function",
       "name": "executeSale",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "executeWin",
       "constant": false,
       "stateMutability": "payable",
       "payable": true,

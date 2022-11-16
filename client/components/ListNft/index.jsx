@@ -68,10 +68,10 @@ const Listing = () => {
                 <FixedPriceForm nft={nft} />
               </div>
             ) : timed==1 ? (  <div className="mx-2 mt-5 ">
-                <AuctionForm />
+                <AuctionForm nft={nft} />
               </div>): (
 				<div className="mx-2 mt-5 ">
-                <Raffle />
+                <Raffle nft={nft} />
               </div>
             )}
 			

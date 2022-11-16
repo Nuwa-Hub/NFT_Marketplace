@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { publicRequest } from "utils/requestMethods";
 import { useRouter } from "next/router";
 import NavbarHelper from "./SearchHelpers/NavbarHelper";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
 	const [nav, setNav] = useState(false);
@@ -65,13 +66,15 @@ const Navbar = () => {
 		setNftSearchResult([]);
 	};
 	return (
-		<div className="w-full h-[80px] z-10 bg-zinc-200 sticky top-0 ">
+		<div className="w-full h-[80px] z-10 bg-gray-50 sticky top-0 ">
 			<div className="px-2 flex justify-between items-center w-full h-full">
 				<div className="flex items-center">
-					<img className="w-16" src={Logo.src} alt="logo" />
-					<h1 className="text-3xl font-bold mr-4 sm:text-4xl">
+					<Link href={`/`} smooth={true} duration={500}>
+						<img className="w-16" src={Logo.src} alt="logo" />
+					</Link>
+					<h2 className="text-xl font-bold mr-4 sm:text-2xl">
 						Kryptonaut
-					</h1>
+					</h2>
 				</div>
 				<form className="w-[50%]">
 					{/* <label
@@ -80,7 +83,7 @@ const Navbar = () => {
 					>
 						Search
 					</label> */}
-					<div className="relative">
+					<div className="p-2 relative">
 						<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-auto">
 							<button onClick={handleSubmit}>
 								<svg
@@ -105,7 +108,7 @@ const Navbar = () => {
 							onSubmit={handleSubmit}
 							type="search"
 							id="default-search"
-							className="block p-4 pl-10 w-full text-sm text-gray-900 bg-zinc-200 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+							className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 							placeholder="Search items, collections"
 							required
 						/>
@@ -120,29 +123,53 @@ const Navbar = () => {
 				</form>
 				<div className="hidden md:flex pr-4">
 					<ul className="hidden md:flex">
-						<li className="p-4">
+						<li className="p-2">
 							<Link
 								href={`/collection`}
 								smooth={true}
 								duration={500}
 							>
-								<a>Explore</a>
+								<a>Explore Collections</a>
 							</Link>
 						</li>
-						<li className="p-4">
+						<li className="p-2">
 							<Link
 								href={`/nft/create`}
 								smooth={true}
 								duration={500}
 							>
-								<a>Create</a>
+								<a>Create NFT</a>
 							</Link>
 						</li>
-						<li className="p-4">
+
+						{/* <li className="p-4">
+							<Link
+								href={`/collection/create`}
+								smooth={true}
+								duration={500}
+							>
+								<a>Create Collections</a>
+							</Link>
+
+						
+						</li> */}
+						<li className="p-2">
+							<Link
+								href={`/collection/create`}
+								smooth={true}
+								duration={500}
+							>
+								<a>Create Collection</a>
+							</Link>
+						</li>
+						<li className="p-2">
 							<Link href={`/`} smooth={true} duration={500}>
-								<a>Stats</a>
+								<a>
+									<CgProfile size={50} />
+								</a>
 							</Link>
 						</li>
+
 						{/* {currentUser && currentUser.isAdmin ? (
               <li className="p-4">
                 <Link href="/auth/login" >
@@ -159,8 +186,10 @@ const Navbar = () => {
             Sign In
           </button> */}
 					{/* <ConnectButton  moralisAuth={true} /> */}
-					<ConnectWalletButton />
 				</div>
+
+				<ConnectWalletButton />
+
 				<div className="md:hidden mr-4" onClick={handleClick}>
 					{/* {!nav ? (
 						<MenuIcon className="w-5" />

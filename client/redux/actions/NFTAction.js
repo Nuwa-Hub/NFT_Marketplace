@@ -1,4 +1,4 @@
-import { getNFTFailure, getNFTsFailure, getNFTsSuccess, getNFTSuccess, getRafNFTSuccess, updateNFTSuccess } from "redux/slices/NFTSlice";
+import { getNFTFailure, getNFTsFailure, getNFTsSuccess, getNFTSuccess, getRafNFTSuccess, getUserNFTSuccess, updateNFTSuccess } from "redux/slices/NFTSlice";
 import { publicRequest, userRequest } from "/utils/requestMethods";
 
 //add NFT
@@ -59,7 +59,7 @@ export const getNFTByUserId = async (dispatch, user_id) => {
 	try {
 		const res = await publicRequest.get(`/nft/user/${user_id}`);
 		//console.log(res.data)
-		dispatch(getNFTSuccess(res.data));
+		dispatch(getUserNFTSuccess(res.data));
 	} catch (err) {
 		dispatch(getNFTFailure());
 	}

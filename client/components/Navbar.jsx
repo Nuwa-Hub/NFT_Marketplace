@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { publicRequest } from "utils/requestMethods";
 import { useRouter } from "next/router";
 import NavbarHelper from "./SearchHelpers/NavbarHelper";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
 	const [nav, setNav] = useState(false);
@@ -65,7 +66,7 @@ const Navbar = () => {
 		setNftSearchResult([]);
 	};
 	return (
-		<div className="w-full h-[80px] z-10 bg-zinc-200 sticky top-0 ">
+		<div className="w-full h-[80px] z-10 bg-gray-50 sticky top-0 ">
 			<div className="px-2 flex justify-between items-center w-full h-full">
 				<div className="flex items-center">
 					<Link href={`/`} smooth={true} duration={500}>
@@ -107,7 +108,7 @@ const Navbar = () => {
 							onSubmit={handleSubmit}
 							type="search"
 							id="default-search"
-							className="block p-4 pl-10 w-full text-sm text-gray-900 bg-zinc-200 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+							className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 							placeholder="Search items, collections"
 							required
 						/>
@@ -122,7 +123,7 @@ const Navbar = () => {
 				</form>
 				<div className="hidden md:flex pr-4">
 					<ul className="hidden md:flex">
-						<li className="p-4">
+						<li className="p-2">
 							<Link
 								href={`/collection`}
 								smooth={true}
@@ -131,7 +132,7 @@ const Navbar = () => {
 								<a>Explore Collections</a>
 							</Link>
 						</li>
-						<li className="p-4">
+						<li className="p-2">
 							<Link
 								href={`/nft/create`}
 								smooth={true}
@@ -152,7 +153,7 @@ const Navbar = () => {
 
 						
 						</li> */}
-						<li className="p-4">
+						<li className="p-2">
 							<Link
 								href={`/collection/create`}
 								smooth={true}
@@ -161,6 +162,14 @@ const Navbar = () => {
 								<a>Create Collection</a>
 							</Link>
 						</li>
+						<li className="p-2">
+							<Link href={`/`} smooth={true} duration={500}>
+								<a>
+									<CgProfile size={50} />
+								</a>
+							</Link>
+						</li>
+
 						{/* {currentUser && currentUser.isAdmin ? (
               <li className="p-4">
                 <Link href="/auth/login" >
@@ -177,8 +186,10 @@ const Navbar = () => {
             Sign In
           </button> */}
 					{/* <ConnectButton  moralisAuth={true} /> */}
-					<ConnectWalletButton />
 				</div>
+
+				<ConnectWalletButton />
+
 				<div className="md:hidden mr-4" onClick={handleClick}>
 					{/* {!nav ? (
 						<MenuIcon className="w-5" />

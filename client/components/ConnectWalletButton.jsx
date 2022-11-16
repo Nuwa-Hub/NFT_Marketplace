@@ -14,7 +14,7 @@ const ConnectWalletButton = () => {
 			walletButton: (
 				<button
 					onClick={connectWallet}
-					className="bg-zinc-500 text-white px-4 py-2 rounded-md"
+					className="bg-indigo-600 text-white px-4 py-2 rounded-md"
 				>
 					Connect Wallet
 				</button>
@@ -40,7 +40,7 @@ const ConnectWalletButton = () => {
 				walletButton: (
 					<button
 						onClick={disconnectWallet}
-						className="bg-zinc-500 text-white px-4 py-2 rounded-md"
+						className="bg-indigo-600 text-white px-4 py-2 rounded-md"
 					>
 						Disconnect Wallet
 					</button>
@@ -59,7 +59,7 @@ const ConnectWalletButton = () => {
 		walletButton: (
 			<button
 				onClick={connectWallet}
-				className="bg-zinc-500 text-white px-4 py-2 rounded-md"
+				className="bg-indigo-600 text-white px-4 py-2 rounded-md"
 			>
 				Connect Wallet
 			</button>
@@ -86,7 +86,7 @@ const ConnectWalletButton = () => {
 					walletButton: (
 						<button
 							onClick={disconnectWallet}
-							className="bg-zinc-500 text-white px-4 py-2 rounded-md"
+							className="bg-indigo-600 text-white px-4 py-2 rounded-md"
 							onMouseEnter={() => setHover(true)}
 							onMouseLeave={() => setHover(false)}
 						>

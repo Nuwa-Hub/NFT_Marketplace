@@ -60,7 +60,7 @@ export default function AdminNFTCard() {
                     {nft.NFTName}
                   </th>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {nft.description}
+                    {nft.description.substring(0, 10)}...
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {nft.owner.substring(0, 10)}...

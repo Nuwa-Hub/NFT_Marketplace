@@ -26,14 +26,6 @@ const index = () => {
               </p>
               <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                 <li class="flex items-center py-3">
-                  <span>Status</span>
-                  <span class="ml-auto">
-                    <span class="bg-green-500 py-1 px-2 rounded text-white text-sm">
-                      Active
-                    </span>
-                  </span>
-                </li>
-                <li class="flex items-center py-3">
                   <span>Member since</span>
                   <span class="ml-auto">Nov 07, 2016</span>
                 </li>
@@ -60,7 +52,15 @@ const index = () => {
                     />
                   </svg>
                 </span>
-                <span>Similar Profiles</span>
+                <span>My Fovourites</span>
+                <Link href="favourite/">
+                      <button
+                        type="button"
+                        class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      >
+                        Go
+                      </button>
+                    </Link>
               </div>
               <div class="grid grid-cols-3">
                 <div class="text-center my-2">
@@ -171,9 +171,11 @@ const index = () => {
                   </div>
                 </div>
               </div>
-              <button class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                Show Full Information
-              </button>
+              <Link href="updateuser/">
+                <button class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                  Edit Information
+                </button>
+              </Link>
             </div>
             {/* <!-- End of about section --> */}
 
@@ -200,9 +202,25 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span class="tracking-wide">Experience</span>
+                    <span class="tracking-wide">Listing History</span>
                   </div>
-                  <ul class="list-inside space-y-2">
+                  <ul class="list-inside space-y-2 overflow-y-scroll max-h-56 scrollbar-hide">
+                    <li>
+                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                    </li>
+                    <li>
+                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                    </li>
+                    <li>
+                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                    </li>
+                    <li>
+                      <div class="text-teal-600">Owner at Her Company Inc.</div>
+                      <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                    </li>
                     <li>
                       <div class="text-teal-600">Owner at Her Company Inc.</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
@@ -244,9 +262,9 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span class="tracking-wide">Education</span>
+                    <span class="tracking-wide">Bidding History</span>
                   </div>
-                  <ul class="list-inside space-y-2">
+                  <ul class="list-inside space-y-2 overflow-y-scroll max-h-56 scrollbar-hide">
                     <li>
                       <div class="text-teal-600">Masters Degree in Oxford</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
@@ -284,7 +302,15 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span>Similar Profiles</span>
+                    <span>My Collections</span>
+                    <Link href="collection/user">
+                      <button
+                        type="button"
+                        class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      >
+                        Go
+                      </button>
+                    </Link>
                   </div>
                   <div class="grid grid-cols-3">
                     <div class="text-center my-2">
@@ -347,7 +373,15 @@ const index = () => {
                         />
                       </svg>
                     </span>
-                    <span>Similar Profiles</span>
+                    <span>My NFTs</span>
+                    <Link href="nft/user">
+                      <button
+                        type="button"
+                        class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      >
+                        Go
+                      </button>
+                    </Link>
                   </div>
                   <div class="grid grid-cols-3">
                     <div class="text-center my-2">

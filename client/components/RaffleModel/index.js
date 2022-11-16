@@ -27,7 +27,7 @@ const getnfts=useSelector((state) => state.NFT.rafNft)
       <h1 className="text-6xl mt-3 mb-3 font-mono tracking-tight text-bold dark:text-white">
         Today Raffle 
       </h1>
-      <div className="overflow-scroll scrollbar-hide text-gray-700 h-1/2">
+      <div className="overflow-scroll scrollbar-hide text-gray-700">
         <div className="px-1 py-1 mx-auto lg:pt-12 lg:px-2">
           <div className="flex flex-wrap -m-1 md:-m-2 ">
             {getnfts?.length>0 && getnfts.map((item,index) => (

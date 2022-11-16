@@ -15,6 +15,7 @@ const RaffleCard = ({ nft }) => {
   const addRafbid = async () => {
     
     try {
+      await bidforRaffle()
       const newbid = { raffleId: nft.listId, bidder: user?.walletAdress, };
       console.log("dfs")
       const res = await publicRequest.post(`/rafbid`, newbid);

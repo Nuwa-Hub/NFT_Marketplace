@@ -15,7 +15,7 @@ const exploreNFT = () => {
     currentUser && getNFTByUserId(dispatch, currentUser);
   }, [currentUser]);
   //if (!dataFetched)  getAllNFTs();
-  const getnfts = useSelector((state) => state.NFT.NFTs);
+  const getnfts = useSelector((state) => state.NFT.userNFTs);
 
   //console.log(getnfts);
 
@@ -27,7 +27,7 @@ const exploreNFT = () => {
       <div className="overflow-hidden text-gray-700">
         <div className="px-1 py-1 mx-auto lg:pt-12 lg:px-2">
           <div className="flex flex-wrap -m-1 md:-m-2 ">
-            {getnfts.length > 0 &&
+            {getnfts?.length > 0 &&
               getnfts.map((item, index) => (
                 <div
                   className="flex flex-wrap w-full  sm:w-full md:w-1/2 lg:w-1/4"

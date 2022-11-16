@@ -4,7 +4,6 @@ import { userLogin } from "redux/actions/userActions";
 import { logout } from "redux/slices/userSlice";
 import { adminLogout } from "redux/slices/adminSlices";
 const ConnectWalletButton = () => {
-	const [hover, setHover] = useState(false);
 	const disconnectWallet = () => {
 		dispatch(logout());
 		dispatch(adminLogout());
@@ -87,8 +86,6 @@ const ConnectWalletButton = () => {
 						<button
 							onClick={disconnectWallet}
 							className="bg-indigo-600 text-white px-4 py-2 rounded-md"
-							onMouseEnter={() => setHover(true)}
-							onMouseLeave={() => setHover(false)}
 						>
 							Disconnect Wallet
 						</button>
@@ -108,10 +105,10 @@ const ConnectWalletButton = () => {
 	//     Button = <button onClick={disconnectWallet} className="bg-zinc-500 text-white px-4 py-2 rounded-md">Disconnect Wallet</button>
 	// }
 	return (
-		<div className="grid grid-cols-2 w-40">
+		<div>
 			{/* <div className="text-black truncate w-20 ">{data.address}</div>
             <div className="text-red-500" >{data.Balance}</div> */}
-			<div className="col-span-2 p-2">{data.walletButton}</div>
+			{/* <div className="col-span-2 p-2">{data.walletButton}</div>
 			{hover && (
 				<div>
 					<div className="text-black truncate w-20 ">
@@ -119,7 +116,22 @@ const ConnectWalletButton = () => {
 					</div>
 					<div className="text-red-500">{data.Balance}</div>
 				</div>
-			)}
+			)} */}
+			<div className="relative group p-2">
+				{data.walletButton}
+
+				<div class="absolute w-full invisible group-hover:visible bg-transparent p-4">
+					<div>
+						<div className="text-black truncate w-full">
+							Address : {data.address}
+						</div>
+						<div className="text-red-500">
+							{" "}
+							Balance : {data.Balance}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };

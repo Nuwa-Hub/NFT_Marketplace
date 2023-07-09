@@ -46,7 +46,7 @@
 		"redux-devtools-extension": "^2.13.9",
 		"redux-persist": "^6.0.0",
 		"url-loader": "^4.1.1",
-		"web3uikit": "^0.1.159",
+		"web3uikit": "^1.0.4",
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {
